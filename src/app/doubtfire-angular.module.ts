@@ -76,6 +76,7 @@ import {
   aboutDoubtfireModalProvider,
   calendarModalProvider,
   userNotificationSettingsModalProvider,
+ 
 } from './ajs-upgraded-providers';
 import {
   TaskCommentComposerComponent,
@@ -121,6 +122,7 @@ import { EmojiService } from './common/services/emoji.service';
 import { TaskListItemComponent } from './projects/states/dashboard/directives/student-task-list/task-list-item/task-list-item.component';
 import { CreatePortfolioTaskListItemComponent } from './projects/states/dashboard/directives/student-task-list/create-portfolio-task-list-item/create-portfolio-task-list-item.component';
 import { TaskDescriptionCardComponent } from './projects/states/dashboard/directives/task-dashboard/directives/task-description-card/task-description-card.component';
+import { TaskOutcomesCardComponent } from './projects/states/dashboard/directives/task-dashboard/directives/task-outcomes-card/task-outcomes-card.component';
 import { TaskCommentsViewerComponent } from './tasks/task-comments-viewer/task-comments-viewer.component';
 import { MarkedPipe } from './common/pipes/marked.pipe';
 import { UserIconComponent } from './common/user-icon/user-icon.component';
@@ -196,6 +198,7 @@ import { SplashScreenComponent } from './home/splash-screen/splash-screen.compon
     TaskListItemComponent,
     CreatePortfolioTaskListItemComponent,
     TaskDescriptionCardComponent,
+    TaskOutcomesCardComponent,
     StatusIconComponent,
     TaskCommentsViewerComponent,
     UserIconComponent,
