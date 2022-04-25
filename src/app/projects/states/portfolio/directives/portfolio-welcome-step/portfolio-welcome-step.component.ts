@@ -8,4 +8,9 @@ import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants
 export class PortfolioWelcomeStepComponent {
   constructor(private constants: DoubtfireConstants) { }
   public externalName = this.constants.ExternalName
+
+  advanceActiveTab(advanceBy) {
+    console.log(advanceBy)
+    return advanceBy
+  }
 }
