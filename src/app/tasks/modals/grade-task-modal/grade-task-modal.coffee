@@ -38,4 +38,8 @@ angular.module('doubtfire.tasks.modals.grade-task-modal', [])
       $scope.data.rating = 1
 
     $scope.data.confRating = $scope.data.rating
+
+  $scope.updateRating = (event) ->
+    $scope.data.rating = event
+
 )
