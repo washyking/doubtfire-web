@@ -6,8 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./star-rating.component.scss']
 })
 export class StarRatingComponent implements OnInit {
-  @Input() totalStars: number;
-  @Input() selectedRating: number;
+  @Input() totalStars: any;
+  @Input() selectedRating: any;
   @Output() newSelectedRating = new EventEmitter<number>();
   stars = [];
 
