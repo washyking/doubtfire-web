@@ -109,7 +109,6 @@ import 'build/src/app/admin/modals/rollover-teaching-period-modal/rollover-teach
 import 'build/src/app/admin/modals/user-notification-settings-modal/user-notification-settings-modal.js';
 import 'build/src/app/admin/modals/user-settings-modal/user-settings-modal.js';
 import 'build/src/app/admin/modals/modals.js';
-import 'build/src/app/admin/modals/create-unit-modal/create-unit-modal.js';
 import 'build/src/app/admin/states/states.js';
 import 'build/src/app/admin/states/units/units.js';
 import 'build/src/app/admin/states/users/users.js';
@@ -248,6 +247,7 @@ import 'build/src/i18n/resources-locale_en-AU.js';
 import 'build/src/i18n/resources-locale_en-GB.js';
 //#endregion
 
+import { CreateUnitModalComponent } from './admin/modals/create-unit-modal/create-unit-modal.component';
 import { AboutDoubtfireModal } from 'src/app/common/modals/about-doubtfire-modal/about-doubtfire-modal.component';
 import { TaskCommentComposerComponent } from 'src/app/tasks/task-comment-composer/task-comment-composer.component';
 import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants';
@@ -289,6 +289,7 @@ import { TaskAssessmentModalService } from './common/modals/task-assessment-moda
 import { TaskSubmissionHistoryComponent } from './tasks/task-submission-history/task-submission-history.component';
 import { HeaderComponent } from './common/header/header.component';
 import { GlobalStateService } from './projects/states/index/global-state.service';
+import { CreateUnitModalService } from './admin/modals/create-unit-modal/create-unit-modal.service';
 
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.config',
@@ -322,6 +323,8 @@ DoubtfireAngularJSModule.factory('checkForUpdateService', downgradeInjectable(Ch
 DoubtfireAngularJSModule.factory('TaskAssessmentModal', downgradeInjectable(TaskAssessmentModalService));
 DoubtfireAngularJSModule.factory('TaskSubmission', downgradeInjectable(TaskSubmissionService));
 DoubtfireAngularJSModule.factory('GlobalStateService', downgradeInjectable(GlobalStateService));
+DoubtfireAngularJSModule.factory('CreateUnitModal', downgradeInjectable(CreateUnitModalService));
+
 
 // directive -> component
 DoubtfireAngularJSModule.directive(

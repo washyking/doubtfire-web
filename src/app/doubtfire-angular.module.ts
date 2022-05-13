@@ -165,10 +165,12 @@ import { HeaderComponent } from './common/header/header.component';
 import { UnitDropdownComponent } from './common/header/unit-dropdown/unit-dropdown.component';
 import { TaskDropdownComponent } from './common/header/task-dropdown/task-dropdown.component';
 import { SplashScreenComponent } from './home/splash-screen/splash-screen.component';
+import { CreateUnitModalComponent } from './admin/modals/create-unit-modal/create-unit-modal.component';
 
 @NgModule({
   // Components we declare
   declarations: [
+    CreateUnitModalComponent,
     AboutDoubtfireModalContent,
     TaskCommentComposerComponent,
     AudioCommentRecorderComponent,
