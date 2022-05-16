@@ -8,13 +8,18 @@ import { UserSettingsModalComponent } from './user-settings-modal.component';
 export class UserSettingsModalService {
   constructor(public dialog: MatDialog) {}
 
-  public show(data: any) {
-    let dialogRef: MatDialogRef<UserSettingsModalComponent, any>;
-    dialogRef = this.dialog.open(UserSettingsModalComponent, {
-      // height of window
-      // height: '600px',
-      // open the data on this window(header.component.ts)
-      data
-    });
+  public show(data: any): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      let dialogRef: MatDialogRef<UserSettingsModalComponent, any>;
+      dialogRef = this.dialog.open(UserSettingsModalComponent, {
+        // height of window
+        // height: '600px',
+        // open the data on this window(header.component.ts)
+        data
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        resolve(result)
+      })
+    })
   }
 }

@@ -18,8 +18,7 @@
     <div class="form-group" ng-required="isNew">
       <label class="col-sm-3 control-label">First Name</label>
       <div class="col-sm-7">
-        <input [(ngModel)]="user.first_name" type="input" class="form-control"
-          placeholder="Name" />
+        <input [(ngModel)]="user.first_name" type="input" class="form-control" placeholder="Name" />
       </div>
     </div>
     <div class="form-group" ng-required="isNew">
@@ -66,9 +65,7 @@
     <div class="form-group" if-role="Admin Convenor" ng-required="isNew">
       <label class="col-sm-3 control-label">System Role</label>
       <div class="col-sm-7">
-        <mat-radio-group
-          [(ngModel)]="user.system_role"
-          class="user-role">
+        <mat-radio-group [(ngModel)]="user.system_role" class="user-role">
           <mat-radio-button value="Administrator">
             Administrator
           </mat-radio-button>
@@ -92,16 +89,8 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">Allow Analytics</label>
         <div class="col-sm-7">
-          <!-- <div class="btn-group">
-            <label class="btn btn-default" [(ngModel)]="user.opt_in_to_research" btn-radio="true">
-              <i class="fa fa-check"></i>
-            </label>
-            <label class="btn btn-default" [(ngModel)]="user.opt_in_to_research" btn-radio="false">
-              <i class="fa fa-close"></i>
-            </label>
-          </div> -->
           <mat-checkbox class="example-margin" [(ngModel)]="user.opt_in_to_research">Checked</mat-checkbox>
-          <p class="help-block">Allow us to anonymously gather your usage to improve {{externalName }}</p>
+          <p class="help-block">Allow us to anonymously gather your usage to improve {{ externalName }}</p>
         </div>
       </div>
     </div>

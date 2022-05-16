@@ -5,7 +5,7 @@ import { User, UserService } from 'src/app/api/models/doubtfire-model';
 import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants';
 
 @Component({
-  selector: 'user-settings-modal',
+  selector: 'df-user-settings-modal',
   templateUrl: 'user-settings-modal.component.html',
   styleUrls: ['user-settings-modal.component.scss'],
 })
@@ -24,10 +24,8 @@ export class UserSettingsModalComponent implements OnInit {
     receive_task_notifications: false,
     receive_portfolio_notifications: false,
     receive_feedback_notifications: false,
-    has_run_first_time_setup: false
+    has_run_first_time_setup: false,
   });
-  users: User[] = new Array<User>();
-
   externalName: string = '';
 
   constructor(
@@ -40,64 +38,50 @@ export class UserSettingsModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.constants.ExternalName.subscribe((result) => {
-      this.externalName = result;
-    })
+    this.externalName = this.constants.ExternalName.getValue();
 
     // edit detail
     if (this.data.id) {
       this.isNew = false;
       // send user data
       this.user = this.data;
-
-      // or search basic on ID
-      // this.userService.query({ id: this.data.id }).subscribe((data) => {
-      //   this.user = data[0]
-      // })
-    } else { // add
-      this.userService.query().subscribe(data => {
-        this.users = data;
-      })
-
     }
-
   }
 
   // create new user
   public createNewUser() {
-    this.userService.create({
-      user: this.user
-    }).subscribe(response => {
-      this.dialogRef.close();
-      if (this.users){
-        return this.users.push(response);
-      }
-    }, (err) => {
-      this.alerts.add('danger', err?.error?.error, 3000);
-    })
+    this.userService
+      .create({
+        user: this.user,
+      })
+      .subscribe({
+        next: () => {
+          this.dialogRef.close(true);
+        },
+        error: (err) => {
+          this.alerts.add('danger', err?.error?.error, 3000);
+        }
+      });
   }
 
   // user edit
   public updateExistingUser() {
-    const { id, first_name, last_name } = this.user;
-    this.userService.update(this.currentWebcalWith(this.user)).subscribe(response => {
-      this.userService.save(response)
-      this.dialogRef.close();
-    }, (err) => {
-      this.alerts.add('danger', err?.error?.error, 3000);
-    })
-  }
-
-  // show example on table
-  private currentWebcalWith(o: Partial<User>): User {
-    return new User({ ...o });
+    this.userService.update(new User(this.user)).subscribe({
+      next: (response) => {
+        this.userService.save(response);
+        this.dialogRef.close(true);
+      },
+      error: (err) => {
+        this.alerts.add('danger', err?.error?.error, 3000);
+      }
+    });
   }
 
   saveUser() {
     if (this.isNew) {
-      this.createNewUser()
+      this.createNewUser();
     } else {
-      this.updateExistingUser()
+      this.updateExistingUser();
     }
   }
 }
