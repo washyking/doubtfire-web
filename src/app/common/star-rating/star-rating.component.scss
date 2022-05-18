@@ -26,3 +26,48 @@
 .star-rating-animation .star-hover:hover {
   transform: scale(1.3);
 }
+
+.circle-rating-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.circle {
+  display: inline-block;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+
+.open {
+  background-color: transparent !important;
+}
+
+.closed {
+  border: none !important;
+}
+
+.one {
+  border: 3px solid #87abed;
+  background-color: #87abed;
+}
+
+.two {
+  border: 3px solid #5b8ce6;
+  background-color: #5b8ce6;
+}
+
+.three {
+  border: 3px solid #2e6de0;
+  background-color: #2e6de0;
+}
+
+.four {
+  border: 3px solid #1d55bf;
+  background-color: #1d55bf;
+}
+
+.five {
+  border: 3px solid #164192;
+  background-color: #164192;
+}

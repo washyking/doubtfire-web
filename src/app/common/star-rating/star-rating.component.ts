@@ -6,34 +6,25 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./star-rating.component.scss']
 })
 export class StarRatingComponent implements OnInit {
-  @Input() totalStars: any;
+  @Input() maxRating: any;
   @Input() selectedRating: any;
   @Output() newSelectedRating = new EventEmitter<number>();
+
+  @Input() readOnly: boolean = true;
+
   stars = [];
+  circles = ["one", "two", "three", "four", "five"]; // Allow for more than five?
+  @Input() type: string = "star";
 
   constructor() {}
 
   ngOnInit(): void {
-    for (let i = 0; i < this.totalStars; i++) {
-      const starClass = 'star star-hover ' + (i < this.selectedRating ? 'star-gold' : 'star-silver');
-      this.stars.push({
-        id: i + 1,
-        icon: 'star',
-        class: starClass
-      });
+    for (let i = 0; i < this.maxRating; i++) {
+      this.stars.push(i);
     }
   }
 
-  selectStar(value: number): void{
-    this.stars.filter(star => {
-      if (star.id <= value){
-        star.class = 'star-gold star-hover star';
-      }
-      else {
-        star.class = 'star-gray star-hover star';
-      }
-      return star;
-    });
+  selectStar(value: number): void {
     this.selectedRating = value;
     this.newSelectedRating.emit(value);
   }

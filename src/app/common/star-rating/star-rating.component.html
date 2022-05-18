@@ -1,5 +1,12 @@
 <div class="star-rating-animation">
-  <div *ngFor="let star of stars" [ngClass]="[star.class]" (click)="selectStar(star.id)">
-    <mat-icon>{{star.icon}}</mat-icon>
-  </div>
+  <ng-container *ngIf="type == 'circle'">
+    <div class="circle-rating-container">
+      <span *ngFor="let circle of circles; index as i" [ngClass]="['circle', circle, selectedRating <= i ? 'open' : 'closed']" (click)="readOnly && rating = i + 1"></span>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="type == 'star'">
+    <div *ngFor="let star of stars; index as i" [ngClass]="['star', readOnly ? '' : 'star-hover', selectedRating <= i ? 'star-silver' : 'star-gold']" (click)="readOnly == false && selectStar(i + 1)">
+      <mat-icon>star</mat-icon>
+    </div>
+  </ng-container>
 </div>
