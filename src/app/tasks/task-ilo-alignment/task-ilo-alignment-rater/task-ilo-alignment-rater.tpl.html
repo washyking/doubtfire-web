@@ -1,4 +1,5 @@
 <div class="task-ilo-alignment-rater" ng-class="{colorful: colorful}">
+  <star-rating [type]="circle" [selected-rating]="0" [max-rating]="5"></star-rating>
   <rating ng-hide="compact" on-leave="setHoverValue(null)" on-hover="setHoverValue(value)" titles="null" ng-model="ngModel.rating" max="max" state-on="'fa fa-2x fa-circle'" state-off="'fa fa-2x fa-circle-o'" tooltip="{{label}}" tooltip-placement="right" tooltip-class="tooltip-rating-{{hoveringOver}}" tooltip-append-to-body="true" tooltip-popup-delay="200" tooltip-enable="showTooltips" readonly="readonly" class="rating-area"></rating>
   <div ng-show="!hideLabels && selectedTooltip && !showTooltips && !compact" class="text-center rating-static-tooltip">
     <span class="rating-{{hoveringOver || ngModel.rating}} badge" ng-hide="(hoveringOver || ngModel.rating) == 0">{{tooltips[(hoveringOver || ngModel.rating)]}}</span>

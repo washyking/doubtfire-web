@@ -13,7 +13,7 @@
     </div>
     <div ng-if="task.definition.max_quality_pts > 0">
       <p>Please provide a quality rating for task <label class="label label-info">{{task.definition.abbreviation}}</label>.</p>
-      <star-rating [selected-rating]="data.rating" [total-stars]="numStars" (new-selected-rating)="updateRating($event)" />
+      <star-rating [type]="'star'" [selected-rating]="data.rating" [max-rating]="numStars" (new-selected-rating)="updateRating($event)" [read-only]="true" />
     </div>
   </div>
   <div class="modal-footer">
