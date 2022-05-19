@@ -8,10 +8,18 @@
               <h4 class="panel-title">Task List</h4>
             </div>
           </div>
-          <div class="panel-body">
-            <project-tasks-list project="project" on-change="updateBurndownChart" student-project-id="studentProjectId" task-def="taskDef" unit="unit" assessing-unit-role="assessingUnitRole" on-select="showTaskView"></project-tasks-list>
+          <div class="panel-body">2222
+            <project-tasks-list
+              [project]="project"
+              [unit]="unit"
+              [student-project-id]="studentProjectId"
+              [task-def]="taskDef"
+              [assessing-unit-role]="assessingUnitRole"
+              on-change="updateBurndownChart"
+              on-select="showTaskView"></project-tasks-list>
           </div>
-        </div><!--task-lists-->
+        </div>
+        <!--task-lists-->
       </div>
       <div class="col-sm-6 col-md-12">
         <div class="panel panel-default">
@@ -21,15 +29,18 @@
           </div>
           <div class="panel-body text-center">
             <p class="btn-group">
-              <label ng-repeat="grade in grades" ng-click="chooseGrade($index)" class="btn btn-default col-sm-3 text-center" ng-model="project.target_grade" btn-radio="{{$index}}">
-                <grade-icon [grade]="grade" tooltip="Select a {{grade}} as your target grade" tooltip-append-to-body="true"></grade-icon>
+              <label ng-repeat="grade in grades" ng-click="chooseGrade($index)"
+                class="btn btn-default col-sm-3 text-center" ng-model="project.target_grade" btn-radio="{{$index}}">
+                <grade-icon [grade]="grade" tooltip="Select a {{grade}} as your target grade"
+                  tooltip-append-to-body="true"></grade-icon>
               </label>
             </p>
           </div>
         </div>
       </div>
     </div>
-  </div><!--right-hand-panel-->
+  </div>
+  <!--right-hand-panel-->
 
   <div class="col-md-8 col-md-pull-4">
     <div class="panel panel-default">
@@ -43,7 +54,8 @@
             <h3 class="panel-title">Task Summary Chart</h3>
             Summary of each of your task statuses
           </div>
-        </div><!--/headings-->
+        </div>
+        <!--/headings-->
         <div class="pull-right text-right toolbar">
           <div class="buttons">
             <div class="btn-group">
@@ -55,7 +67,8 @@
               </label>
             </div>
           </div>
-        </div><!--/button-switch-->
+        </div>
+        <!--/button-switch-->
       </div>
       <div class="panel-body">
         <div class="burndown-chart" ng-if="currentVisualisation == 'burndown'">
@@ -83,5 +96,6 @@
         </div>
       </div>
     </div>
-  </div><!--primary-panel-->
+  </div>
+  <!--primary-panel-->
 </div>

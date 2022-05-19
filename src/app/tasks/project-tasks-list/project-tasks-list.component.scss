@@ -1,5 +1,6 @@
 .project-tasks-list {
-  @include remove-list-padding;
+  -webkit-padding-start: 0;
+  padding-left: 0;
   text-align: center;
 
   .groupset-name {

@@ -55,7 +55,6 @@ import 'build/src/app/tasks/task-definition-selector/task-definition-selector.js
 import 'build/src/app/tasks/tasks.js';
 import 'build/src/app/tasks/task-plagiarism-report-viewer/task-plagiarism-report-viewer.js';
 import 'build/src/app/tasks/task-plagiarism-file-viewer/task-plagiarism-file-viewer.js';
-import 'build/src/app/tasks/project-tasks-list/project-tasks-list.js';
 import 'build/src/app/tasks/task-ilo-alignment/task-ilo-alignment.js';
 import 'build/src/app/tasks/task-ilo-alignment/task-ilo-alignment-rater/task-ilo-alignment-rater.js';
 import 'build/src/app/tasks/task-ilo-alignment/modals/task-ilo-alignment.js';
@@ -289,6 +288,7 @@ import { TaskSubmissionHistoryComponent } from './tasks/task-submission-history/
 import { HeaderComponent } from './common/header/header.component';
 import { GlobalStateService } from './projects/states/index/global-state.service';
 import { GradeIconComponent } from './common/grade-icon/grade-icon.component';
+import { ProjectTasksListComponent } from './tasks/project-tasks-list/project-tasks-list.component';
 
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.config',
@@ -391,6 +391,10 @@ DoubtfireAngularJSModule.directive(
   'taskCommentsViewer',
   downgradeComponent({ component: TaskCommentsViewerComponent })
 );
+
+DoubtfireAngularJSModule.directive('projectTasksListComponent',
+  downgradeComponent({ component: ProjectTasksListComponent }));
+
 DoubtfireAngularJSModule.directive('userIcon', downgradeComponent({ component: UserIconComponent }));
 DoubtfireAngularJSModule.directive('pdfViewer', downgradeComponent({ component: PdfViewerComponent }));
 DoubtfireAngularJSModule.directive('pdfViewerPanel', downgradeComponent({ component: PdfViewerPanelComponent }));
