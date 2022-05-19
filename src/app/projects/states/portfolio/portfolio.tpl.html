@@ -7,7 +7,8 @@
     </tab>
   </tabset>
   <!--/tabs-->
-  <portfolio-welcome-step *ngIf="activeTab == tabs.welcomeStep"></portfolio-welcome-step>
+  <portfolio-welcome-step ng-if="activeTab == tabs.welcomeStep" [advance-active-tabs]="advanceActiveTab">
+  </portfolio-welcome-step>
   <portfolio-grade-select-step ng-if="activeTab == tabs.gradeStep"></portfolio-grade-select-step>
   <portfolio-learning-summary-report-step ng-if="activeTab == tabs.summaryStep">
   </portfolio-learning-summary-report-step>

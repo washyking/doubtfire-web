@@ -6,11 +6,12 @@ import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants
   templateUrl: 'portfolio-welcome-step.component.html',
 })
 export class PortfolioWelcomeStepComponent {
+  @Input() advanceActiveTabs: any;
   constructor(private constants: DoubtfireConstants) { }
   public externalName = this.constants.ExternalName
 
-  advanceActiveTab(advanceBy) {
-    console.log(advanceBy)
-    return advanceBy
+  public advanceActiveTab(input: number) {
+    return this.advanceActiveTabs(input)
   }
+
 }
