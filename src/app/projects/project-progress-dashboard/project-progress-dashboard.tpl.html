@@ -8,15 +8,15 @@
               <h4 class="panel-title">Task List</h4>
             </div>
           </div>
-          <div class="panel-body">2222
+          <div class="panel-body">
             <project-tasks-list
               [project]="project"
               [unit]="unit"
               [student-project-id]="studentProjectId"
               [task-def]="taskDef"
               [assessing-unit-role]="assessingUnitRole"
-              on-change="updateBurndownChart"
-              on-select="showTaskView"></project-tasks-list>
+              (onSelect)="updateBurndownChart"
+              ></project-tasks-list>
           </div>
         </div>
         <!--task-lists-->

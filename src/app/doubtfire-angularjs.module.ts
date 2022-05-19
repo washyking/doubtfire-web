@@ -392,7 +392,7 @@ DoubtfireAngularJSModule.directive(
   downgradeComponent({ component: TaskCommentsViewerComponent })
 );
 
-DoubtfireAngularJSModule.directive('projectTasksListComponent',
+DoubtfireAngularJSModule.directive('projectTasksList',
   downgradeComponent({ component: ProjectTasksListComponent }));
 
 DoubtfireAngularJSModule.directive('userIcon', downgradeComponent({ component: UserIconComponent }));

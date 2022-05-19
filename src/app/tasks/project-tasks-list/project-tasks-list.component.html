@@ -1,15 +1,17 @@
 <ul class="project-tasks-list">
-  333
-  <!-- <div *ngFor="let (groupSetId, relatedTasks) of project.tasks" class="group-set-tasks clearfix">
-    <h5 class="group-set-name" ng-hide="hideGroupSetName">{{groupSetName(groupSetId)}}</h5>
-    <li class="col-xs-4 col-lg-3" *ngFor="let task of relatedTasks">
-      <button type="button" class="col-xs-12 btn task-status {{statusClass(task.status)}}"
-        (click)="onSelect(task, 'Task Button List')" tooltip-popup-delay='200' tooltip-placement="bottom"
-        tooltip-html-unsafe="<strong>{{taskDefinition(task).name}}:</strong><br>{{task.status_txt()}}">
-        <i class="fa fa-eye" *ngIf="task.similar_to_count - task.similar_to_dismissed_count > 0"></i>
-        {{taskText(task)}}
+  <div  class="group-set-tasks clearfix">
+    <li *ngFor="let item of project.tasks" class="col-xs-4 col-lg-3">
+      <button mat-raised-button
+        matTooltip="{{taskDefinition(item).name}}:{{item.status_txt()}}"
+        matTooltipPosition="below"
+        matTooltipShowDelay="200"
+        class="col-xs btn task-status {{ statusClass(item.status) }}"
+        (click)="onClickItem(item, 'Task Button List')"
+        style="width: 100%;">
+
+        <i class="fa fa-eye" *ngIf="item.similar_to_count - item.similar_to_dismissed_count > 0"></i>
+        {{taskText(item)}}
       </button>
     </li>
-  </div> -->
+  </div>
 </ul>
-
