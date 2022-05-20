@@ -10,23 +10,10 @@ import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants
   styleUrls: ['user-settings-modal.component.scss'],
 })
 export class UserSettingsModalComponent implements OnInit {
-  // create or not
-  isNew: boolean = true;
-  // user information list
-  user: User = new User({
-    username: '',
-    first_name: '',
-    last_name: '',
-    nickname: '',
-    email: '',
-    opt_in_to_research: false,
-    system_role: '',
-    receive_task_notifications: false,
-    receive_portfolio_notifications: false,
-    receive_feedback_notifications: false,
-    has_run_first_time_setup: false,
-  });
-  externalName: string = '';
+  // init
+  user: User;
+  isNew: boolean;
+  externalName: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -38,14 +25,12 @@ export class UserSettingsModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.externalName = this.constants.ExternalName.getValue();
-
-    // edit detail
-    if (this.data.id) {
-      this.isNew = false;
-      // send user data
-      this.user = this.data;
-    }
+    // assign values
+    this.user = this.data ? this.data : new User();
+    this.isNew = this.user.id ? false : true;
+    this.constants.ExternalName.subscribe((response) => {
+      this.externalName = response;
+    });
   }
 
   // create new user
@@ -55,12 +40,12 @@ export class UserSettingsModalComponent implements OnInit {
         user: this.user,
       })
       .subscribe({
-        next: () => {
-          this.dialogRef.close(true);
+        next: (response) => {
+          this.dialogRef.close({ action: 'create', user: response });
         },
         error: (err) => {
           this.alerts.add('danger', err?.error?.error, 3000);
-        }
+        },
       });
   }
 
@@ -69,11 +54,11 @@ export class UserSettingsModalComponent implements OnInit {
     this.userService.update(new User(this.user)).subscribe({
       next: (response) => {
         this.userService.save(response);
-        this.dialogRef.close(true);
+        this.dialogRef.close({ action: 'update' });
       },
       error: (err) => {
         this.alerts.add('danger', err?.error?.error, 3000);
-      }
+      },
     });
   }
 

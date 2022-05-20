@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { UserSettingsModalComponent } from './user-settings-modal.component';
 
 @Injectable({
@@ -8,18 +8,19 @@ import { UserSettingsModalComponent } from './user-settings-modal.component';
 export class UserSettingsModalService {
   constructor(public dialog: MatDialog) {}
 
-  public show(data: any): Promise<boolean> {
+  public show(user: any): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      let dialogRef: MatDialogRef<UserSettingsModalComponent, any>;
+      let dialogRef: MatDialogRef<UserSettingsModalComponent>;
       dialogRef = this.dialog.open(UserSettingsModalComponent, {
-        // height of window
-        // height: '600px',
-        // open the data on this window(header.component.ts)
-        data
+        data: user,
       });
-      dialogRef.afterClosed().subscribe(result => {
-        resolve(result)
-      })
-    })
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          resolve(result);
+        } else {
+          reject('Cancelled Update/Create');
+        }
+      });
+    });
   }
 }

@@ -45,7 +45,10 @@ angular.module('doubtfire.admin.states.users', [])
     # If we're given a user, show that user, else create a new one
     userToShow = if user? then user else new User { }
     UserSettingsModal.show(userToShow).then (result) ->
-      $scope.users = User.query()
+      if result.action is "create"
+        $scope.users = $scope.users.concat(result.user)
+    .catch (info) ->
+      alertService.add "info", info, 2000
 
   $scope.downloadUsersCSV = () ->
     fileDownloaderService.downloadFile(User.csvUrl(), "Users.csv")

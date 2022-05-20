@@ -1,6 +1,6 @@
 <div class="user-settings-modal form-horizontal">
   <div class="modal-header">
-    <h3>{{ isNew ? "Create User" : "Edit User"}}</h3>
+    <h3>{{ isNew ? 'Create User' : 'Edit User' }}</h3>
   </div>
   <div class="modal-body">
     <div class="form-group" *ngIf="!isNew">
@@ -51,8 +51,11 @@
       <label class="col-sm-3 control-label">Avatar</label>
       <div class="col-sm-7">
         <user-icon [size]="50" [user]="user" style="max-width: 50px; max-height: 50px; font-size: 18px"></user-icon>
-        <a href="http://en.gravatar.com/support/activating-your-account/" target="_blank"
-          class="btn btn-sm btn-default pull-right">
+        <a
+          href="http://en.gravatar.com/support/activating-your-account/"
+          target="_blank"
+          class="btn btn-sm btn-default pull-right"
+        >
           Change Avatar
         </a>
         <p class="help-block">
@@ -66,22 +69,12 @@
       <label class="col-sm-3 control-label">System Role</label>
       <div class="col-sm-7">
         <mat-radio-group [(ngModel)]="user.system_role" class="user-role">
-          <mat-radio-button value="Administrator">
-            Administrator
-          </mat-radio-button>
-          <mat-radio-button value="Convenor">
-            Convenor
-          </mat-radio-button>
-          <mat-radio-button value="Tutor">
-            Tutor
-          </mat-radio-button>
-          <mat-radio-button value="Student">
-            Student
-          </mat-radio-button>
+          <mat-radio-button value="Administrator"> Administrator </mat-radio-button>
+          <mat-radio-button value="Convenor"> Convenor </mat-radio-button>
+          <mat-radio-button value="Tutor"> Tutor </mat-radio-button>
+          <mat-radio-button value="Student"> Student </mat-radio-button>
         </mat-radio-group>
-        <p *ngIf="user.id === CurrentUser.id" class="help-block text-center">
-          You cannot modify your own permissions
-        </p>
+        <p *ngIf="user.id === CurrentUser.id" class="help-block text-center">You cannot modify your own permissions</p>
       </div>
     </div>
     <div *ngIf="!isNew && user.id === CurrentUser.id">
@@ -96,6 +89,6 @@
     </div>
   </div>
   <div class="modal-footer text-right">
-    <input (click)="saveUser()" class="btn btn-primary" value="{{isNew ? 'Add' : 'Save'}}" />
+    <input (click)="saveUser()" class="btn btn-primary" value="{{ isNew ? 'Add' : 'Save' }}" />
   </div>
 </div>
