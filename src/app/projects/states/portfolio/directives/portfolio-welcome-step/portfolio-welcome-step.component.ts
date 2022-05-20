@@ -1,4 +1,4 @@
-import { Component, Input, Inject } from '@angular/core';
+import { Component, Input, Inject, OnInit } from '@angular/core';
 import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants';
 
 @Component({
@@ -8,10 +8,13 @@ import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants
 export class PortfolioWelcomeStepComponent {
   @Input() advanceActiveTabs: any;
   constructor(private constants: DoubtfireConstants) { }
-  public externalName = this.constants.ExternalName
+  public externalName: any;
 
   public advanceActiveTab(input: number) {
     return this.advanceActiveTabs(input)
   }
 
+  ngOnInit(): void {
+    this.externalName = this.constants.ExternalName;
+  }
 }
