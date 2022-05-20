@@ -287,11 +287,8 @@ import { TaskAssessmentModalService } from './common/modals/task-assessment-moda
 import { TaskSubmissionHistoryComponent } from './tasks/task-submission-history/task-submission-history.component';
 import { HeaderComponent } from './common/header/header.component';
 import { GlobalStateService } from './projects/states/index/global-state.service';
-<<<<<<< HEAD
 import { PortfolioWelcomeStepComponent } from './projects/states/portfolio/directives/portfolio-welcome-step/portfolio-welcome-step.component';
-=======
 import { GradeIconComponent } from './common/grade-icon/grade-icon.component';
->>>>>>> development
 
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.config',
@@ -384,10 +381,10 @@ DoubtfireAngularJSModule.directive('taskAssessmentComment',
 DoubtfireAngularJSModule.directive('taskSubmissionHistory',
   downgradeComponent({ component: TaskSubmissionHistoryComponent }));
 
-  DoubtfireAngularJSModule.directive(
-    'gradeIcon',
-    downgradeComponent({ component: GradeIconComponent })
-  );
+DoubtfireAngularJSModule.directive(
+  'gradeIcon',
+  downgradeComponent({ component: GradeIconComponent })
+);
 
 // Global configuration
 DoubtfireAngularJSModule.directive(

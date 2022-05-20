@@ -12,7 +12,7 @@ export class PortfolioWelcomeStepComponent {
   constructor(private constants: DoubtfireConstants) { }
   public externalName: BehaviorSubject<string> = new BehaviorSubject<string>('OnTrack');
 
-  public advanceActiveTab(input: number) {
+  public advanceActiveTab(input: any) {
     return this.advanceActiveTabs(input)
   }
 

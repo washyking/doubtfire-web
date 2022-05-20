@@ -166,11 +166,8 @@ import { HeaderComponent } from './common/header/header.component';
 import { UnitDropdownComponent } from './common/header/unit-dropdown/unit-dropdown.component';
 import { TaskDropdownComponent } from './common/header/task-dropdown/task-dropdown.component';
 import { SplashScreenComponent } from './home/splash-screen/splash-screen.component';
-<<<<<<< HEAD
 import { PortfolioWelcomeStepComponent } from './projects/states/portfolio/directives/portfolio-welcome-step/portfolio-welcome-step.component';
-=======
 import { GradeIconComponent } from './common/grade-icon/grade-icon.component';
->>>>>>> development
 
 @NgModule({
   // Components we declare
@@ -228,11 +225,8 @@ import { GradeIconComponent } from './common/grade-icon/grade-icon.component';
     UnitDropdownComponent,
     TaskDropdownComponent,
     SplashScreenComponent,
-<<<<<<< HEAD
     PortfolioWelcomeStepComponent,
-=======
     GradeIconComponent,
->>>>>>> development
   ],
   // Module Imports
   imports: [
