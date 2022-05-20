@@ -41,6 +41,8 @@ export class UserSettingsModalComponent implements OnInit {
       })
       .subscribe({
         next: (response) => {
+          // when create user
+          // pass the action and the user to the parent
           this.dialogRef.close({ action: 'create', user: response });
         },
         error: (err) => {
@@ -54,6 +56,7 @@ export class UserSettingsModalComponent implements OnInit {
     this.userService.update(new User(this.user)).subscribe({
       next: (response) => {
         this.userService.save(response);
+        // when update user just pass action
         this.dialogRef.close({ action: 'update' });
       },
       error: (err) => {

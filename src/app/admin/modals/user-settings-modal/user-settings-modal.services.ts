@@ -8,13 +8,16 @@ import { UserSettingsModalComponent } from './user-settings-modal.component';
 export class UserSettingsModalService {
   constructor(public dialog: MatDialog) {}
 
-  public show(user: any): Promise<boolean> {
+  // make a promise for users.coffee to update the users list after create user
+  public show(user: any): Promise<any> {
     return new Promise((resolve, reject) => {
       let dialogRef: MatDialogRef<UserSettingsModalComponent>;
       dialogRef = this.dialog.open(UserSettingsModalComponent, {
         data: user,
       });
       dialogRef.afterClosed().subscribe((result) => {
+        // create/update successful resolve
+        // else reject with info message
         if (result) {
           resolve(result);
         } else {
