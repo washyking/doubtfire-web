@@ -33,6 +33,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 
+
 import { UIRouterUpgradeModule } from '@uirouter/angular-hybrid';
 
 import { PopoverModule } from 'ngx-bootstrap/popover';
@@ -261,7 +262,6 @@ import { PortfolioWelcomeStepComponent } from './projects/states/portfolio/direc
     MatProgressSpinnerModule,
     MatSliderModule,
     MatExpansionModule,
-    MatCardModule,
     MatGridListModule,
     MatSelectModule,
     MatToolbarModule,
