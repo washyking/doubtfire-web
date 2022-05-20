@@ -1,29 +1,26 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants';
 import { PortfolioWelcomeStepComponent } from './portfolio-welcome-step.component';
 
 describe('PortfolioWelcomeStepComponent', () => {
   let component: PortfolioWelcomeStepComponent;
   let fixture: ComponentFixture<PortfolioWelcomeStepComponent>;
-  let DoubtfireConstantsVariable: jasmine.SpyObj<any>;
+  let doubtfireConstantsStub: Partial<DoubtfireConstants>;
 
   beforeEach(
-    waitForAsync(() => {
-      DoubtfireConstantsVariable = {
-        externalName: {},
-      };
-
-      TestBed.configureTestingModule({
+    // waitForAsync(() => {
+    //   TestBed.configureTestingModule({
+    //     declarations: [PortfolioWelcomeStepComponent],
+    //     providers: [{ provide: DoubtfireConstants, useValue: doubtfireConstantsStub }],
+    //   }).compileComponents();
+    // })
+    async () => {
+      await TestBed.configureTestingModule({
         declarations: [PortfolioWelcomeStepComponent],
-        providers: [{ provide: DoubtfireConstants, useValue: DoubtfireConstantsVariable }],
-      }).compileComponents();
-    })
-    //   async () => {
-    //   await TestBed.configureTestingModule({
-    //     declarations: [PortfolioWelcomeStepComponent]
-    //   })
-    //     .compileComponents();
-    // }
+        providers: [{ provide: DoubtfireConstants, useValue: doubtfireConstantsStub }],
+      })
+        .compileComponents();
+    }
   );
 
   beforeEach(() => {
