@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular
 import { taskService, groupService, gradeService } from 'src/app/ajs-upgraded-providers';
 
 @Component({
-  selector: 'project-tasks-list',
+  selector: 'df-project-tasks-list',
   templateUrl: './project-tasks-list.component.html',
   styleUrls: ['./project-tasks-list.component.scss'],
 })
@@ -24,7 +24,7 @@ export class ProjectTasksListComponent implements OnInit {
   }
 
   get statusText(): string {
-   return this.ts.statusText;
+    return this.ts.statusText;
   }
 
   get hideGroupSetName(): boolean {
@@ -47,19 +47,18 @@ export class ProjectTasksListComponent implements OnInit {
     let result = task.definition.abbreviation;
     if (task.definition.is_graded) {
       if (task.grade != null) {
-        result += " (" + this.grades.gradeAcronyms[task.grade] + ")";
+        result += ' (' + this.grades.gradeAcronyms[task.grade] + ')';
       } else {
-        result += " (?)";
+        result += ' (?)';
       }
     }
     if (task.definition.max_quality_pts > 0) {
       if (task.quality_pts != null) {
-        result += " (" + task.quality_pts + "/" + task.definition.max_quality_pts + ")";
+        result += ' (' + task.quality_pts + '/' + task.definition.max_quality_pts + ')';
       } else {
-        result += " (?/" + task.definition.max_quality_pts + ")";
+        result += ' (?/' + task.definition.max_quality_pts + ')';
       }
     }
     return result;
-  };
-
+  }
 }
