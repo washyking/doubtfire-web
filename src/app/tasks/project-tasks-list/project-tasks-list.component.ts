@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular
 import { taskService, groupService, gradeService } from 'src/app/ajs-upgraded-providers';
 
 @Component({
-  selector: 'df-project-tasks-list',
+  selector: 'project-tasks-list',
   templateUrl: './project-tasks-list.component.html',
   styleUrls: ['./project-tasks-list.component.scss'],
 })
@@ -14,12 +14,12 @@ export class ProjectTasksListComponent implements OnInit {
 
   public taskDefinition: any;
   constructor(
-    @Inject(taskService) public ts: any,
+    @Inject(taskService) private ts: any,
     @Inject(groupService) private grounds: any,
     @Inject(gradeService) private grades: any
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.taskDefinition = this.ts.taskDefinitionFn(this.unit);
   }
 
