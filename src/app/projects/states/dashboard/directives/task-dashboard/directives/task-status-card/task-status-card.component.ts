@@ -1,5 +1,6 @@
 import { Component, Input, Inject, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { alertService, taskService, extensionModal } from 'src/app/ajs-upgraded-providers';
+import { MatSelectChange } from '@angular/material/select';
 import * as _ from 'lodash'
 
 @Component({
@@ -48,20 +49,12 @@ export class TaskStatusCardComponent implements OnInit, OnChanges {
     this.inSubmittedState = this.task.inSubmittedState();
     this.requiresFileUpload = this.task.requiresFileUpload();
 
-    const { student, tutor } = this.ts.switchableStates
-    console.log(student)
-    console.log(tutor, 'tutor')
-
-    if (tutor != null) {
-      this.triggers =  _.map(this.ts.statusKeys, this.ts.statusData);
-    } else {
-      let studentTriggers =  _.map(student, this.ts.statusData)
-      this.triggers = this.task.filterFutureStates(studentTriggers);
-    }
+    this.triggers =  _.map(this.ts.statusKeys, this.ts.statusData);
 
   };
-  public triggerTransition(trigger) {
-    return this.task.triggerTransition(trigger);
+  public triggerTransition(event: MatSelectChange) {
+    console.log(event.value)
+    return this.task.triggerTransition(event.value);
   }
 
   public applyForExtension() {

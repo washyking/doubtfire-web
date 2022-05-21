@@ -1,7 +1,7 @@
 <div class="card card-default card-sm card-status">
   <div class="card-heading task-trigger-dropdown" *ngIf="triggers.length > 0">
     <mat-form-field style="width: 100%; font-size: 18px;">
-      <mat-select [(value)]="task.status" (change)="triggerTransition(task.status)">
+      <mat-select [(value)]="task.status" (selectionChange)="triggerTransition($event)">
         <mat-option *ngFor="let trigger of triggers" [value]="trigger.status">
           <status-icon [status]="trigger.status" [show-tooltip]="false"></status-icon>
           <span style="padding-left: 10px; font-size: 18px;">{{ trigger.label }}</span>
