@@ -1,9 +1,6 @@
-// create-unit-modal component
-// Migrated by Mitchell Burcheri
-// Help from Ray Guo
-// Migrated Semester 1 2022
+// Co-authored-by: Mitchell Burcheri <mburcheri@deakin.edu.au>
+// Co-authored-by: Ray Guo <rguo@deakin.edu.au>
 
-// Importing modules
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { analyticsService, Unit, alertService } from 'src/app/ajs-upgraded-providers';
@@ -13,6 +10,7 @@ import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants
 @Component({
   selector: 'df-create-break-modal',
   templateUrl: 'create-unit-modal.component.html',
+  //styleUrls: ['create-unit-modal.component.scss'],
 })
 
 // CreateUnitModalComponent for exporting to other programs
@@ -49,12 +47,12 @@ export class CreateUnitModalComponent implements OnInit {
         this.units.push(response);
         this.analyticsService.event('Unit Admin', 'Saved New Unit');
       },
-      () => {
+      (response) => {
         // If unsuccessful, log that there is an error creating unit
-        this.alertService.add('danger', 'Error creating unit - #{response.data.error}');
+        this.alertService.add('danger', `Error creating unit - ${response.data.error}`);
       }
     );
   }
   // The line below is required for this task to compile
-  externalName = this.DoubtfireConstants.ExternalName;
+  externalName;
 }

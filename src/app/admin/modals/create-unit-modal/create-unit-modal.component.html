@@ -1,24 +1,32 @@
-<div class="create-unit-modal">
-  <form class="form-horizontal" (ngSubmit)="saveUnit()" role="form">
-    <div class="modal-header">
-      <h3>Create Unit</h3>
-    </div>
-    <div class="modal-body">
-      <div class="form-group" required>
-        <label class="col-sm-3 control-label">Name</label>
-        <div class="col-sm-7">
-          <input type="text" class="form-control" [(ngModel)]="unit.name" name="name" placeholder="Introduction to {{externalName.value}}"/>
-        </div>
-      </div>
-      <div class="form-group" required>
-        <label class="col-sm-3 control-label">Code</label>
-        <div class="col-sm-7">
-          <input type="text" class="form-control" [(ngModel)]="unit.code" name="code" placeholder="COS123456"/>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer text-right">
-      <input type="submit" class="btn btn-primary" value="Create" [disabled]="unit.name === null || unit.code === null"/>
-    </div>
-  </form>
-</div>
+<!--
+Co-authored-by: Perry Rose <roseper@deakin.edu.au>
+-->
+
+<mat-card>
+  <mat-card-title>
+    Create Unit
+  </mat-card-title>
+  <mat-card-content>
+    <form class="form" (ngSubmit)="saveUnit()">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput maxlength="256" [(ngModel)]="unit.name" [ngModelOptions]="{standalone: true}" placeholder="Introduction to {{externalName}}">
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Code</mat-label>
+        <input matInput maxlength="256" [(ngModel)]="unit.code" [ngModelOptions]="{standalone: true}" placeholder="COS123456">
+      </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-action-list align="end">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="unit.name === null || unit.code === null"
+        type="submit"
+      >
+        Create
+      </button>
+    </mat-action-list>
+    </form>
+  </mat-card-content>
+</mat-card>

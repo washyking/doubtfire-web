@@ -1,0 +1,13 @@
+// Co-authored-by: Perry Rose <roseper@deakin.edu.au>
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  .full-width {
+    width: 100%;
+  }
+  ::ng-deep mat-dialog-container.mat-dialog-container {
+    padding: 0;
+  }
