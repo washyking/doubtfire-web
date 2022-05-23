@@ -12,16 +12,13 @@ export class ProjectTasksListComponent implements OnInit {
 
   @Output() private onSelect = new EventEmitter<any>();
 
-  public taskDefinition: any;
   constructor(
     @Inject(taskService) private ts: any,
     @Inject(groupService) private grounds: any,
     @Inject(gradeService) private grades: any
   ) {}
 
-  ngOnInit(): void {
-    this.taskDefinition = this.ts.taskDefinitionFn(this.unit);
-  }
+  ngOnInit(): void {}
 
   get statusText(): string {
     return this.ts.statusText;
@@ -39,6 +36,10 @@ export class ProjectTasksListComponent implements OnInit {
     return this.ts.statusClass(status);
   }
 
+  public taskDefinition(task) {
+    return this.unit.taskDef(task.task_definition_id)
+  }
+mifr
   public onClickItem(data) {
     this.onSelect.emit(data);
   }
