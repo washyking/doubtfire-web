@@ -8,7 +8,9 @@ import { taskService, groupService, gradeService } from 'src/app/ajs-upgraded-pr
 })
 export class ProjectTasksListComponent implements OnInit {
   @Input() unit: any;
-  @Input() project: any;
+  @Input() project: any = {
+    tasks: []
+  };
 
   @Output() private onSelect = new EventEmitter<any>();
 
