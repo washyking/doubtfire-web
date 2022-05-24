@@ -1,9 +1,15 @@
-.user-settings-modal {
-  .modal-body {
-    height: 420px;
-    overflow-y: auto;
+:host {
+  .width-full {
+    width: 100%;
   }
-
+  .width-half {
+    width: 50%;
+  }
+  .user-settings-form-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 400px;
+  }
   .user-role {
     .mat-accent {
       margin-right: 10px;
