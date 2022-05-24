@@ -16,8 +16,8 @@ export class UserSettingsModalComponent implements OnInit {
   externalName: string;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    @Inject(currentUser) public CurrentUser: any,
+    @Inject(MAT_DIALOG_DATA) public data: User,
+    @Inject(currentUser) public CurrentUser: User,
     @Inject(alertService) private alerts: any,
     public dialogRef: MatDialogRef<UserSettingsModalComponent>,
     private constants: DoubtfireConstants,
@@ -71,5 +71,9 @@ export class UserSettingsModalComponent implements OnInit {
     } else {
       this.updateExistingUser();
     }
+  }
+
+  dismiss() {
+    this.dialogRef.close();
   }
 }

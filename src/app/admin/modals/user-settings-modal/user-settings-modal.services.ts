@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/api/models/doubtfire-model';
 import { UserSettingsModalComponent } from './user-settings-modal.component';
 
 @Injectable({
@@ -8,21 +10,20 @@ import { UserSettingsModalComponent } from './user-settings-modal.component';
 export class UserSettingsModalService {
   constructor(public dialog: MatDialog) {}
 
-  // make a promise for users.coffee to update the users list after create user
-  public show(user: any): Promise<any> {
-    return new Promise((resolve, reject) => {
+  // make a Observable for users.coffee to update the users list after create user
+  public show(user: User): Observable<any> {
+    return new Observable(subscriber => {
       let dialogRef: MatDialogRef<UserSettingsModalComponent>;
       dialogRef = this.dialog.open(UserSettingsModalComponent, {
         data: user,
       });
       dialogRef.afterClosed().subscribe((result) => {
-        // create/update successful resolve
-        // else reject with info message
         if (result) {
-          resolve(result);
+          subscriber.next(result);
         } else {
-          reject('Cancelled Update/Create');
+          subscriber.next('Cancelled Update/Create');
         }
+        subscriber.complete();
       });
     });
   }
