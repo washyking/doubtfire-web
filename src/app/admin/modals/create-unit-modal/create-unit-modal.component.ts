@@ -1,25 +1,17 @@
-// Co-authored-by: Mitchell Burcheri <mburcheri@deakin.edu.au>
-// Co-authored-by: Ray Guo <rguo@deakin.edu.au>
-
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { analyticsService, Unit, alertService } from 'src/app/ajs-upgraded-providers';
 import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants';
 
-// Angular component decorator
 @Component({
   selector: 'df-create-break-modal',
   templateUrl: 'create-unit-modal.component.html',
-  //styleUrls: ['create-unit-modal.component.scss'],
+  styleUrls: ['create-unit-modal.component.scss'],
 })
-
-// CreateUnitModalComponent for exporting to other programs
 export class CreateUnitModalComponent implements OnInit {
-  // Defining variables
   units: any = this.data.units;
   unit: any = { code: null, name: null };
   constructor(
-    // data being injected such as: CreateUnitModalComponent(analyticsService,Unit,alertService,DoubtfireConstants,MAT_DIALOG_DATA)
     @Inject(analyticsService) private analyticsService: any,
     @Inject(Unit) private Unit: any,
     @Inject(alertService) private alertService: any,
@@ -28,8 +20,6 @@ export class CreateUnitModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
   ngOnInit(): void {
-    // Runs when task is run
-    // Analytics Service event is created
     this.analyticsService.event('Unit Admin', 'Started to Create Unit');
   }
   saveUnit() {
@@ -49,10 +39,9 @@ export class CreateUnitModalComponent implements OnInit {
       },
       (response) => {
         // If unsuccessful, log that there is an error creating unit
-        this.alertService.add('danger', `Error creating unit - ${response.data.error}`);
+        this.alertService.add('danger', `Error creating unit - ${response.data.error}`, 6000);
       }
     );
   }
-  // The line below is required for this task to compile
-  externalName;
+  externalName: string;
 }
