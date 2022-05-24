@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular
 import { taskService, groupService, gradeService } from 'src/app/ajs-upgraded-providers';
 
 @Component({
-  selector: 'project-tasks-list',
+  selector: 'df-project-tasks-list',
   templateUrl: './project-tasks-list.component.html',
   styleUrls: ['./project-tasks-list.component.scss'],
 })
