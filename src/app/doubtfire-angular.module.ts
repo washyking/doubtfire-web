@@ -225,6 +225,9 @@ import {FTaskSheetViewComponent} from './units/states/tasks/viewer/directives/f-
 import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-viewer.component';
 import {UnitCodeComponent} from './common/unit-code/unit-code.component';
 import {GradeService} from './common/services/grade.service';
+import {NumbasComponent} from './common/numbas-component/numbas-component.component';
+import {NumbasService} from './api/services/numbas.service';
+import {NumbasLmsService} from './api/services/numbas-lms.service';
 
 @NgModule({
   // Components we declare
@@ -327,6 +330,7 @@ import {GradeService} from './common/services/grade.service';
     FUsersComponent,
     FTaskBadgeComponent,
     FUnitsComponent,
+    NumbasComponent,
   ],
   // Services we provide
   providers: [
@@ -398,6 +402,8 @@ import {GradeService} from './common/services/grade.service';
     TasksForInboxSearchPipe,
     IsActiveUnitRole,
     CreateNewUnitModal,
+    NumbasService,
+    NumbasLmsService,
     provideLottieOptions({
       player: () => player,
     }),
