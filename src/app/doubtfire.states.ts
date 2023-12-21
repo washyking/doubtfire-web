@@ -1,12 +1,13 @@
-import { NgHybridStateDeclaration } from '@uirouter/angular-hybrid';
-import { InstitutionSettingsComponent } from './admin/institution-settings/institution-settings.component';
-import { HomeComponent } from './home/states/home/home.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { SignInComponent } from './sessions/states/sign-in/sign-in.component';
-import { EditProfileComponent } from './account/edit-profile/edit-profile.component';
-import { TeachingPeriodListComponent } from './admin/states/teaching-periods/teaching-period-list/teaching-period-list.component';
-import { AcceptEulaComponent } from './eula/accept-eula/accept-eula.component';
-import { FUsersComponent } from './admin/states/f-users/f-users.component';
+import {NgHybridStateDeclaration} from '@uirouter/angular-hybrid';
+import {InstitutionSettingsComponent} from './admin/institution-settings/institution-settings.component';
+import {HomeComponent} from './home/states/home/home.component';
+import {WelcomeComponent} from './welcome/welcome.component';
+import {SignInComponent} from './sessions/states/sign-in/sign-in.component';
+import {EditProfileComponent} from './account/edit-profile/edit-profile.component';
+import {TeachingPeriodListComponent} from './admin/states/teaching-periods/teaching-period-list/teaching-period-list.component';
+import {AcceptEulaComponent} from './eula/accept-eula/accept-eula.component';
+import {FUsersComponent} from './admin/states/f-users/f-users.component';
+import {AllProjectsListComponent} from './projects/states/all/directives/all-projects-list/all-projects-list.component';
 
 /*
  * Use this file to store any states that are sourced by angular components.
@@ -230,6 +231,20 @@ const EulaState: NgHybridStateDeclaration = {
   },
 };
 
+const ViewAllProjectsState: NgHybridStateDeclaration = {
+  name: 'view_all_projects',
+  url: '/view_all_projects',
+  views: {
+    main: {
+      component: AllProjectsListComponent,
+    },
+  },
+  data: {
+    pageTitle: 'Teaching Periods',
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+  },
+};
+
 /**
  * Export the list of states we have created in angular
  */
@@ -242,4 +257,5 @@ export const doubtfireStates = [
   EditProfileState,
   EulaState,
   usersState,
+  ViewAllProjectsState,
 ];

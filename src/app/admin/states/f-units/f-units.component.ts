@@ -1,22 +1,26 @@
-import { Component, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
-import { Unit } from 'src/app/api/models/unit';
-import { UnitRole } from 'src/app/api/models/unit-role';
-import { UnitService } from 'src/app/api/services/unit.service';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { MatSort, Sort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
-import { CreateNewUnitModal } from '../../modals/create-new-unit-modal/create-new-unit-modal.component';
+import {Component, AfterViewInit, ViewChild, OnDestroy, Input, OnInit} from '@angular/core';
+import {Unit} from 'src/app/api/models/unit';
+import {UnitRole} from 'src/app/api/models/unit-role';
+import {UnitService} from 'src/app/api/services/unit.service';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
+import {MatSort, Sort} from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
+import {Subscription} from 'rxjs';
+import {CreateNewUnitModal} from '../../modals/create-new-unit-modal/create-new-unit-modal.component';
+import {Project} from 'src/app/api/models/project';
+import {ProjectService} from 'src/app/api/services/project.service';
 
 @Component({
   selector: 'f-units',
   templateUrl: './f-units.component.html',
   styleUrls: ['./f-units.component.scss'],
 })
-export class FUnitsComponent implements AfterViewInit, OnDestroy {
-  @ViewChild(MatTable, { static: false }) table: MatTable<Unit>;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+export class FUnitsComponent implements AfterViewInit, OnDestroy, OnInit {
+  @ViewChild(MatTable, {static: false}) table: MatTable<Unit>;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+
+  @Input({required: true}) mode: 'admin' | 'tutor' | 'student';
 
   displayedColumns: string[] = [
     'unit_code',
@@ -27,24 +31,37 @@ export class FUnitsComponent implements AfterViewInit, OnDestroy {
     'end_date',
     'active',
   ];
-  dataSource: MatTableDataSource<Unit>;
+  dataSource: MatTableDataSource<Unit | Project>;
   clickedRows = new Set<Unit>();
 
-  public allUnits: Unit[];
   unitRoles: UnitRole[];
-  dataload: boolean;
 
   private subscriptions: Subscription[] = [];
+  title: string;
 
   constructor(
     private createUnitDialog: CreateNewUnitModal,
     private unitService: UnitService,
-  ) {
-    this.dataload = false;
+    private projectService: ProjectService,
+  ) {}
+
+  ngOnInit(): void {
+    if (this.mode === 'admin') {
+      this.title = 'Administer units';
+      this.dataSource = new MatTableDataSource(this.unitService.cache.currentValuesClone());
+    } else if (this.mode === 'student') {
+      this.title = 'View all units';
+      this.projectService
+        .query(undefined, {params: {include_inactive: true}})
+        .subscribe((projects) => {
+          this.dataSource = new MatTableDataSource(projects);
+        });
+
+      // this.dataSource = new MatTableDataSource(this.projectService.cache.currentValuesClone());
+    }
   }
 
   ngAfterViewInit(): void {
-    this.dataSource = new MatTableDataSource(this.unitService.cache.currentValuesClone());
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = (data, filter: string) => data.matches(filter);
