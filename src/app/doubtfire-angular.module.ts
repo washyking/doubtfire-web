@@ -7,6 +7,7 @@ import { UpgradeModule } from '@angular/upgrade/static';
 import { AppInjector, setAppInjector } from './app-injector';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 // Lottie animation module
 import { LottieModule, LottieCacheModule } from 'ngx-lottie';
@@ -229,6 +230,8 @@ import { FUnitTaskListComponent } from './units/states/tasks/viewer/directives/f
 import { FTaskDetailsViewComponent } from './units/states/tasks/viewer/directives/f-task-details-view/f-task-details-view.component';
 import { FTaskSheetViewComponent } from './units/states/tasks/viewer/directives/f-task-sheet-view/f-task-sheet-view.component';
 import { TasksViewerComponent } from './units/states/tasks/tasks-viewer/tasks-viewer.component';
+import { ProgressBurndownChartComponent } from './visualisations/progress-burndown-chart/progressburndownchart.component';
+import { TaskVisualisationComponent } from './visualisations/task-visualisation/taskvisualisation.component';
 
 @NgModule({
   // Components we declare
@@ -327,6 +330,9 @@ import { TasksViewerComponent } from './units/states/tasks/tasks-viewer/tasks-vi
     TasksViewerComponent,
     FUsersComponent,
     FUnitsComponent,
+    ProgressBurndownChartComponent,
+    TaskVisualisationComponent
+
   ],
   // Module Imports
   imports: [
@@ -390,6 +396,7 @@ import { TasksViewerComponent } from './units/states/tasks/tasks-viewer/tasks-vi
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModuleNew,
+    NgxChartsModule
   ],
   // Services we provide
   providers: [

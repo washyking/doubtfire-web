@@ -239,6 +239,8 @@ import { FUnitTaskListComponent } from './units/states/tasks/viewer/directives/f
 import { FTaskDetailsViewComponent } from './units/states/tasks/viewer/directives/f-task-details-view/f-task-details-view.component';
 import { FTaskSheetViewComponent } from './units/states/tasks/viewer/directives/f-task-sheet-view/f-task-sheet-view.component';
 import { TasksViewerComponent } from './units/states/tasks/tasks-viewer/tasks-viewer.component';
+import { ProgressBurndownChartComponent } from './visualisations/progress-burndown-chart/progressburndownchart.component';
+import { TaskVisualisationComponent } from './visualisations/task-visualisation/taskvisualisation.component';
 
 import { FUnitsComponent } from './admin/states/f-units/f-units.component';
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
@@ -398,3 +400,14 @@ const otherwiseConfigBlock = [
   },
 ];
 DoubtfireAngularJSModule.config(otherwiseConfigBlock);
+
+
+DoubtfireAngularJSModule.directive(
+  'appProgressBurndownChart',
+  downgradeComponent({ component: ProgressBurndownChartComponent })
+);
+
+DoubtfireAngularJSModule.directive(
+  'appTaskVisualisation',
+  downgradeComponent({ component: TaskVisualisationComponent })
+);
