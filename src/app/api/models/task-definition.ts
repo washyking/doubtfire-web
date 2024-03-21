@@ -160,7 +160,7 @@ export class TaskDefinition extends Entity {
 
   public getNumbasTestUrl(asAttachment: boolean = false) {
     const constants = AppInjector.get(DoubtfireConstants);
-    return `${constants.API_URL}/units/${this.unit.id}/task_definitions/${this.id}/numbas_test.json${
+    return `${constants.API_URL}/units/${this.unit.id}/task_definitions/${this.id}/numbas_data.json${
       asAttachment ? '?as_attachment=true' : ''
     }`;
   }
@@ -192,7 +192,7 @@ export class TaskDefinition extends Entity {
   public get numbasTestUploadUrl(): string {
     return `${AppInjector.get(DoubtfireConstants).API_URL}/units/${this.unit.id}/task_definitions/${
       this.id
-    }/numbas_test`;
+    }/numbas_data`;
   }
 
   public get taskAssessmentResourcesUploadUrl(): string {
