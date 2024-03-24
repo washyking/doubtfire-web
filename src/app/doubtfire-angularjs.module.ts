@@ -45,7 +45,6 @@ import 'build/src/app/visualisations/achievement-box-plot.js';
 import 'build/src/app/tasks/modals/upload-submission-modal/upload-submission-modal.js';
 import 'build/src/app/tasks/modals/grade-task-modal/grade-task-modal.js';
 import 'build/src/app/tasks/modals/modals.js';
-import 'build/src/app/tasks/task-definition-selector/task-definition-selector.js';
 import 'build/src/app/tasks/tasks.js';
 import 'build/src/app/tasks/project-tasks-list/project-tasks-list.js';
 import 'build/src/app/tasks/task-ilo-alignment/task-ilo-alignment.js';
