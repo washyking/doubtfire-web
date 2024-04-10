@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.21-0](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v7.0.20...v7.0.21-0) (2024-04-10)
+
+
+### Bug Fixes
+
+* fix teaching periods service keys ([01e3792](https://github.com/doubtfire-lms/doubtfire-deploy/commit/01e3792107f6a5bfd119bdd0bc1ee52ad52f8e21))
+
 ### [7.0.20](https://github.com/macite/doubtfire-deploy/compare/v7.0.19...v7.0.20) (2024-03-25)
 
 
