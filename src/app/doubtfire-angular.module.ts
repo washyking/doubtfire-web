@@ -226,7 +226,7 @@ import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-view
 import {UnitCodeComponent} from './common/unit-code/unit-code.component';
 import {GradeService} from './common/services/grade.service';
 import {NumbasComponent} from './common/numbas-component/numbas-component.component';
-import {NumbasService} from './api/services/numbas.service';
+import {NumbasModal} from './common/numbas-component/numbas-modal.component';
 import {NumbasLmsService} from './api/services/numbas-lms.service';
 
 @NgModule({
@@ -402,7 +402,7 @@ import {NumbasLmsService} from './api/services/numbas-lms.service';
     TasksForInboxSearchPipe,
     IsActiveUnitRole,
     CreateNewUnitModal,
-    NumbasService,
+    NumbasModal,
     NumbasLmsService,
     provideLottieOptions({
       player: () => player,

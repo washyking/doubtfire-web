@@ -226,6 +226,7 @@ import {MarkedPipe} from './common/pipes/marked.pipe';
 import {AlertService} from './common/services/alert.service';
 import {GradeService} from './common/services/grade.service';
 import {NumbasComponent} from './common/numbas-component/numbas-component.component';
+import {NumbasModal} from './common/numbas-component/numbas-modal.component';
 
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.config',
@@ -308,6 +309,7 @@ DoubtfireAngularJSModule.factory(
   downgradeInjectable(EditProfileDialogService),
 );
 DoubtfireAngularJSModule.factory('CreateNewUnitModal', downgradeInjectable(CreateNewUnitModal));
+DoubtfireAngularJSModule.factory('NumbasModal', downgradeInjectable(NumbasModal));
 
 // directive -> component
 DoubtfireAngularJSModule.directive(
