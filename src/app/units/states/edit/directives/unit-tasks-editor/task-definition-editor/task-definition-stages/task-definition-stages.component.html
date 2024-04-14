@@ -1,63 +1,68 @@
-<table #stageTable mat-table [dataSource]="taskDefinition.stages" class="table-fixed">
-  <!-- Stage name Column -->
-  <ng-container matColumnDef="stage-name" sticky>
-    <th style="width: 30%" mat-header-cell *matHeaderCellDef>Stage</th>
-    <td style="width: 30%" mat-cell *matCellDef="let stage">
-      <mat-form-field appearance="outline">
-        <input matInput [(ngModel)]="stage.name" required />
+<table
+  #stageTable
+  mat-table
+  [dataSource]="taskDefinition.stages"
+  class="mat-elevation-z8 full-width"
+>
+  <!-- Stage ID Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let stage">{{ stage.id }}</td>
+  </ng-container>
+
+  <!-- Stage Title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Title</th>
+    <td mat-cell *matCellDef="let stage">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Enter title" [(ngModel)]="stage.title" />
       </mat-form-field>
     </td>
   </ng-container>
 
-  <!-- Cases Column -->
-  <ng-container matColumnDef="cases" sticky>
-    <th style="width: 20%" mat-header-cell *matHeaderCellDef>Cases</th>
-    <td style="width: 20%" mat-cell *matCellDef="let stage">
-      <mat-select placeholder="-" [(ngModel)]="stage.cases">
-        <mat-option value="addressed">Addressed</mat-option>
-        <mat-option value="partial">Partially Addressed</mat-option>
-        <mat-option value="resubmit">Re-submit</mat-option>
-        <mat-option value="unaddressed">Unaddresed</mat-option>
-      </mat-select>
+  <!-- Preamble Column -->
+  <ng-container matColumnDef="preamble">
+    <th mat-header-cell *matHeaderCellDef>Preamble</th>
+    <td mat-cell *matCellDef="let stage">
+      <mat-form-field appearance="fill">
+        <textarea matInput placeholder="Enter preamble" [(ngModel)]="stage.preamble"></textarea>
+      </mat-form-field>
     </td>
   </ng-container>
 
-  <!-- Criteria Check Column -->
-  <ng-container matColumnDef="criteria" sticky>
-    <th style="width: 20%" mat-header-cell *matHeaderCellDef>Criteria</th>
-    <td style="width: 20%" mat-cell *matCellDef="let stage"></td>
+  <!-- Criteria Column -->
+  <ng-container matColumnDef="criteria">
+    <th mat-header-cell *matHeaderCellDef>Criteria</th>
+    <td mat-cell *matCellDef="let stage">
+      <div *ngFor="let option of stage.options">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ option[0] }}</mat-label>
+          <mat-select [(value)]="option[1]">
+            <mat-option *ngFor="let feedback of option[1]" [value]="feedback">
+              {{ feedback }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </td>
   </ng-container>
 
-  <!-- Actions -->
-  <ng-container matColumnDef="row-actions" sticky>
-    <th style="width: 10%" mat-header-cell *matHeaderCellDef></th>
-    <td style="width: 10%" mat-cell *matCellDef="let stage">
-      <button
-        mat-icon-button
-        aria-label="delete upload requirement"
-        color="warn"
-        (click)="removeStage(stage)"
-      >
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let stage">
+      <button mat-icon-button (click)="editStage(stage)" aria-label="Edit stage">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteStage(stage)" aria-label="Delete stage">
         <mat-icon>delete</mat-icon>
       </button>
     </td>
   </ng-container>
 
-  <!-- Disclaimer column -->
-  <ng-container matColumnDef="actions">
-    <td mat-footer-cell *matFooterCellDef [colSpan]="columns.length">
-      <mat-toolbar>
-        <mat-toolbar-row>
-          <span class="flex flex-grow"></span>
-          <button mat-flat-button color="primary" (click)="addStage()">
-            <mat-icon>add</mat-icon> Add
-          </button>
-        </mat-toolbar-row>
-      </mat-toolbar>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="columns"></tr>
-  <tr mat-row *matRowDef="let row; columns: columns" class="table-row"></tr>
-  <tr mat-footer-row *matFooterRowDef="['actions']"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+<button mat-raised-button color="primary" (click)="addStage()">Add Stage</button>

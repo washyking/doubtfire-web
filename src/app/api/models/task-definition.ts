@@ -13,14 +13,8 @@ export type Stage = {
   id: number;
   taskDefinitionId: number;
   title: string;
-  order: number;
-  criteria: string;
-  /**
-   * An array of strings representing the status of the stage.
-   * Each string represents whether the student satisfied the criteria for the stage,
-   * and if so, to what degree.
-   */
-  cases: string[];
+  preamble: string;
+  options: [string, string[]][];
 };
 
 export type UploadRequirement = {

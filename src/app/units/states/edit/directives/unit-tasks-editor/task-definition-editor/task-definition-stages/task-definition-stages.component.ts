@@ -13,7 +13,7 @@ export class TaskDefinitionStagesComponent {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @ViewChild('stageTable', {static: true}) table: MatTable<any>;
 
-  public columns: string[] = ['title', 'order', 'criteria', 'cases', 'row-actions'];
+  public columns: string[] = ['title', 'preamble', 'options', 'row-actions'];
 
   public get unit(): Unit {
     return this.taskDefinition?.unit;
@@ -34,9 +34,8 @@ export class TaskDefinitionStagesComponent {
       id: newLength,
       taskDefinitionId: this.taskDefinition.id,
       title: `Stage ${newLength}`,
-      order: newLength - 1,
-      criteria: 'task',
-      cases: ['satisfactory'],
+      preamble: '',
+      options: [],
     });
     this.table.renderRows();
   }
