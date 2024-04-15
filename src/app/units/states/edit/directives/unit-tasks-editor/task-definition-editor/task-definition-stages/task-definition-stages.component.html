@@ -1,44 +1,32 @@
-<table
-  #stageTable
-  mat-table
-  [dataSource]="taskDefinition.stages"
-  class="mat-elevation-z8 full-width"
->
-  <!-- Stage ID Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let stage">{{ stage.id }}</td>
-  </ng-container>
-
+<table #stageTable mat-table [dataSource]="taskDefinition.stages" class="fixed-table">
   <!-- Stage Title Column -->
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Title</th>
     <td mat-cell *matCellDef="let stage">
       <mat-form-field appearance="fill">
-        <mat-label>Title</mat-label>
         <input matInput placeholder="Enter title" [(ngModel)]="stage.title" />
       </mat-form-field>
     </td>
   </ng-container>
 
-  <!-- Preamble Column -->
+  <!-- Stage Preamble Column -->
   <ng-container matColumnDef="preamble">
     <th mat-header-cell *matHeaderCellDef>Preamble</th>
     <td mat-cell *matCellDef="let stage">
       <mat-form-field appearance="fill">
-        <textarea matInput placeholder="Enter preamble" [(ngModel)]="stage.preamble"></textarea>
+        <input matInput placeholder="Enter preamble" [(ngModel)]="stage.preamble" />
       </mat-form-field>
     </td>
   </ng-container>
 
   <!-- Criteria Column -->
-  <ng-container matColumnDef="criteria">
+  <ng-container matColumnDef="options">
     <th mat-header-cell *matHeaderCellDef>Criteria</th>
     <td mat-cell *matCellDef="let stage">
       <div *ngFor="let option of stage.options">
         <mat-form-field appearance="fill">
           <mat-label>{{ option[0] }}</mat-label>
-          <mat-select [(value)]="option[1]">
+          <mat-select [(ngModel)]="option[1]">
             <mat-option *ngFor="let feedback of option[1]" [value]="feedback">
               {{ feedback }}
             </mat-option>
@@ -49,20 +37,22 @@
   </ng-container>
 
   <!-- Actions Column -->
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
+  <ng-container matColumnDef="row-actions">
+    <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let stage">
-      <button mat-icon-button (click)="editStage(stage)" aria-label="Edit stage">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="deleteStage(stage)" aria-label="Delete stage">
+      <button mat-icon-button color="warn" (click)="removeStage(stage)" aria-label="Delete stage">
         <mat-icon>delete</mat-icon>
       </button>
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns"></tr>
 </table>
 
-<button mat-raised-button color="primary" (click)="addStage()">Add Stage</button>
+<!-- Button to add a new stage -->
+<div>
+  <button mat-raised-button color="primary" (click)="addStage()">
+    <mat-icon>add</mat-icon> Add New Stage
+  </button>
+</div>

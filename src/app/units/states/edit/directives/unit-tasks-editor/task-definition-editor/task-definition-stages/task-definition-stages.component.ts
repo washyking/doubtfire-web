@@ -1,16 +1,14 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {MatTable} from '@angular/material/table';
-import {TaskDefinition} from 'src/app/api/models/task-definition';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
+import {TaskDefinition, Stage} from 'src/app/api/models/task-definition';
 import {Unit} from 'src/app/api/models/unit';
-import {Stage} from 'src/app/api/models/task-definition';
 @Component({
   selector: 'f-task-definition-stages',
   templateUrl: 'task-definition-stages.component.html',
   styleUrls: ['task-definition-stages.component.scss'],
 })
 export class TaskDefinitionStagesComponent {
-  @Input() public taskDefinition: TaskDefinition;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  @Input() taskDefinition: TaskDefinition;
   @ViewChild('stageTable', {static: true}) table: MatTable<any>;
 
   public columns: string[] = ['title', 'preamble', 'options', 'row-actions'];
@@ -19,30 +17,32 @@ export class TaskDefinitionStagesComponent {
     return this.taskDefinition?.unit;
   }
 
-  public addStage() {
-    // check if the stages proprty exists in the taskDefinition object
-
-    if (!('stages' in this.taskDefinition)) {
-      // cannot add a stage if the stages property does not exist
-      console.error('Cannot add a stage if the stages property does not exist');
-      // exit the function
-      return;
-    }
-
+  public addStage(): void {
+    console.log(`Adding stage to ${this.taskDefinition.name}`);
     const newLength = this.taskDefinition.stages.length + 1;
-    this.taskDefinition.stages.push({
+    const newStage: Stage = {
       id: newLength,
       taskDefinitionId: this.taskDefinition.id,
       title: `Stage ${newLength}`,
-      preamble: '',
-      options: [],
-    });
+      preamble: `**Stage ${newLength}**`,
+      options: [['Criteria', ['Option1', 'Option2']]],
+    };
+    this.taskDefinition.addStage(newStage);
     this.table.renderRows();
   }
 
-  public removeStage(stage: Stage) {
-    this.taskDefinition.stages = this.taskDefinition.stages.filter(
-      (aStage) => aStage.id != stage.id,
-    );
+  addFeedbackOption(stage: Stage, optionIndex: number): void {
+    // Assuming each option is an array of [string, string[]]
+    // Adding a default new feedback option
+    stage.options[optionIndex][1].push('New Feedback Option');
+  }
+
+  addNewCriteria(stage: Stage): void {
+    // Adding a new criteria with an empty feedback options array
+    stage.options.push(['New Criteria', ['Initial Feedback']]);
+  }
+
+  public removeStage(stage: Stage): void {
+    this.taskDefinition.removeStage(stage.id);
   }
 }

@@ -14,7 +14,7 @@ export type Stage = {
   taskDefinitionId: number;
   title: string;
   preamble: string;
-  options: [string, string[]][];
+  options: [[string, string[]]];
 };
 
 export type UploadRequirement = {
@@ -224,5 +224,30 @@ export class TaskDefinition extends Entity {
     return httpClient
       .delete(this.taskAssessmentResourcesUploadUrl)
       .pipe(tap(() => (this.hasTaskAssessmentResources = false)));
+  }
+
+  // Method to check if stages exist and add empty stages array if they don't
+  public hasStages(): boolean {
+    // check if stages exist
+    if (!this.stages) {
+      // initialise with empty array
+      this.stages = [];
+    }
+    return this.stages.length > 0;
+  }
+
+  // Method to get stages safely
+  public getStages(): Stage[] {
+    return this.stages;
+  }
+
+  // Method to add a stage safely
+  public addStage(stage: Stage): void {
+    this.stages.push(stage);
+  }
+
+  // Method to remove a stage by ID
+  public removeStage(stageId: number): void {
+    this.stages = this.stages.filter((stage) => stage.id !== stageId);
   }
 }
