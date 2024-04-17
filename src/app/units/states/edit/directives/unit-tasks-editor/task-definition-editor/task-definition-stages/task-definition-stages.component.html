@@ -13,9 +13,12 @@
   <ng-container matColumnDef="preamble">
     <th mat-header-cell *matHeaderCellDef>Preamble</th>
     <td mat-cell *matCellDef="let stage">
-      <mat-form-field appearance="fill">
-        <input matInput placeholder="Enter preamble" [(ngModel)]="stage.preamble" />
-      </mat-form-field>
+      <div style="display: flex; align-items: center">
+        <mat-form-field appearance="fill" style="flex: 1">
+          <input matInput placeholder="Enter preamble" [(ngModel)]="stage.preamble" />
+        </mat-form-field>
+        <button mat-button (click)="updatePreamble(stage)" style="margin-left: 4px">Update</button>
+      </div>
     </td>
   </ng-container>
 
@@ -23,16 +26,24 @@
   <ng-container matColumnDef="options">
     <th mat-header-cell *matHeaderCellDef>Criteria</th>
     <td mat-cell *matCellDef="let stage">
-      <div *ngFor="let option of stage.options">
-        <mat-form-field appearance="fill">
-          <mat-label>{{ option[0] }}</mat-label>
-          <mat-select [(ngModel)]="option[1]">
-            <mat-option *ngFor="let feedback of option[1]" [value]="feedback">
-              {{ feedback }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+      <mat-accordion multi="false">
+        <mat-expansion-panel
+          *ngFor="let criterion of stage.options"
+          hideToggle="false"
+          [expanded]="false"
+        >
+          <mat-expansion-panel-header>
+            <mat-form-field appearance="fill" style="flex: 1">
+              <input matInput [(ngModel)]="criterion[0]" placeholder="Edit criterion label" />
+            </mat-form-field>
+          </mat-expansion-panel-header>
+          <div *ngFor="let subOption of criterion[1]; let i = index">
+            <mat-form-field appearance="fill" style="flex: 1">
+              <input matInput [(ngModel)]="criterion[1][i]" placeholder="Edit sub-option" />
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </td>
   </ng-container>
 

@@ -9,12 +9,14 @@ import {TaskDefinitionService} from '../services/task-definition.service';
 /**
  * Represents a stage in a task definition.
  */
+export type Option = [string, string[]];
+
 export type Stage = {
   id: number;
   taskDefinitionId: number;
   title: string;
   preamble: string;
-  options: [[string, string[]]];
+  options: Option[];
 };
 
 export type UploadRequirement = {

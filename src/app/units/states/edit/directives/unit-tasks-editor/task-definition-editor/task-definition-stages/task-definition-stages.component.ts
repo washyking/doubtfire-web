@@ -1,6 +1,6 @@
 import {Component, Input, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
-import {TaskDefinition, Stage} from 'src/app/api/models/task-definition';
+import {TaskDefinition, Stage, Option} from 'src/app/api/models/task-definition';
 import {Unit} from 'src/app/api/models/unit';
 @Component({
   selector: 'f-task-definition-stages',
@@ -23,9 +23,30 @@ export class TaskDefinitionStagesComponent {
     const newStage: Stage = {
       id: newLength,
       taskDefinitionId: this.taskDefinition.id,
-      title: `Stage ${newLength}`,
-      preamble: `**Stage ${newLength}**`,
-      options: [['Criteria', ['Option1', 'Option2']]],
+      title: 'Source Code: Structs and Enums',
+      preamble: '**Source Code: Structs and Enums**',
+      options: [
+        [
+          'Use of structs and enumerations',
+          [
+            'Effectively utilises structs and enumerations',
+            'Partially addresses use of structs and enums',
+            'Needs improvement in use of structs and enums (Resubmit)',
+            'Does not address use of structs and enums (Redo)',
+          ],
+        ],
+        [
+          'Code Quality',
+          [
+            'Well-organised code structure',
+            'Partially organised code structure',
+            'Appropriately commented code',
+            'Insufficient comments',
+            'Lack of comments',
+            'Room for optimisation or clarification',
+          ],
+        ],
+      ],
     };
     this.taskDefinition.addStage(newStage);
     this.table.renderRows();
@@ -42,7 +63,22 @@ export class TaskDefinitionStagesComponent {
     stage.options.push(['New Criteria', ['Initial Feedback']]);
   }
 
+  updatePreamble(stage: Stage): void {
+    stage.preamble = `**${stage.title}**`;
+  }
+
   public removeStage(stage: Stage): void {
     this.taskDefinition.removeStage(stage.id);
+  }
+
+  formatOptionsAsMarkdown(options: string[]): string {
+    return options.map((option) => `- ${option}`).join('\n');
+  }
+
+  parseMarkdownToList(criterion: Option, markdownText: string): void {
+    const lines = markdownText.split('\n');
+    criterion[1] = lines
+      .map((line) => line.trim().replace(/^- /, ''))
+      .filter((line) => line !== '');
   }
 }
