@@ -38,17 +38,15 @@
           <p
             id="commentTimestamp"
             *ngIf="comment.shouldShowTimestamp"
-            [ngClass]="{own: comment.authorIsMe}"
+            [class.own]="comment.authorIsMe"
           >
             {{ comment.author.firstName }} {{ comment.author.lastName }}
             {{ comment.createdAt | humanizedDate }}
           </p>
           <div
             class="comment"
-            [ngClass]="{
-              'comment-by-other-user': !comment.authorIsMe,
-              'new-comment': comment.isNew
-            }"
+            [class.comment-by-other-user]="!comment.authorIsMe"
+            [class.new-comment]="comment.isNew"
             [fxLayout]="comment.authorIsMe ? 'row-reverse' : 'row'"
             fxLayoutAlign="start end"
           >
@@ -60,7 +58,8 @@
                 *ngIf="comment.shouldShowAvatar && shouldShowAuthorIcon(comment.commentType)"
                 [size]="28"
                 [user]="comment.author"
-                [ngClass]="{'hidden-xs hidden-sm': comment.authorIsMe}"
+                [class.hidden-xs]="comment.authorIsMe"
+                [class.hidden-sm]="comment.authorIsMe"
                 matTooltip="{{ comment.author.name }}"
                 matTooltipPosition="left"
               >
@@ -85,7 +84,7 @@
                 ></app-task-assessment-comment>
               </div>
 
-              <div class="bubble" [ngClass]="commentClasses(comment)">
+              <div class="bubble">
                 <a
                   (click)="scrollToComment(comment.originalComment.id)"
                   class="original-comment"

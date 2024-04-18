@@ -140,7 +140,7 @@
     <div
       id="textFieldContainer"
       [class.active]="$userIsTyping | async"
-      [ngClass]="{recording: recording}"
+      [class.recording]="recording"
     >
       <div
         [hidden]="recording"
