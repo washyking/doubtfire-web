@@ -63,7 +63,10 @@ export class UnitTaskEditorComponent implements AfterViewInit {
     } else {
       this.selectedTaskDefinition = taskDefinition;
 
-      this.selectedTaskDefinition.setOriginalSaveData(this.taskDefinitionService.mapping);
+      // Record original save data if none present
+      if (!this.selectedTaskDefinition.hasOriginalSaveData) {
+        this.selectedTaskDefinition.setOriginalSaveData(this.taskDefinitionService.mapping);
+      }
     }
   }
 
