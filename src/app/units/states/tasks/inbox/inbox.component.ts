@@ -1,12 +1,12 @@
 import { CdkDragEnd, CdkDragStart, CdkDragMove } from '@angular/cdk/drag-drop';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { MediaObserver } from '@angular/flex-layout';
+import { MediaObserver } from 'ng-flex-layout';
 import { UIRouter } from '@uirouter/angular';
 import { auditTime, merge, Observable, of, Subject, tap, withLatestFrom } from 'rxjs';
 import { Task } from 'src/app/api/models/task';
 import { Unit } from 'src/app/api/models/unit';
 import { UnitRole } from 'src/app/api/models/unit-role';
-import { FileDownloaderService } from 'src/app/common/file-downloader/file-downloader';
+import { FileDownloaderService } from 'src/app/common/file-downloader/file-downloader.service';
 import { SelectedTaskService } from 'src/app/projects/states/dashboard/selected-task.service';
 
 @Component({
@@ -22,11 +22,14 @@ export class InboxComponent implements OnInit {
   @ViewChild('inboxpanel') inboxPanel: ElementRef;
   @ViewChild('commentspanel') commentspanel: ElementRef;
 
-  subs$: Observable<any>;
+  subs$: Observable<unknown>;
 
   private inboxStartSize$ = new Subject<number>();
   private dragMove$ = new Subject<{ event: CdkDragMove; div: HTMLDivElement }>();
   private dragMoveAudited$;
+
+  protected filters;
+  protected showSearchOptions;
 
   public taskSelected = false;
 
@@ -40,7 +43,7 @@ export class InboxComponent implements OnInit {
     private selectedTask: SelectedTaskService,
     public mediaObserver: MediaObserver,
     public fileDownloader: FileDownloaderService,
-    private router: UIRouter
+    private router: UIRouter,
   ) {
     this.selectedTask.currentPdfUrl$.subscribe((url) => {
       this.visiblePdfUrl = url;
@@ -77,7 +80,7 @@ export class InboxComponent implements OnInit {
         }
         moveEvent.div.style.width = `${width}px`;
         moveEvent.event.source.reset();
-      })
+      }),
     );
     this.subs$ = merge(this.dragMoveAudited$, of(true));
     window.dispatchEvent(new Event('resize'));
@@ -94,7 +97,8 @@ export class InboxComponent implements OnInit {
     event.source.reset();
   }
 
-  stoppedDragging(event: CdkDragEnd, div: HTMLDivElement) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  stoppedDragging(event: CdkDragEnd, _div: HTMLDivElement) {
     event.source.element.nativeElement.classList.remove('hovering');
   }
 
@@ -107,6 +111,8 @@ export class InboxComponent implements OnInit {
   }
 
   openPdfInNewTab(): void {
-    this.fileDownloader.downloadFile(this.visiblePdfUrl, `this.taskData.selectedTask.definition.abbreviation`);
+    if (this.taskData.selectedTask.hasPdf) {
+      this.fileDownloader.downloadFile(this.visiblePdfUrl, `${this.taskData.selectedTask.definition.abbreviation}.pdf`);
+    }
   }
 }

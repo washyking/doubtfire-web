@@ -7,9 +7,15 @@
   .form-field {
     margin: 5px;
   }
+}
 
-  /* checkbox */
-  ::ng-deep .mat-checkbox-label {
-    font-weight: normal;
+.subcontainer {
+  overflow-y: hidden;
+}
+
+/* Custom CSS for overriding md breakpoint */
+@media (min-width: 960px) {
+  .custom-md-h-screen {
+    height: 100vh !important;
   }
 }
