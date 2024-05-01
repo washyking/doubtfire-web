@@ -53,7 +53,6 @@ export class FUnitsComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<IUnitOrProject> = new MatTableDataSource([]);
 
   title: string;
-  loading = true;
 
   shouldShowUnitRoleColumn(): boolean {
     return this.mode === 'admin' || this.mode === 'tutor';
@@ -74,7 +73,6 @@ export class FUnitsComponent implements OnInit, AfterViewInit {
         this.globalStateService.loadedUnitRoles.values.subscribe({
           next: (unitRoles) => {
             this.dataSource.data = this.mapUnitOrProjectsToColumns(unitRoles);
-            this.loading = false;
           },
         });
       });
