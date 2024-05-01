@@ -208,6 +208,7 @@ import {TaskSubmissionService} from './common/services/task-submission.service';
 import {TaskAssessmentModalService} from './common/modals/task-assessment-modal/task-assessment-modal.service';
 import {TaskSubmissionHistoryComponent} from './tasks/task-submission-history/task-submission-history.component';
 import {HeaderComponent} from './common/header/header.component';
+import {SplashScreenComponent} from './home/splash-screen/splash-screen.component';
 import {GlobalStateService} from './projects/states/index/global-state.service';
 import {TransitionHooksService} from './sessions/transition-hooks.service';
 import {AuthenticationService} from './api/services/authentication.service';
@@ -325,6 +326,10 @@ DoubtfireAngularJSModule.directive(
   downgradeComponent({component: ObjectSelectComponent}),
 );
 DoubtfireAngularJSModule.directive('appHeader', downgradeComponent({component: HeaderComponent}));
+DoubtfireAngularJSModule.directive(
+  'splashScreen',
+  downgradeComponent({component: SplashScreenComponent}),
+);
 DoubtfireAngularJSModule.directive(
   'userBadge',
   downgradeComponent({component: UserBadgeComponent}),

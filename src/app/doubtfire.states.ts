@@ -7,7 +7,7 @@ import {EditProfileComponent} from './account/edit-profile/edit-profile.componen
 import {TeachingPeriodListComponent} from './admin/states/teaching-periods/teaching-period-list/teaching-period-list.component';
 import {AcceptEulaComponent} from './eula/accept-eula/accept-eula.component';
 import {FUsersComponent} from './admin/states/f-users/f-users.component';
-import {AllProjectsListComponent} from './projects/states/all/directives/all-projects-list/all-projects-list.component';
+import {FUnitsComponent} from './admin/states/f-units/f-units.component';
 
 /*
  * Use this file to store any states that are sourced by angular components.
@@ -234,14 +234,40 @@ const EulaState: NgHybridStateDeclaration = {
 const ViewAllProjectsState: NgHybridStateDeclaration = {
   name: 'view_all_projects',
   url: '/view_all_projects',
+  resolve: {
+    'mode': function () {
+      return 'student';
+    },
+  },
   views: {
     main: {
-      component: AllProjectsListComponent,
+      component: FUnitsComponent,
     },
   },
   data: {
     pageTitle: 'Teaching Periods',
     roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+  },
+};
+
+const ViewAllUnits: NgHybridStateDeclaration = {
+  name: 'view_all_units',
+  url: '/view_all_units',
+  // passes 'mode' as @Input to the component
+  resolve: {
+    'mode': function () {
+      return 'tutor';
+    },
+  },
+  views: {
+    main: {
+      component: FUnitsComponent,
+    },
+  },
+  data: {
+    pageTitle: 'Teaching Periods',
+    mode: 'tutor',
+    roleWhitelist: ['Tutor', 'Convenor', 'Admin'],
   },
 };
 
@@ -258,4 +284,5 @@ export const doubtfireStates = [
   EulaState,
   usersState,
   ViewAllProjectsState,
+  ViewAllUnits,
 ];

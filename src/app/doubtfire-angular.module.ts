@@ -10,6 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Lottie animation module
 import {LottieModule, LottieCacheModule} from 'ngx-lottie';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import player from 'lottie-web';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -51,8 +52,6 @@ import {
   AboutDoubtfireModalContent,
 } from 'src/app/common/modals/about-doubtfire-modal/about-doubtfire-modal.component';
 import {DoubtfireConstants} from 'src/app/config/constants/doubtfire-constants';
-
-import {AllProjectsListComponent} from './projects/states/all/directives/all-projects-list/all-projects-list.component';
 
 import {DoubtfireAngularJSModule} from 'src/app/doubtfire-angularjs.module';
 import {HttpAuthenticationInterceptor} from './common/services/http-authentication.interceptor';
@@ -248,7 +247,6 @@ import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-view
     PdfImageCommentComponent,
     CampusListComponent,
     ActivityTypeListComponent,
-    AllProjectsListComponent,
     OverseerImageListComponent,
     ExtensionModalComponent,
     CalendarModalComponent,

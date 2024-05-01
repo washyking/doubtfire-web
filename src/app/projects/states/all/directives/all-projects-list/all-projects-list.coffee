@@ -32,7 +32,7 @@ angular.module('doubtfire.projects.states.all.directives.all-projects-list', [])
 
   timeoutPromise = $timeout((-> $scope.showSpinner = true), 2000)
 
-  newProjectService.query(undefined, {params: {include_inactive: true}}).subscribe({
+  newProjectService.query(undefined, {params: {include_in_active: true}}).subscribe({
     next: (projects) ->
       $scope.projects = projects
       $scope.showSpinner = false
