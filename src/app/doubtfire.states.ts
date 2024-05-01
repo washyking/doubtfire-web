@@ -250,6 +250,27 @@ const ViewAllProjectsState: NgHybridStateDeclaration = {
   },
 };
 
+const AdministerUnits: NgHybridStateDeclaration = {
+  name: 'admin/units', // This is the name of the state to jump to - so ui-sref="users" to jump here
+  url: '/admin/units', // You get here with this url
+  resolve: {
+    'mode': function () {
+      return 'admin';
+    },
+  },
+  views: {
+    main: {
+      // Main body links to angular component
+      component: FUnitsComponent,
+    },
+  },
+  data: {
+    pageTitle: 'Administer units',
+    roleWhiteList: ['Admin'],
+  },
+};
+
+
 const ViewAllUnits: NgHybridStateDeclaration = {
   name: 'view_all_units',
   url: '/view_all_units',
@@ -285,4 +306,5 @@ export const doubtfireStates = [
   usersState,
   ViewAllProjectsState,
   ViewAllUnits,
+  AdministerUnits,
 ];

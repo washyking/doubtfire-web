@@ -64,9 +64,6 @@ import 'build/src/app/config/analytics/analytics.js';
 import 'build/src/app/config/debug/debug.js';
 import 'build/src/app/projects/projects.js';
 import 'build/src/app/projects/project-progress-dashboard/project-progress-dashboard.js';
-import 'build/src/app/projects/states/all/directives/directives.js';
-import 'build/src/app/projects/states/all/directives/all-projects-list/all-projects-list.js';
-import 'build/src/app/projects/states/all/all.js';
 import 'build/src/app/projects/states/groups/groups.js';
 import 'build/src/app/projects/states/feedback/feedback.js';
 import 'build/src/app/projects/states/states.js';
@@ -89,9 +86,6 @@ import 'build/src/app/projects/states/tutorials/tutorials.js';
 import 'build/src/app/projects/project-outcome-alignment/project-outcome-alignment.js';
 import 'build/src/app/admin/modals/modals.js';
 import 'build/src/app/admin/modals/create-unit-modal/create-unit-modal.js';
-import 'build/src/app/admin/states/states.js';
-import 'build/src/app/admin/states/units/units.js';
-import 'build/src/app/admin/admin.js';
 import 'build/src/app/groups/group-selector/group-selector.js';
 import 'build/src/app/groups/group-set-manager/group-set-manager.js';
 import 'build/src/app/groups/groups.js';
@@ -108,9 +102,6 @@ import 'build/src/app/units/states/tasks/viewer/directives/directives.js';
 import 'build/src/app/units/states/tasks/viewer/viewer.js';
 import 'build/src/app/units/states/tasks/definition/definition.js';
 import 'build/src/app/units/states/portfolios/portfolios.js';
-import 'build/src/app/units/states/all/directives/all-units-list/all-units-list.js';
-import 'build/src/app/units/states/all/directives/directives.js';
-import 'build/src/app/units/states/all/all.js';
 import 'build/src/app/units/states/groups/groups.js';
 import 'build/src/app/units/states/states.js';
 import 'build/src/app/units/states/edit/directives/unit-group-set-editor/unit-group-set-editor.js';
@@ -241,7 +232,6 @@ export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.sessions',
   'doubtfire.common',
   'doubtfire.errors',
-  'doubtfire.admin',
   'doubtfire.units',
   'doubtfire.tasks',
   'doubtfire.projects',
