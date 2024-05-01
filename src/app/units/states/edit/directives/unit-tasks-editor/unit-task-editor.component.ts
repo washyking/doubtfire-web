@@ -185,7 +185,6 @@ export class UnitTaskEditorComponent implements AfterViewInit {
     task.startDate = new Date();
     task.targetDate = new Date();
     task.uploadRequirements = [];
-    task.plagiarismChecks = [];
     task.weighting = 4;
     task.targetGrade = 0;
     task.restrictStatusUpdates = false;

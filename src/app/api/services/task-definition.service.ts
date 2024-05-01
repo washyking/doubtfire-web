@@ -75,15 +75,6 @@ export class TaskDefinitionService extends CachedEntityService<TaskDefinition> {
           return taskDef.tutorialStream?.abbreviation;
         },
       },
-      {
-        keys: 'plagiarismChecks',
-        toEntityFn: (data: object, key: string, taskDef: TaskDefinition, params?: any) => {
-          return data[key] || [];
-        },
-        toJsonFn: (taskDef: TaskDefinition, key: string) => {
-          return JSON.stringify(taskDef.plagiarismChecks);
-        },
-      },
       'plagiarismWarnPct',
       'restrictStatusUpdates',
       {
