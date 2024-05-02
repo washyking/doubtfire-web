@@ -26,7 +26,7 @@ export class AcceptEulaComponent {
   ) {
     this.constants.IsTiiEnabled.subscribe((enabled) => {
       if (enabled) {
-        // this.getEulaHtml();
+        this.getEulaHtml();
         this.state.go('home');
       } else {
         this.state.go('home');
