@@ -10,6 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Lottie animation module
 import {LottieModule, LottieCacheModule} from 'ngx-lottie';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import player from 'lottie-web';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -70,7 +71,6 @@ import {
   rootScopeProvider,
   aboutDoubtfireModalProvider,
   calendarModalProvider,
-  uploadSubmissionModal,
   gradeTaskModalProvider,
   uploadSubmissionModalProvider,
   ConfirmationModalProvider,
