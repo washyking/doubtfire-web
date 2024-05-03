@@ -27,7 +27,6 @@ export class AcceptEulaComponent {
     this.constants.IsTiiEnabled.subscribe((enabled) => {
       if (enabled) {
         this.getEulaHtml();
-        this.state.go('home');
       } else {
         this.state.go('home');
       }
@@ -39,7 +38,7 @@ export class AcceptEulaComponent {
   public getEulaHtml() {
     this.tiiService.getTiiEula().subscribe((eulaHtml) => {
       this.eulaHtml = eulaHtml;
-      this.yourFunctionForChangingHTML();
+      this.updateHtmlEulaInIFrame();
     });
   }
 
@@ -58,7 +57,7 @@ export class AcceptEulaComponent {
     return this.iframeDoc$.asObservable();
   }
 
-  yourFunctionForChangingHTML(): void {
+  updateHtmlEulaInIFrame(): void {
     this.getIframeDoc()
       .pipe(take(1))
       .subscribe((iframeDoc) => {
