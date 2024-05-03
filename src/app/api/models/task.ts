@@ -144,6 +144,14 @@ export class Task extends Entity {
     return this.definition.maxQualityPts > 0 && TaskStatus.GRADEABLE_STATUSES.includes(this.status);
   }
 
+  public hasBeenGraded(): boolean {
+    return typeof this.grade === 'number';
+  }
+
+  public hasBeenGivenQualityPoints(): boolean {
+    return this.qualityPts > 0 || TaskStatus.GRADEABLE_STATUSES.includes(this.status);
+  }
+
   public localDueDate(): Date {
     if (this.dueDate) {
       return this.dueDate;
