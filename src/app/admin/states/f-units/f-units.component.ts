@@ -8,6 +8,7 @@ import {CreateNewUnitModal} from '../../modals/create-new-unit-modal/create-new-
 import {Project} from 'src/app/api/models/project';
 import {GlobalStateService} from 'src/app/projects/states/index/global-state.service';
 import {User} from 'src/app/api/models/user/user';
+import {UnitService} from 'src/app/api/services/unit.service';
 
 type IUnitOrProject = {
   id: number;
@@ -61,6 +62,7 @@ export class FUnitsComponent implements OnInit, AfterViewInit {
   constructor(
     private createUnitDialog: CreateNewUnitModal,
     private globalStateService: GlobalStateService,
+    private unitService: UnitService,
   ) {}
 
   units: IUnitOrProject[] = [];
@@ -80,10 +82,10 @@ export class FUnitsComponent implements OnInit, AfterViewInit {
     if (this.mode === 'admin') {
       this.title = 'Administer units';
 
-      this.globalStateService.onLoad(() => {
-        this.globalStateService.loadedUnits.values.subscribe(
-          (units) => (this.dataSource.data = this.mapUnitOrProjectsToColumns(units)),
-        );
+      this.unitService.query(undefined, {params: {include_in_active: true}}).subscribe({
+        next: (units) => {
+          this.dataSource.data = this.mapUnitOrProjectsToColumns(units);
+        },
       });
     } else if (this.mode === 'student') {
       this.title = 'View all your units';
