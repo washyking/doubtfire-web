@@ -65,7 +65,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(
       this.globalState.projectsSubject.subscribe({
-        next: (projects) => this.projectsLoaded(projects),
+        next: (projects) => {
+          projects = projects.filter((project) => project.unit.myRole === 'Student');
+          this.projectsLoaded(projects);
+        },
         error: (err) => {},
       }),
     );
