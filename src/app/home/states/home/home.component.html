@@ -50,13 +50,11 @@
                       unitRole.unit.teachingPeriodProgress
                     }}% through the teaching period."
                   >
-                    <ng-container *ngFor="let _ of [].constructor(5)">
-                      <mat-progress-bar
-                        class="unit-progress-slider"
-                        mode="determinate"
-                        [value]="unitRole.unit.teachingPeriodProgress"
-                      ></mat-progress-bar>
-                    </ng-container>
+                    <mat-progress-bar
+                      class="unit-progress-slider"
+                      mode="determinate"
+                      [value]="unitRole.unit.teachingPeriodProgress"
+                    ></mat-progress-bar>
                   </mat-card-footer>
                 </mat-card>
               </div>
@@ -118,12 +116,10 @@
                       project.unit.teachingPeriodProgress
                     }}% through the teaching period."
                   >
-                    <ng-container *ngFor="let _ of [].constructor(5)">
-                      <mat-progress-bar
-                        mode="determinate"
-                        [value]="project.unit.teachingPeriodProgress"
-                      ></mat-progress-bar>
-                    </ng-container>
+                    <mat-progress-bar
+                      mode="determinate"
+                      [value]="project.unit.teachingPeriodProgress"
+                    ></mat-progress-bar>
                   </mat-card-footer>
                 </mat-card>
               </div>
