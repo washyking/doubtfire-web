@@ -232,8 +232,8 @@ const EulaState: NgHybridStateDeclaration = {
 };
 
 const ViewAllProjectsState: NgHybridStateDeclaration = {
-  name: 'view_all_projects',
-  url: '/view_all_projects',
+  name: 'view-all-projects',
+  url: '/view-all-projects',
   resolve: {
     'mode': function () {
       return 'student';
@@ -272,8 +272,8 @@ const AdministerUnits: NgHybridStateDeclaration = {
 
 
 const ViewAllUnits: NgHybridStateDeclaration = {
-  name: 'view_all_units',
-  url: '/view_all_units',
+  name: 'view-all-units',
+  url: '/view-all-units',
   // passes 'mode' as @Input to the component
   resolve: {
     'mode': function () {
