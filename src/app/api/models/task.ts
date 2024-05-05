@@ -137,7 +137,11 @@ export class Task extends Entity {
   }
 
   public hasGrade(): boolean {
-    return this.grade !== undefined && this.grade !== null && TaskStatus.GRADEABLE_STATUSES.includes(this.status);
+    return (
+      this.grade !== undefined &&
+      this.grade !== null &&
+      TaskStatus.GRADEABLE_STATUSES.includes(this.status)
+    );
   }
 
   public hasQualityPoints(): boolean {
@@ -145,7 +149,10 @@ export class Task extends Entity {
   }
 
   public hasBeenGraded(): boolean {
-    return typeof this.grade === 'number';
+    if (this.hasGrade()) {
+      return typeof this.grade === 'number';
+    }
+    return false;
   }
 
   public hasBeenGivenQualityPoints(): boolean {
