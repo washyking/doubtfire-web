@@ -227,6 +227,7 @@ import {AlertService} from './common/services/alert.service';
 import {GradeService} from './common/services/grade.service';
 import {NumbasComponent} from './common/numbas-component/numbas-component.component';
 import {NumbasModal} from './common/numbas-component/numbas-modal.component';
+import {TestAttemptService} from './api/services/test-attempt.service';
 
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.config',
@@ -310,6 +311,7 @@ DoubtfireAngularJSModule.factory(
 );
 DoubtfireAngularJSModule.factory('CreateNewUnitModal', downgradeInjectable(CreateNewUnitModal));
 DoubtfireAngularJSModule.factory('NumbasModal', downgradeInjectable(NumbasModal));
+DoubtfireAngularJSModule.factory('testAttemptService', downgradeInjectable(TestAttemptService));
 
 // directive -> component
 DoubtfireAngularJSModule.directive(

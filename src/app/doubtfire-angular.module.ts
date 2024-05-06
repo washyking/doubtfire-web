@@ -229,6 +229,7 @@ import {NumbasComponent} from './common/numbas-component/numbas-component.compon
 import {NumbasModal} from './common/numbas-component/numbas-modal.component';
 import {NumbasLmsService} from './api/services/numbas-lms.service';
 import {NumbasCommentComponent} from './tasks/task-comments-viewer/numbas-comment/numbas-comment.component';
+import {TestAttemptService} from './api/services/test-attempt.service';
 
 @NgModule({
   // Components we declare
@@ -406,6 +407,7 @@ import {NumbasCommentComponent} from './tasks/task-comments-viewer/numbas-commen
     CreateNewUnitModal,
     NumbasModal,
     NumbasLmsService,
+    TestAttemptService,
     provideLottieOptions({
       player: () => player,
     }),
