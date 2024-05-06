@@ -228,6 +228,7 @@ import {GradeService} from './common/services/grade.service';
 import {NumbasComponent} from './common/numbas-component/numbas-component.component';
 import {NumbasModal} from './common/numbas-component/numbas-modal.component';
 import {NumbasLmsService} from './api/services/numbas-lms.service';
+import {NumbasCommentComponent} from './tasks/task-comments-viewer/numbas-comment/numbas-comment.component';
 
 @NgModule({
   // Components we declare
@@ -331,6 +332,7 @@ import {NumbasLmsService} from './api/services/numbas-lms.service';
     FTaskBadgeComponent,
     FUnitsComponent,
     NumbasComponent,
+    NumbasCommentComponent,
   ],
   // Services we provide
   providers: [

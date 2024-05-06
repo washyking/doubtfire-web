@@ -507,6 +507,12 @@ export class Task extends Entity {
     );
   }
 
+  public get numbasEnabled(): boolean {
+    return (
+      this.definition.hasEnabledNumbasTest && this.definition.hasNumbasData
+    );
+  }
+
   public submissionUrl(asAttachment: boolean = false): string {
     return `${AppInjector.get(DoubtfireConstants).API_URL}/projects/${
       this.project.id
