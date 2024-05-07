@@ -1,9 +1,8 @@
-import { Inject, Injectable, OnDestroy } from '@angular/core';
-import { MediaObserver } from 'ng-flex-layout';
-import { UIRouter } from '@uirouter/angular';
-import { EntityCache } from 'ngx-entity-service';
-import { BehaviorSubject, Observable, Subject, skip, take } from 'rxjs';
-import { alertService } from 'src/app/ajs-upgraded-providers';
+import {Inject, Injectable, OnDestroy} from '@angular/core';
+import {MediaObserver} from 'ng-flex-layout';
+import {UIRouter} from '@uirouter/angular';
+import {EntityCache} from 'ngx-entity-service';
+import {BehaviorSubject, Observable, Subject, skip, take} from 'rxjs';
 import {
   CampusService,
   Project,
@@ -15,8 +14,9 @@ import {
   UnitService,
   UserService,
 } from 'src/app/api/models/doubtfire-model';
-import { AuthenticationService } from 'src/app/api/services/authentication.service';
-import { LoadingService } from 'src/app/home/splash-screen/LoadingService.service';
+import {AuthenticationService} from 'src/app/api/services/authentication.service';
+import {LoadingService} from 'src/app/home/splash-screen/LoadingService.service';
+import {AlertService} from 'src/app/common/services/alert.service';
 
 export class DoubtfireViewState {
   public EntityObject: any; // Unit | Project | undefined
@@ -43,11 +43,13 @@ export class GlobalStateService implements OnDestroy {
   /**
    * The current view and entity, indicating what kind of page is being shown.
    */
-  public currentViewAndEntitySubject$: BehaviorSubject<{ viewType: ViewType; entity: Project | Unit | UnitRole }> =
-    new BehaviorSubject<{
-      viewType: ViewType;
-      entity: Project | Unit | UnitRole;
-    } | null>(null);
+  public currentViewAndEntitySubject$: BehaviorSubject<{
+    viewType: ViewType;
+    entity: Project | Unit | UnitRole;
+  }> = new BehaviorSubject<{
+    viewType: ViewType;
+    entity: Project | Unit | UnitRole;
+  } | null>(null);
 
   /**
    * The unit roles loaded from the server
@@ -100,8 +102,8 @@ export class GlobalStateService implements OnDestroy {
     private teachingPeriodService: TeachingPeriodService,
     private loadingService: LoadingService,
     @Inject(UIRouter) private router: UIRouter,
-    @Inject(alertService) private alerts: any,
-    private mediaObserver: MediaObserver
+    private alerts: AlertService,
+    private mediaObserver: MediaObserver,
   ) {
     this.loadedUnitRoles = this.unitRoleService.cache;
     this.loadedUnits = this.unitService.cache;
@@ -212,7 +214,7 @@ export class GlobalStateService implements OnDestroy {
           subscriber.next(true);
         },
         error: (response) => {
-          this.alerts.add('danger', 'Unable to access service. Failed loading campuses.', 6000);
+          this.alerts.error('Unable to access service. Failed loading campuses.', 6000);
         },
       });
 
@@ -222,7 +224,7 @@ export class GlobalStateService implements OnDestroy {
           subscriber.next(true);
         },
         error: (response) => {
-          this.alerts.add('danger', 'Unable to access service. Failed loading teaching periods.', 6000);
+          this.alerts.error('Unable to access service. Failed loading teaching periods.', 6000);
         },
       });
     });
@@ -245,7 +247,7 @@ export class GlobalStateService implements OnDestroy {
       next: (unitRoles: UnitRole[]) => {
         // unit roles are now in the cache
 
-        this.projectService.query(undefined, { params: { include_in_active: false } }).subscribe({
+        this.projectService.query(undefined, {params: {include_in_active: false}}).subscribe({
           next: (projects: Project[]) => {
             // projects updated in cache
 
@@ -281,7 +283,7 @@ export class GlobalStateService implements OnDestroy {
    * Switch to a new view, and its associated entity object
    */
   public setView(kind: ViewType, entity?: any): void {
-    this.currentViewAndEntitySubject$.next({ viewType: kind, entity: entity });
+    this.currentViewAndEntitySubject$.next({viewType: kind, entity: entity});
   }
 
   /**

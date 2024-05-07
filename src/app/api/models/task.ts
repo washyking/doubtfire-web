@@ -541,7 +541,7 @@ export class Task extends Entity {
           this.status = oldStatus;
         }
         const alerts: any = AppInjector.get(AlertService);
-        alerts.add('info', 'Submission cancelled. Status was reverted.', 6000);
+        alerts.message('Submission cancelled. Status was reverted.', 6000);
       }
     );
   }
