@@ -42,6 +42,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {UIRouterUpgradeModule} from '@uirouter/angular-hybrid';
 import {MatDialogModule as MatDialogModuleNew} from '@angular/material/dialog';
+import {AlertService} from 'src/app/common/services/alert.service';
 import {AlertComponent} from 'src/app/common/services/alert.service';
 
 import {setTheme} from 'ngx-bootstrap/utils';
@@ -59,7 +60,6 @@ import {
   visualisationsProvider,
   analyticsServiceProvider,
   dateServiceProvider,
-  alertServiceProvider,
   CsvUploadModalProvider,
   UnitStudentEnrolmentModalProvider,
   CsvResultModalProvider,
@@ -233,6 +233,7 @@ import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-view
 @NgModule({
   // Components we declare
   declarations: [
+    AlertComponent,
     AboutDoubtfireModalContent,
     TeachingPeriodUnitImportDialogComponent,
     TaskCommentComposerComponent,
@@ -331,6 +332,8 @@ import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-view
   ],
   // Services we provide
   providers: [
+    AlertService,
+    MarkedPipe,
     CampusService,
     AuthenticationService,
     GroupSetService,
@@ -367,7 +370,6 @@ import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-view
     gradeTaskModalProvider,
     analyticsServiceProvider,
     dateServiceProvider,
-    alertServiceProvider,
     CsvUploadModalProvider,
     CsvResultModalProvider,
     {provide: MAT_DATE_LOCALE, useValue: 'en-AU'},

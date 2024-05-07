@@ -118,7 +118,6 @@ import 'build/src/app/units/states/students-list/students-list.js';
 import 'build/src/app/units/states/analytics/analytics.js';
 import 'build/src/app/common/filters/filters.js';
 import 'build/src/app/common/content-editable/content-editable.js';
-import 'build/src/app/common/alert-list/alert-list.js';
 import 'build/src/app/common/modals/confirmation-modal/confirmation-modal.js';
 import 'build/src/app/common/modals/comments-modal/comments-modal.js';
 import 'build/src/app/common/modals/csv-result-modal/csv-result-modal.js';
@@ -133,7 +132,6 @@ import 'build/src/app/common/services/recorder-service.js';
 import 'build/src/app/common/services/media-service.js';
 import 'build/src/app/common/services/analytics-service.js';
 import 'build/src/app/common/services/grade-service.js';
-import 'build/src/app/common/services/alert-service.js';
 import 'build/src/app/common/services/date-service.js';
 import 'build/src/app/sessions/auth/roles/roles.js';
 import 'build/src/app/sessions/auth/roles/if-role.js';
@@ -227,6 +225,8 @@ import {FTaskSheetViewComponent} from './units/states/tasks/viewer/directives/f-
 import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-viewer.component';
 
 import {FUnitsComponent} from './admin/states/f-units/f-units.component';
+import { MarkedPipe } from './common/pipes/marked.pipe';
+import { AlertService } from './common/services/alert.service';
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.config',
   'doubtfire.sessions',
@@ -248,8 +248,10 @@ DoubtfireAngularJSModule.factory(
 );
 DoubtfireAngularJSModule.factory('DoubtfireConstants', downgradeInjectable(DoubtfireConstants));
 DoubtfireAngularJSModule.factory('ExtensionModal', downgradeInjectable(ExtensionModalService));
+DoubtfireAngularJSModule.factory('Marked', downgradeInjectable(MarkedPipe));
 DoubtfireAngularJSModule.factory('CalendarModal', downgradeInjectable(CalendarModalService));
 DoubtfireAngularJSModule.factory('TaskCommentService', downgradeInjectable(TaskCommentService));
+DoubtfireAngularJSModule.factory('alertService', downgradeInjectable(AlertService));
 DoubtfireAngularJSModule.factory('tutorialService', downgradeInjectable(TutorialService));
 DoubtfireAngularJSModule.factory('streamService', downgradeInjectable(TutorialStreamService));
 DoubtfireAngularJSModule.factory('campusService', downgradeInjectable(CampusService));
