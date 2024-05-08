@@ -72,6 +72,7 @@ import {
   gradeTaskModalProvider,
   uploadSubmissionModalProvider,
   ConfirmationModalProvider,
+  ScormPlayerModalProvider,
 } from './ajs-upgraded-providers';
 import {
   TaskCommentComposerComponent,
@@ -225,9 +226,8 @@ import {FTaskSheetViewComponent} from './units/states/tasks/viewer/directives/f-
 import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-viewer.component';
 import {UnitCodeComponent} from './common/unit-code/unit-code.component';
 import {GradeService} from './common/services/grade.service';
-import {NumbasComponent} from './common/numbas-component/numbas-component.component';
-import {NumbasModal} from './common/numbas-component/numbas-modal.component';
-import {ScormLmsService} from './api/services/scorm-lms.service';
+import {ScormPlayerComponent} from './common/scorm-player/scorm-player.component';
+import {ScormAdapterService} from './api/services/scorm-adapter.service';
 import {NumbasCommentComponent} from './tasks/task-comments-viewer/numbas-comment/numbas-comment.component';
 import {TestAttemptService} from './api/services/test-attempt.service';
 
@@ -332,7 +332,7 @@ import {TestAttemptService} from './api/services/test-attempt.service';
     FUsersComponent,
     FTaskBadgeComponent,
     FUnitsComponent,
-    NumbasComponent,
+    ScormPlayerComponent,
     NumbasCommentComponent,
   ],
   // Services we provide
@@ -405,8 +405,8 @@ import {TestAttemptService} from './api/services/test-attempt.service';
     TasksForInboxSearchPipe,
     IsActiveUnitRole,
     CreateNewUnitModal,
-    NumbasModal,
-    ScormLmsService,
+    ScormPlayerModalProvider,
+    ScormAdapterService,
     TestAttemptService,
     provideLottieOptions({
       player: () => player,
