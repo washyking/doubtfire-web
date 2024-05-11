@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:18 AS build
+FROM node:20 AS build
 
 USER node
 
@@ -25,7 +25,7 @@ RUN rm -v /etc/nginx/nginx.conf
 # Copy a configuration file from the current directory
 ADD nginx.conf /etc/nginx/
 
-COPY --from=build /doubtfire-web/dist /usr/share/nginx/html
+COPY --from=build /doubtfire-web/dist/browser /usr/share/nginx/html
 
 # Expose ports
 EXPOSE 80
