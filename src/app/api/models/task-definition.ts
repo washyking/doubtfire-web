@@ -31,10 +31,10 @@ export class TaskDefinition extends Entity {
   groupSet: GroupSet = null;
   hasTaskSheet: boolean;
   hasTaskResources: boolean;
-  hasEnabledNumbasTest: boolean;
-  hasNumbasData: boolean;
-  hasNumbasTimeDelay: boolean;
-  numbasAttemptLimit: number = 0;
+  scormEnabled: boolean;
+  hasScormData: boolean;
+  scormTimeDelayEnabled: boolean;
+  scormAttemptLimit: number = 0;
   hasTaskAssessmentResources: boolean;
   isGraded: boolean;
   maxQualityPts: number;
@@ -158,7 +158,7 @@ export class TaskDefinition extends Entity {
 
   public getNumbasTestUrl(asAttachment: boolean = false) {
     const constants = AppInjector.get(DoubtfireConstants);
-    return `${constants.API_URL}/units/${this.unit.id}/task_definitions/${this.id}/numbas_data.json${
+    return `${constants.API_URL}/units/${this.unit.id}/task_definitions/${this.id}/scorm_data.json${
       asAttachment ? '?as_attachment=true' : ''
     }`;
   }
@@ -190,7 +190,7 @@ export class TaskDefinition extends Entity {
   public get numbasTestUploadUrl(): string {
     return `${AppInjector.get(DoubtfireConstants).API_URL}/units/${this.unit.id}/task_definitions/${
       this.id
-    }/numbas_data`;
+    }/scorm_data`;
   }
 
   public get taskAssessmentResourcesUploadUrl(): string {
@@ -217,7 +217,7 @@ export class TaskDefinition extends Entity {
 
   public deleteNumbasTest(): Observable<any> {
     const httpClient = AppInjector.get(HttpClient);
-    return httpClient.delete(this.numbasTestUploadUrl).pipe(tap(() => (this.hasNumbasData = false)));
+    return httpClient.delete(this.numbasTestUploadUrl).pipe(tap(() => (this.hasScormData = false)));
   }
 
   public deleteTaskAssessmentResources(): Observable<any> {
