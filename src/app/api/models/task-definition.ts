@@ -5,6 +5,7 @@ import {AppInjector} from 'src/app/app-injector';
 import {DoubtfireConstants} from 'src/app/config/constants/doubtfire-constants';
 import {Grade, GroupSet, TutorialStream, Unit} from './doubtfire-model';
 import {TaskDefinitionService} from '../services/task-definition.service';
+import {StageService} from '../services/stage.service';
 
 /**
  * Represents a stage in a task definition.
@@ -239,17 +240,27 @@ export class TaskDefinition extends Entity {
   }
 
   // Method to get stages safely
-  public getStages(): Stage[] {
-    return this.stages;
+  public get getStages(): Observable<any> {
+    const constants = AppInjector.get(DoubtfireConstants);
+    const httpClient = AppInjector.get(HttpClient);
+    const getStagesUrl = `${constants.API_URL}/feedback_api/${this.id}/task_definitions/${this.id}/stages.json`;
+    return httpClient.get(getStagesUrl);
   }
 
-  // Method to add a stage safely
-  public addStage(stage: Stage): void {
-    this.stages.push(stage);
-  }
+  // // Method to add a stage safely
+  // public addStage(stage: Stage): void {
+  //   const constants = AppInjector.get(DoubtfireConstants);
+  //   const httpClient = AppInjector.get(HttpClient);
+  //   const addStageUrl = `${constants.API_URL}/feedback_api/${this.id}`;
+  //   httpClient.post(addStageUrl);
+  // }
 
   // Method to remove a stage by ID
   public removeStage(stageId: number): void {
-    this.stages = this.stages.filter((stage) => stage.id !== stageId);
+    const stageService = AppInjector.get(StageService);
+    stageService.deleteStage(stageId);
+    //   const constants = AppInjector.get(DoubtfireConstants);
+    //   const httpClient = AppInjector.get(HttpClient);
+    //   httpClient.delete(`${constants.API_URL}/feedback_api/${this.id}/stages/${stageId}`);
   }
 }
