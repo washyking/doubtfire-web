@@ -96,10 +96,10 @@ export class TaskDefinitionStagesComponent {
   //   return options.map((option) => `- ${option}`).join('\n');
   // }
 
-  parseMarkdownToList(criterion: StageOption, markdownText: string): void {
-    const lines = markdownText.split('\n');
-    criterion[1] = lines
-      .map((line) => line.trim().replace(/^- /, ''))
-      .filter((line) => line !== '');
-  }
+  // parseMarkdownToList(criterion: StageOption, markdownText: string): void {
+  //   const lines = markdownText.split('\n');
+  //   criterion[1] = lines
+  //     .map((line) => line.trim().replace(/^- /, ''))
+  //     .filter((line) => line !== '');
+  // }
 }
