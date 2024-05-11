@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0-4](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-3...v8.0.0-4) (2024-05-11)
+
+
+### Bug Fixes
+
+* copy dist browser to nginx html ([08fa919](https://github.com/macite/doubtfire-deploy/commit/08fa91937e028cb3ee093709e5a31f94da44fc33))
+
 ## [8.0.0-3](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-2...v8.0.0-3) (2024-05-02)
 
 ## [8.0.0-2](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-1...v8.0.0-2) (2024-05-01)
