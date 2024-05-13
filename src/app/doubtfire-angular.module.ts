@@ -10,6 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Lottie animation module
 import {LottieModule, LottieCacheModule} from 'ngx-lottie';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import player from 'lottie-web';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -41,6 +42,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {UIRouterUpgradeModule} from '@uirouter/angular-hybrid';
 import {MatDialogModule as MatDialogModuleNew} from '@angular/material/dialog';
+import {AlertService} from 'src/app/common/services/alert.service';
 import {AlertComponent} from 'src/app/common/services/alert.service';
 
 import {setTheme} from 'ngx-bootstrap/utils';
@@ -51,14 +53,13 @@ import {
   AboutDoubtfireModalContent,
 } from 'src/app/common/modals/about-doubtfire-modal/about-doubtfire-modal.component';
 import {DoubtfireConstants} from 'src/app/config/constants/doubtfire-constants';
-
+import {FTaskBadgeComponent} from 'src/app/common/task-badge/task-badge.component';
 import {DoubtfireAngularJSModule} from 'src/app/doubtfire-angularjs.module';
 import {HttpAuthenticationInterceptor} from './common/services/http-authentication.interceptor';
 import {
   visualisationsProvider,
   analyticsServiceProvider,
   dateServiceProvider,
-  alertServiceProvider,
   CsvUploadModalProvider,
   UnitStudentEnrolmentModalProvider,
   CsvResultModalProvider,
@@ -70,7 +71,6 @@ import {
   rootScopeProvider,
   aboutDoubtfireModalProvider,
   calendarModalProvider,
-  uploadSubmissionModal,
   gradeTaskModalProvider,
   uploadSubmissionModalProvider,
   ConfirmationModalProvider,
@@ -233,6 +233,7 @@ import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-view
 @NgModule({
   // Components we declare
   declarations: [
+    AlertComponent,
     AboutDoubtfireModalContent,
     TeachingPeriodUnitImportDialogComponent,
     TaskCommentComposerComponent,
@@ -326,9 +327,80 @@ import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-view
     FTaskSheetViewComponent,
     TasksViewerComponent,
     FUsersComponent,
+    FTaskBadgeComponent,
     FUnitsComponent,
   ],
-  // Module Imports
+  // Services we provide
+  providers: [
+    AlertService,
+    MarkedPipe,
+    CampusService,
+    AuthenticationService,
+    GroupSetService,
+    GroupService,
+    UnitService,
+    ProjectService,
+    UnitRoleService,
+    LearningOutcomeService,
+    TaskDefinitionService,
+    TeachingPeriodService,
+    TiiActionService,
+    TeachingPeriodBreakService,
+    TeachingPeriodUnitImportService,
+    TutorialService,
+    TutorialStreamService,
+    UserService,
+    TaskService,
+    TaskSimilarityService,
+    WebcalService,
+    ActivityTypeService,
+    OverseerImageService,
+    OverseerAssessmentService,
+    EmojiService,
+    FileDownloaderService,
+    CheckForUpdateService,
+    TaskOutcomeAlignmentService,
+    visualisationsProvider,
+    commentsModalProvider,
+    rootScopeProvider,
+    calendarModalProvider,
+    aboutDoubtfireModalProvider,
+    gradeServiceProvider,
+    uploadSubmissionModalProvider,
+    gradeTaskModalProvider,
+    analyticsServiceProvider,
+    dateServiceProvider,
+    CsvUploadModalProvider,
+    CsvResultModalProvider,
+    {provide: MAT_DATE_LOCALE, useValue: 'en-AU'},
+    UnitStudentEnrolmentModalProvider,
+    TaskCommentService,
+    AudioRecorderProvider,
+    AudioRecorderServiceProvider,
+    plagiarismReportModalProvider,
+    UnitStudentsEditorComponent,
+    ConfirmationModalProvider,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpAuthenticationInterceptor,
+      multi: true,
+      deps: [UserService],
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+      deps: [AuthenticationService, UserService],
+    },
+    AboutDoubtfireModal,
+    AboutDoubtfireModalService,
+    DoubtfireConstants,
+    TasksOfTaskDefinitionPipe,
+    TasksInTutorialsPipe,
+    TasksForInboxSearchPipe,
+    IsActiveUnitRole,
+    CreateNewUnitModal,
+  ],
   imports: [
     FlexLayoutModule,
     BrowserModule,
@@ -390,76 +462,6 @@ import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-view
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModuleNew,
-  ],
-  // Services we provide
-  providers: [
-    CampusService,
-    AuthenticationService,
-    GroupSetService,
-    GroupService,
-    UnitService,
-    ProjectService,
-    UnitRoleService,
-    LearningOutcomeService,
-    TaskDefinitionService,
-    TeachingPeriodService,
-    TiiActionService,
-    TeachingPeriodBreakService,
-    TeachingPeriodUnitImportService,
-    TutorialService,
-    TutorialStreamService,
-    UserService,
-    TaskService,
-    TaskSimilarityService,
-    WebcalService,
-    ActivityTypeService,
-    OverseerImageService,
-    OverseerAssessmentService,
-    EmojiService,
-    FileDownloaderService,
-    CheckForUpdateService,
-    TaskOutcomeAlignmentService,
-    visualisationsProvider,
-    commentsModalProvider,
-    rootScopeProvider,
-    calendarModalProvider,
-    aboutDoubtfireModalProvider,
-    gradeServiceProvider,
-    uploadSubmissionModalProvider,
-    gradeTaskModalProvider,
-    analyticsServiceProvider,
-    dateServiceProvider,
-    alertServiceProvider,
-    CsvUploadModalProvider,
-    CsvResultModalProvider,
-    {provide: MAT_DATE_LOCALE, useValue: 'en-AU'},
-    UnitStudentEnrolmentModalProvider,
-    TaskCommentService,
-    AudioRecorderProvider,
-    AudioRecorderServiceProvider,
-    plagiarismReportModalProvider,
-    UnitStudentsEditorComponent,
-    ConfirmationModalProvider,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpAuthenticationInterceptor,
-      multi: true,
-      deps: [UserService],
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      multi: true,
-      deps: [AuthenticationService, UserService],
-    },
-    AboutDoubtfireModal,
-    AboutDoubtfireModalService,
-    DoubtfireConstants,
-    TasksOfTaskDefinitionPipe,
-    TasksInTutorialsPipe,
-    TasksForInboxSearchPipe,
-    IsActiveUnitRole,
-    CreateNewUnitModal,
   ],
 })
 
