@@ -2,6 +2,66 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0-5](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-4...v8.0.0-5) (2024-05-13)
+
+
+### Features
+
+* add task badge ([b48cd4c](https://github.com/macite/doubtfire-deploy/commit/b48cd4c99333e41c0c1d32531e571d32bb482a81))
+* migrate unit list in all locations ([6651d00](https://github.com/macite/doubtfire-deploy/commit/6651d0011446fdde7179c5173f902ce2e4ea7545))
+
+
+### Bug Fixes
+
+* (WIP) fix alert service migration ([3d9f4dc](https://github.com/macite/doubtfire-deploy/commit/3d9f4dc05e7a45884dc383e0f5ed4bdb09b0558d))
+* add max length validator and change reason field to text-area ([6227200](https://github.com/macite/doubtfire-deploy/commit/6227200566c3f608c279e92a3f255a7e94148c1d))
+* address linter issues in task.ts ([14e9699](https://github.com/macite/doubtfire-deploy/commit/14e9699bdfe336f1e3f3cce3d722c835d58f3cdb))
+* correct filenames for grotesk fonts ([9bedd81](https://github.com/macite/doubtfire-deploy/commit/9bedd812b12628df9cb32e48cb91a88b5cdf69b1))
+* ensure eula state remains visible ([131540c](https://github.com/macite/doubtfire-deploy/commit/131540ca4b934773afd9f72aa2578579048ed6a2))
+* ensure unit admin shows all units ([02b7a15](https://github.com/macite/doubtfire-deploy/commit/02b7a15bbbd2306a61e344f995dffb72a3915498))
+* fix course progress bar on firefox ([ae5c1e0](https://github.com/macite/doubtfire-deploy/commit/ae5c1e0b5901bae0411cf7bbaa32ee8f340b908a))
+* fix firefox-specific bug ([6b6054b](https://github.com/macite/doubtfire-deploy/commit/6b6054bd5c1104a96ccac413a7115009eeba8d2f))
+* fix incorrect projcets listed in dropdown ([6a7e478](https://github.com/macite/doubtfire-deploy/commit/6a7e4788b522e5af6331a82ed33e9c9137d2ca86))
+* fix margin issue on dropdown ([c8145f0](https://github.com/macite/doubtfire-deploy/commit/c8145f0972a03e52377e0203cabb2cf6353db8b3))
+* grade and quality point display on task-assessment-card ([7cba502](https://github.com/macite/doubtfire-deploy/commit/7cba502e002143e8255bf0d786551bd270f73f0e))
+* indicate mandatory fields in upload-submission-modal ([e8801e2](https://github.com/macite/doubtfire-deploy/commit/e8801e2a64fe15ad423d9017d10e5e23f6e00eda))
+* only check grade if it exists ([1c213c5](https://github.com/macite/doubtfire-deploy/commit/1c213c53571f79563e9a071e2dd9645598382522))
+* reenable eula html fetch ([cda9e52](https://github.com/macite/doubtfire-deploy/commit/cda9e52a259bfaa27e8252f40e579d11d1af280c))
+* remove unused imports in extension-modal.service ([8081f51](https://github.com/macite/doubtfire-deploy/commit/8081f51b5f28ea511b9f76d026ae63f16153ae2c))
+* remove unused loading from f-units ([c4c38fa](https://github.com/macite/doubtfire-deploy/commit/c4c38fad4fbdfe248e383cf247f949197ad0a047))
+* use tailwindcss classes ([8d7e160](https://github.com/macite/doubtfire-deploy/commit/8d7e160e2d40c42284ee0c1fc85d6d9e01166cda))
+
+### [7.0.21](https://github.com/macite/doubtfire-deploy/compare/v7.0.21-0...v7.0.21) (2024-04-14)
+
+### [7.0.21-0](https://github.com/macite/doubtfire-deploy/compare/v7.0.20...v7.0.21-0) (2024-04-10)
+
+
+### Bug Fixes
+
+* fix teaching periods service keys ([01e3792](https://github.com/macite/doubtfire-deploy/commit/01e3792107f6a5bfd119bdd0bc1ee52ad52f8e21))
+
+### [7.0.20](https://github.com/macite/doubtfire-deploy/compare/v7.0.19...v7.0.20) (2024-03-25)
+
+
+### Bug Fixes
+
+* ensure sign out on timeout even with token delete error ([61bad14](https://github.com/macite/doubtfire-deploy/commit/61bad14bf1665a71ba9b6b8b53613b6f8cfc4f6e))
+* remove flex-end from tcv ([e758247](https://github.com/macite/doubtfire-deploy/commit/e758247726ec16aefd2b554c33f7c7a8318b7a66))
+
+### [7.0.19](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-1...v7.0.19) (2024-03-22)
+
+
+### Bug Fixes
+
+* align center breaks ([93bbafe](https://github.com/macite/doubtfire-deploy/commit/93bbafe49372cff5ff20da9dcfd685b90c5e8f73))
+
+### [7.0.18](https://github.com/macite/doubtfire-deploy/compare/v7.0.17...v7.0.18) (2024-01-16)
+
+
+### Bug Fixes
+
+* reinstate break model in teaching period editor ([f8dde88](https://github.com/macite/doubtfire-deploy/commit/f8dde88a42bc7cc27f6a611a7a3623e3c23d0990))
+
 ## [8.0.0-4](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-3...v8.0.0-4) (2024-05-11)
 ### Bug Fixes
 
