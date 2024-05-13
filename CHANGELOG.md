@@ -3,8 +3,6 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## [8.0.0-4](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-3...v8.0.0-4) (2024-05-11)
-
-
 ### Bug Fixes
 
 * copy dist browser to nginx html ([08fa919](https://github.com/macite/doubtfire-deploy/commit/08fa91937e028cb3ee093709e5a31f94da44fc33))
@@ -13,35 +11,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [8.0.0-2](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-1...v8.0.0-2) (2024-05-01)
 
-
-### Features
-
-* accept promela files ([df93a69](https://github.com/macite/doubtfire-deploy/commit/df93a69e45d2d9e41b9cf0802d521a3663d7a36c))
-* remove misleading progress statement ([63e276c](https://github.com/macite/doubtfire-deploy/commit/63e276c041f77d8b401d24a4f49896cfa2095442))
-
-
-### Bug Fixes
-
-* add the correct enterkeyhint to the comment composer ([569db05](https://github.com/macite/doubtfire-deploy/commit/569db059fc9786363b1b62d7be72e44f711faba3))
-* correct change detection on task def ([55daff2](https://github.com/macite/doubtfire-deploy/commit/55daff234441a242d96de097c2b2912df0c6c9a8))
-* correct npm install for dev container image ([5126c3b](https://github.com/macite/doubtfire-deploy/commit/5126c3ba7fed55217e88c54c25dc70595ec4c666))
-* ensure npm will force install ([f91751e](https://github.com/macite/doubtfire-deploy/commit/f91751eae788bc3f65d33b610ed80c96d3978974))
-* ensure similarities without files still view ([5794e2f](https://github.com/macite/doubtfire-deploy/commit/5794e2fb345328396517a7d2f945cfabb1c37173))
-* fix various task comment composer/display issues ([5670bf1](https://github.com/macite/doubtfire-deploy/commit/5670bf1dcd77e8010fe88bf24662ec96e4e29847))
-* remove ngClass ([d1d8c72](https://github.com/macite/doubtfire-deploy/commit/d1d8c72ace21551a68bd4d0a8ba88eabb2ebdb9d))
-* remove plagiarism checks ([21b02fb](https://github.com/macite/doubtfire-deploy/commit/21b02fb7cc616090f1fb2d26f65b336072f9105b))
-* remove the incorrect option from for scrollIntoView() ([9e752fe](https://github.com/macite/doubtfire-deploy/commit/9e752fe9d49df786ceb3e7007cbf0aad57809604))
-* resolved issue with intelligent discussion ([18cd1fc](https://github.com/macite/doubtfire-deploy/commit/18cd1fc6f0443c353fc5f49c81dafd2428901cbc))
-* resolved issue with intelligent-discussion-dialog component rendering ([1efa758](https://github.com/macite/doubtfire-deploy/commit/1efa758fd813751788cc79fe30e01ca8a09013d8))
-* typo ([820c56f](https://github.com/macite/doubtfire-deploy/commit/820c56f3a1bc30b7637b98e6f80b406ca350b5b8))
-* update package lock ([674f3c7](https://github.com/macite/doubtfire-deploy/commit/674f3c70bd0a4c8c33e25d34beeab76c29f56325))
-
 ## [8.0.0-1](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-0...v8.0.0-1) (2024-03-21)
-
-
-### Bug Fixes
-
-* update deploy dockerfile ([41a5161](https://github.com/macite/doubtfire-deploy/commit/41a5161b356931eafd8e4caf256f311f10bc8bb4))
+* ensure sign out on timeout even with token delete error ([61bad14](https://github.com/macite/doubtfire-deploy/commit/61bad14bf1665a71ba9b6b8b53613b6f8cfc4f6e))
+* remove flex-end from tcv ([e758247](https://github.com/macite/doubtfire-deploy/commit/e758247726ec16aefd2b554c33f7c7a8318b7a66))
 
 ## [8.0.0-0](https://github.com/macite/doubtfire-deploy/compare/v7.0.17...v8.0.0-0) (2024-03-21)
 
@@ -106,6 +78,42 @@ All notable changes to this project will be documented in this file. See [standa
 * trigger window resize when pdf loads ([044c170](https://github.com/macite/doubtfire-deploy/commit/044c170ebe05e7e3a368df2e8041884d2e23c752))
 * update file viewer to use file download and blobs ([8751123](https://github.com/macite/doubtfire-deploy/commit/87511232ca384a355ddfc5eb396186babd676f92))
 * wip add file uploader component ([48c73f5](https://github.com/macite/doubtfire-deploy/commit/48c73f547892ae3ce12fdac416bf93c3a2c72006))
+
+### Features
+
+* accept promela files ([df93a69](https://github.com/macite/doubtfire-deploy/commit/df93a69e45d2d9e41b9cf0802d521a3663d7a36c))
+* remove misleading progress statement ([63e276c](https://github.com/macite/doubtfire-deploy/commit/63e276c041f77d8b401d24a4f49896cfa2095442))
+* fix teaching periods service keys ([01e3792](https://github.com/doubtfire-lms/doubtfire-deploy/commit/01e3792107f6a5bfd119bdd0bc1ee52ad52f8e21))
+
+### [7.0.21](https://github.com/macite/doubtfire-deploy/compare/v7.0.21-0...v7.0.21) (2024-04-14)
+
+### [7.0.20](https://github.com/macite/doubtfire-deploy/compare/v7.0.19...v7.0.20) (2024-03-25)
+
+### Bug Fixes
+
+* add the correct enterkeyhint to the comment composer ([569db05](https://github.com/macite/doubtfire-deploy/commit/569db059fc9786363b1b62d7be72e44f711faba3))
+* correct change detection on task def ([55daff2](https://github.com/macite/doubtfire-deploy/commit/55daff234441a242d96de097c2b2912df0c6c9a8))
+* correct npm install for dev container image ([5126c3b](https://github.com/macite/doubtfire-deploy/commit/5126c3ba7fed55217e88c54c25dc70595ec4c666))
+* ensure npm will force install ([f91751e](https://github.com/macite/doubtfire-deploy/commit/f91751eae788bc3f65d33b610ed80c96d3978974))
+* ensure similarities without files still view ([5794e2f](https://github.com/macite/doubtfire-deploy/commit/5794e2fb345328396517a7d2f945cfabb1c37173))
+* fix various task comment composer/display issues ([5670bf1](https://github.com/macite/doubtfire-deploy/commit/5670bf1dcd77e8010fe88bf24662ec96e4e29847))
+* remove ngClass ([d1d8c72](https://github.com/macite/doubtfire-deploy/commit/d1d8c72ace21551a68bd4d0a8ba88eabb2ebdb9d))
+* remove plagiarism checks ([21b02fb](https://github.com/macite/doubtfire-deploy/commit/21b02fb7cc616090f1fb2d26f65b336072f9105b))
+* remove the incorrect option from for scrollIntoView() ([9e752fe](https://github.com/macite/doubtfire-deploy/commit/9e752fe9d49df786ceb3e7007cbf0aad57809604))
+* resolved issue with intelligent discussion ([18cd1fc](https://github.com/macite/doubtfire-deploy/commit/18cd1fc6f0443c353fc5f49c81dafd2428901cbc))
+* resolved issue with intelligent-discussion-dialog component rendering ([1efa758](https://github.com/macite/doubtfire-deploy/commit/1efa758fd813751788cc79fe30e01ca8a09013d8))
+* typo ([820c56f](https://github.com/macite/doubtfire-deploy/commit/820c56f3a1bc30b7637b98e6f80b406ca350b5b8))
+* update package lock ([674f3c7](https://github.com/macite/doubtfire-deploy/commit/674f3c70bd0a4c8c33e25d34beeab76c29f56325))
+
+### [7.0.19](https://github.com/macite/doubtfire-deploy/compare/v7.0.18...v7.0.19) (2024-03-22)
+
+
+### Bug Fixes
+
+* update deploy dockerfile ([41a5161](https://github.com/macite/doubtfire-deploy/commit/41a5161b356931eafd8e4caf256f311f10bc8bb4))
+* align center breaks ([93bbafe](https://github.com/macite/doubtfire-deploy/commit/93bbafe49372cff5ff20da9dcfd685b90c5e8f73))
+
+### [7.0.18](https://github.com/macite/doubtfire-deploy/compare/v7.0.17...v7.0.18) (2024-01-16)
 
 
 ### Bug Fixes
@@ -176,6 +184,8 @@ All notable changes to this project will be documented in this file. See [standa
 * use disabled blinding ([628ca55](https://github.com/macite/doubtfire-deploy/commit/628ca55b4e8f569f751b78ead7a50fa9e086ccec))
 * use new state name in task dropdown ([3c2fe44](https://github.com/macite/doubtfire-deploy/commit/3c2fe444d398bcedb5c998a47683d04279996680))
 * use onChanges rather than input setter ([8069c21](https://github.com/macite/doubtfire-deploy/commit/8069c21d9ecfc412dea37cade8e8a37e79730f01))
+* ensure teaching staff loaded before units in a teaching period ([f90eef7](https://github.com/macite/doubtfire-deploy/commit/f90eef7f7cd5289c60b77345d1905894384e6442))
+* reinstate break model in teaching period editor ([f8dde88](https://github.com/macite/doubtfire-deploy/commit/f8dde88a42bc7cc27f6a611a7a3623e3c23d0990))
 
 ### [7.0.17](https://github.com/macite/doubtfire-deploy/compare/v7.0.16...v7.0.17) (2023-12-01)
 
