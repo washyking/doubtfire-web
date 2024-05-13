@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.21](https://github.com/macite/doubtfire-deploy/compare/v7.0.21-0...v7.0.21) (2024-04-14)
+
+### [7.0.21-0](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v7.0.20...v7.0.21-0) (2024-04-10)
+
+
+### Bug Fixes
+
+* fix teaching periods service keys ([01e3792](https://github.com/doubtfire-lms/doubtfire-deploy/commit/01e3792107f6a5bfd119bdd0bc1ee52ad52f8e21))
+
+### [7.0.20](https://github.com/macite/doubtfire-deploy/compare/v7.0.19...v7.0.20) (2024-03-25)
+
+
+### Bug Fixes
+
+* ensure sign out on timeout even with token delete error ([61bad14](https://github.com/macite/doubtfire-deploy/commit/61bad14bf1665a71ba9b6b8b53613b6f8cfc4f6e))
+* remove flex-end from tcv ([e758247](https://github.com/macite/doubtfire-deploy/commit/e758247726ec16aefd2b554c33f7c7a8318b7a66))
+
+### [7.0.19](https://github.com/macite/doubtfire-deploy/compare/v7.0.18...v7.0.19) (2024-03-22)
+
+
+### Bug Fixes
+
+* align center breaks ([93bbafe](https://github.com/macite/doubtfire-deploy/commit/93bbafe49372cff5ff20da9dcfd685b90c5e8f73))
+
+### [7.0.18](https://github.com/macite/doubtfire-deploy/compare/v7.0.17...v7.0.18) (2024-01-16)
+
+
+### Bug Fixes
+
+* ensure teaching staff loaded before units in a teaching period ([f90eef7](https://github.com/macite/doubtfire-deploy/commit/f90eef7f7cd5289c60b77345d1905894384e6442))
+* reinstate break model in teaching period editor ([f8dde88](https://github.com/macite/doubtfire-deploy/commit/f8dde88a42bc7cc27f6a611a7a3623e3c23d0990))
+
+### [7.0.17](https://github.com/macite/doubtfire-deploy/compare/v7.0.16...v7.0.17) (2023-12-01)
+
 ### [7.0.16](https://github.com/macite/doubtfire-deploy/compare/v7.0.15...v7.0.16) (2023-11-10)
 
 
