@@ -16,8 +16,9 @@ export type Stage = {
   id: number;
   taskDefinitionId: number;
   title: string;
-  preamble: string;
-  options: StageOption[];
+  order: number;
+  // preamble: string;
+  // options: StageOption[];
 };
 
 export type UploadRequirement = {
@@ -57,7 +58,6 @@ export class TaskDefinition extends Entity {
   overseerImageId: number;
   assessmentEnabled: boolean;
   mossLanguage: string = 'moss c';
-  stages: Stage[];
 
   readonly unit: Unit;
 
@@ -227,40 +227,5 @@ export class TaskDefinition extends Entity {
     return httpClient
       .delete(this.taskAssessmentResourcesUploadUrl)
       .pipe(tap(() => (this.hasTaskAssessmentResources = false)));
-  }
-
-  // Method to check if stages exist and add empty stages array if they don't
-  public hasStages(): boolean {
-    // check if stages exist
-    if (!this.stages) {
-      // initialise with empty array
-      this.stages = [];
-    }
-    return this.stages.length > 0;
-  }
-
-  // Method to get stages safely
-  public get getStages(): Observable<any> {
-    const constants = AppInjector.get(DoubtfireConstants);
-    const httpClient = AppInjector.get(HttpClient);
-    const getStagesUrl = `${constants.API_URL}/feedback_api/${this.id}/task_definitions/${this.id}/stages.json`;
-    return httpClient.get(getStagesUrl);
-  }
-
-  // // Method to add a stage safely
-  // public addStage(stage: Stage): void {
-  //   const constants = AppInjector.get(DoubtfireConstants);
-  //   const httpClient = AppInjector.get(HttpClient);
-  //   const addStageUrl = `${constants.API_URL}/feedback_api/${this.id}`;
-  //   httpClient.post(addStageUrl);
-  // }
-
-  // Method to remove a stage by ID
-  public removeStage(stageId: number): void {
-    const stageService = AppInjector.get(StageService);
-    stageService.deleteStage(stageId);
-    //   const constants = AppInjector.get(DoubtfireConstants);
-    //   const httpClient = AppInjector.get(HttpClient);
-    //   httpClient.delete(`${constants.API_URL}/feedback_api/${this.id}/stages/${stageId}`);
   }
 }
