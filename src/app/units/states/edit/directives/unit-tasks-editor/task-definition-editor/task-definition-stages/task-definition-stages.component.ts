@@ -1,6 +1,6 @@
-import {Component, Inject, Input, ViewChild} from '@angular/core';
-import {MatTable, MatTableDataSource} from '@angular/material/table';
-import {TaskDefinition, Stage, StageOption} from 'src/app/api/models/task-definition';
+import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
+import {MatTable} from '@angular/material/table';
+import {TaskDefinition, Stage} from 'src/app/api/models/task-definition';
 import {Unit} from 'src/app/api/models/unit';
 import {StageService} from 'src/app/api/services/stage.service';
 import {alertService} from 'src/app/ajs-upgraded-providers';
@@ -9,97 +9,120 @@ import {alertService} from 'src/app/ajs-upgraded-providers';
   templateUrl: 'task-definition-stages.component.html',
   styleUrls: ['task-definition-stages.component.scss'],
 })
-export class TaskDefinitionStagesComponent {
+export class TaskDefinitionStagesComponent implements OnInit {
   @Input() taskDefinition: TaskDefinition;
   @ViewChild('stageTable', {static: true}) table: MatTable<any>;
 
-  public columns: string[] = ['title', 'preamble', 'options', 'row-actions'];
+  public columns: string[] = ['title', 'order', 'row-actions'];
+  public stages: Stage[] = [];
+  private successAlertTime: number = 2000;
+  private dangerAlertTime: number = 6000;
+  private warningAlertTime: number = 6000;
 
   constructor(
     @Inject(alertService) private alerts: any,
     private stageService: StageService,
   ) {}
 
+  ngOnInit(): void {
+    this.loadStages();
+  }
+
   public get unit(): Unit {
     return this.taskDefinition?.unit;
   }
 
-  public addStage(): void {
-    if (this.taskDefinition.hasStages()) {
-      const message = `Task Definitiion has ${this.taskDefinition.stages.length} stages`;
-      console.warn(message);
-      this.alerts.add('danger', message, 6000);
+  private loadStages(): void {
+    if (this.taskDefinition?.id) {
+      this.stageService.getStagesByTaskDefinition(this.taskDefinition.id).subscribe(
+        (response) => {
+          this.stages = response;
+          this.sortStages();
+          this.table.renderRows();
+        },
+        (error) => {
+          this.alerts.add(
+            'danger',
+            `Failed to fetch stages for task definition ${this.taskDefinition.id}. ${error}`,
+            this.dangerAlertTime,
+          );
+        },
+      );
     }
-    const newLength = this.taskDefinition.stages.length + 1;
+  }
+
+  private sortStages(): void {
+    this.stages.sort((a, b) => a.order - b.order);
+    this.updateStageOrder();
+  }
+
+  private updateStageOrder(movedStage: Stage = null): void {
+    this.stages.forEach((stage, index) => {
+      stage.order = index + 1;
+      this.updateStage(stage, stage === movedStage); // Only show alert for the moved stage
+    });
+  }
+
+  public addStage(): void {
+    const newLength = this.stages.length + 1;
     const newStage: Stage = {
       id: newLength,
       taskDefinitionId: this.taskDefinition.id,
-      title: 'Source Code: Structs and Enums',
-      preamble: '**Source Code: Structs and Enums**',
-      options: [
-        [
-          'Use of structs and enumerations',
-          [
-            'Effectively utilises structs and enumerations',
-            'Partially addresses use of structs and enums',
-            'Needs improvement in use of structs and enums (Resubmit)',
-            'Does not address use of structs and enums (Redo)',
-          ],
-        ],
-        [
-          'Code Quality',
-          [
-            'Well-organised code structure',
-            'Partially organised code structure',
-            'Appropriately commented code',
-            'Insufficient comments',
-            'Lack of comments',
-            'Room for optimisation or clarification',
-          ],
-        ],
-      ],
+      title: 'Enter Stage Description',
+      order: newLength,
     };
-    this.stageService.createStage(newStage);
-    this.taskDefinition.stages.push(newStage);
-    const message = `Added stage ${newStage.title} to ${this.taskDefinition.name}`;
-    this.alerts.add('success', message);
-    // const message = `Warning: adding stages not currently supported. Attempted to add stage to ${this.taskDefinition.name}.`;
-    // console.warn(message);
-    // this.alerts.add('danger', message, 6000);
-    // console.log(`Adding stage to ${this.taskDefinition.name}`);
-    this.table.renderRows();
-  }
 
-  addFeedbackOption(stage: Stage, optionIndex: number): void {
-    const message = `Warning: adding feedback options not currently supported. Attempted to add ${stage} at ${optionIndex}.`;
-    console.warn(message);
-  }
-
-  addNewCriteria(stage: Stage): void {
-    const message = `Warning: adding criteria to stages not currently supported. Attempted to add criteria to ${stage}`;
-    this.alerts.add('danger', message, 6000);
-    console.warn(message);
-  }
-
-  updatePreamble(stage: Stage): void {
-    stage.preamble = `**${stage.title}**`;
+    this.stageService.createStage(newStage).subscribe(
+      (response) => {
+        this.stages.push(response);
+        this.sortStages();
+        const message = `Added stage ${response.title} to ${this.taskDefinition.name}`;
+        this.alerts.add('success', message, this.successAlertTime);
+      },
+      (error) => {
+        this.alerts.add('danger', `Failed to create stage. ${error}`, this.dangerAlertTime);
+      },
+    );
   }
 
   public removeStage(stage: Stage): void {
     this.stageService.deleteStage(stage.id).subscribe({
-      next: () => this.alerts('success', 'Removed Feedback Stage', 2000),
-      error: (message) => this.alerts.add('danger', message, 6000),
+      next: () => {
+        this.stages = this.stages.filter((s) => s.id !== stage.id);
+        this.sortStages();
+        this.alerts.add('success', 'Removed Feedback Stage', this.successAlertTime);
+      },
+      error: (message) => this.alerts.add('danger', message, this.dangerAlertTime),
     });
   }
 
-  // formatOptionsAsMarkdown(options: string[]): string {
-  //   return options.map((option) => `- ${option}`).join('\n');
-  // }
+  public updateStage(stage: Stage, showAlert: boolean = true): void {
+    this.stageService.updateStage(stage).subscribe(
+      (response: Stage) => {
+        if (showAlert) {
+          const message = `Updated stage ${response.title}`;
+          this.alerts.add('success', message, this.successAlertTime);
+        }
+      },
+      (error) => {
+        this.alerts.add('danger', `Failed to update stage. ${error}`, this.dangerAlertTime);
+      },
+    );
+  }
 
-  // parseMarkdownToList(criterion: StageOption, markdownText: string): void {
-  //   const lines = markdownText.split('\n');
-  //   criterion[1] = lines
-  //     .map((line) => line.trim().replace(/^- /, ''))
-  //     .filter((line) => line !== '');
-  // }
+  public moveStageUp(index: number): void {
+    if (index > 0) {
+      [this.stages[index], this.stages[index - 1]] = [this.stages[index - 1], this.stages[index]];
+      this.updateStageOrder(this.stages[index - 1]); // Pass the correct stage
+      this.table.renderRows();
+    }
+  }
+
+  public moveStageDown(index: number): void {
+    if (index < this.stages.length - 1) {
+      [this.stages[index], this.stages[index + 1]] = [this.stages[index + 1], this.stages[index]];
+      this.updateStageOrder(this.stages[index + 1]); // Pass the correct stage
+      this.table.renderRows();
+    }
+  }
 }
