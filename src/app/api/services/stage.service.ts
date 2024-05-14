@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {Stage} from 'src/app/api/models/task-definition';
 import {catchError, map, retry} from 'rxjs/operators';
@@ -9,27 +9,36 @@ import API_URL from 'src/app/config/constants/apiURL';
   providedIn: 'root',
 })
 export class StageService {
-  private readonly apiBaseUrl = `${API_URL}/feedback_api`;
-  private readonly stageEndpoint = '/stages';
+  private readonly apiBaseUrl = `${API_URL}`;
+  private readonly stageEndpoint = `${API_URL}/stages/`;
   private readonly stagesByIdEndpoint = `/stages/:id:`;
 
   constructor(private http: HttpClient) {}
 
-  createStage(stage: Stage): Observable<Stage> {
-    const endpointUrl = this.apiBaseUrl;
-    console.log(`Creating stage ${stage} at ${endpointUrl}`);
-    return this.http.put(this.apiBaseUrl, stage).pipe(
-      catchError((error: HttpErrorResponse) => {
-        const errorText = 'Error creating Stage';
-        console.error(`${errorText}:`, error);
-        return throwError(`${errorText}.`);
-      }),
-      map((stage: Stage) => stage),
-    );
+  createStage(stage: Stage): Observable<any> {
+    const endpointUrl = this.stageEndpoint;
+    const formData = new FormData();
+    formData.append('task_definition_id', stage.taskDefinitionId.toString());
+    formData.append('title', stage.title);
+    formData.append('order', stage.id.toString());
+
+    return this.http
+      .post(endpointUrl, {
+        'task_definition_id': stage.taskDefinitionId,
+        'title': stage.title,
+        'order': stage.order,
+      })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          const errorText = 'Error creating Stage';
+          console.error(`${errorText}:`, error);
+          return throwError(`${errorText}.`);
+        }),
+      );
   }
 
   getStagesByTaskDefinition(taskDefinitionId: number): Observable<Stage[]> {
-    const endpointUrl = `${this.apiBaseUrl}/${taskDefinitionId}`;
+    const endpointUrl = `${this.stageEndpoint}?task_definition_id=${taskDefinitionId}`;
     return this.http.get(endpointUrl).pipe(
       retry(3),
       catchError((error: HttpErrorResponse) => {
@@ -37,7 +46,7 @@ export class StageService {
         console.error(`${errorText}:`, error);
         return throwError(`${errorText}.`);
       }),
-      map((stages: Stage[]) => stages),
+      map((stages: any[]) => stages),
     );
   }
 
@@ -47,7 +56,7 @@ export class StageService {
   }
 
   deleteStage(stageId: number) {
-    const endpointUrl = `${this.apiBaseUrl}/${stageId}`;
+    const endpointUrl = `${this.stageEndpoint}${stageId}`;
     const response = this.http.delete(endpointUrl);
     return response;
   }
