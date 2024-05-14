@@ -16,8 +16,9 @@ export type Stage = {
   id: number;
   taskDefinitionId: number;
   title: string;
-  preamble: string;
-  options: StageOption[];
+  order: number;
+  // preamble: string;
+  // options: StageOption[];
 };
 
 export type UploadRequirement = {
