@@ -8,6 +8,7 @@ import {TeachingPeriodListComponent} from './admin/states/teaching-periods/teach
 import {AcceptEulaComponent} from './eula/accept-eula/accept-eula.component';
 import {FUsersComponent} from './admin/states/f-users/f-users.component';
 import {FUnitsComponent} from './admin/states/f-units/f-units.component';
+import {ScormPlayerComponent} from './common/scorm-player/scorm-player.component';
 
 /*
  * Use this file to store any states that are sourced by angular components.
@@ -292,6 +293,34 @@ const ViewAllUnits: NgHybridStateDeclaration = {
 };
 
 /**
+ * Define the SCORM Player state.
+ */
+const ScormPlayerState: NgHybridStateDeclaration = {
+  name: 'scorm-player',
+  url: '/task_def/:task_def_id/task/:task_id/scorm-player/:mode',
+  resolve: {
+    taskId: function ($stateParams) {
+      return $stateParams.task_id;
+    },
+    taskDefId: function ($stateParams) {
+      return $stateParams.task_def_id;
+    },
+    mode: function ($stateParams) {
+      return $stateParams.mode;
+    },
+  },
+  views: {
+    main: {
+      component: ScormPlayerComponent,
+    },
+  },
+  data: {
+    pageTitle: 'Knowledge Check',
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+  },
+};
+
+/**
  * Export the list of states we have created in angular
  */
 export const doubtfireStates = [
@@ -306,4 +335,5 @@ export const doubtfireStates = [
   ViewAllProjectsState,
   ViewAllUnits,
   AdministerUnits,
+  ScormPlayerState,
 ];

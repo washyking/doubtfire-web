@@ -72,7 +72,6 @@ import {
   gradeTaskModalProvider,
   uploadSubmissionModalProvider,
   ConfirmationModalProvider,
-  ScormPlayerModalProvider,
 } from './ajs-upgraded-providers';
 import {
   TaskCommentComposerComponent,
@@ -229,6 +228,7 @@ import {GradeService} from './common/services/grade.service';
 import {ScormPlayerComponent} from './common/scorm-player/scorm-player.component';
 import {ScormAdapterService} from './api/services/scorm-adapter.service';
 import {ScormCommentComponent} from './tasks/task-comments-viewer/scorm-comment/scorm-comment.component';
+import {TaskScormCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-scorm-card/task-scorm-card.component';
 
 @NgModule({
   // Components we declare
@@ -333,6 +333,7 @@ import {ScormCommentComponent} from './tasks/task-comments-viewer/scorm-comment/
     FUnitsComponent,
     ScormPlayerComponent,
     ScormCommentComponent,
+    TaskScormCardComponent,
   ],
   // Services we provide
   providers: [
@@ -404,7 +405,6 @@ import {ScormCommentComponent} from './tasks/task-comments-viewer/scorm-comment/
     TasksForInboxSearchPipe,
     IsActiveUnitRole,
     CreateNewUnitModal,
-    ScormPlayerModalProvider,
     ScormAdapterService,
     provideLottieOptions({
       player: () => player,
