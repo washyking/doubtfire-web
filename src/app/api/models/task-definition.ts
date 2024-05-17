@@ -1,14 +1,35 @@
-import { HttpClient } from '@angular/common/http';
-import { Entity, EntityMapping } from 'ngx-entity-service';
-import { Observable, tap } from 'rxjs';
-import { AppInjector } from 'src/app/app-injector';
-import { DoubtfireConstants } from 'src/app/config/constants/doubtfire-constants';
-import { Grade, GroupSet, TutorialStream, Unit } from './doubtfire-model';
-import { TaskDefinitionService } from '../services/task-definition.service';
+import {HttpClient} from '@angular/common/http';
+import {Entity, EntityMapping} from 'ngx-entity-service';
+import {Observable, tap} from 'rxjs';
+import {AppInjector} from 'src/app/app-injector';
+import {DoubtfireConstants} from 'src/app/config/constants/doubtfire-constants';
+import {Grade, GroupSet, TutorialStream, Unit} from './doubtfire-model';
+import {TaskDefinitionService} from '../services/task-definition.service';
+import {StageService} from '../services/stage.service';
 
-export type UploadRequirement = { key: string; name: string; type: string; tiiCheck?: boolean; tiiPct?: number };
+/**
+ * Represents a stage in a task definition.
+ */
+export type StageOption = [string, string[]];
 
-export type SimilarityCheck = { key: string; type: string; pattern: string };
+export type Stage = {
+  id: number;
+  taskDefinitionId: number;
+  title: string;
+  order: number;
+  // preamble: string;
+  // options: StageOption[];
+};
+
+export type UploadRequirement = {
+  key: string;
+  name: string;
+  type: string;
+  tiiCheck?: boolean;
+  tiiPct?: number;
+};
+
+export type SimilarityCheck = {key: string; type: string; pattern: string};
 
 export class TaskDefinition extends Entity {
   id: number;
@@ -67,7 +88,7 @@ export class TaskDefinition extends Entity {
           entity: this,
           cache: this.unit.taskDefinitionCache,
           constructorParams: this.unit,
-        }
+        },
       );
     } else {
       return svc.update(
@@ -75,7 +96,7 @@ export class TaskDefinition extends Entity {
           unitId: this.unit.id,
           id: this.id,
         },
-        { entity: this }
+        {entity: this},
       );
     }
   }
@@ -120,7 +141,10 @@ export class TaskDefinition extends Entity {
   }
 
   public matches(text: string): boolean {
-    return this.abbreviation.toLowerCase().indexOf(text) !== -1 || this.name.toLowerCase().indexOf(text) !== -1;
+    return (
+      this.abbreviation.toLowerCase().indexOf(text) !== -1 ||
+      this.name.toLowerCase().indexOf(text) !== -1
+    );
   }
 
   /**
@@ -145,9 +169,9 @@ export class TaskDefinition extends Entity {
 
   public getTaskResourcesUrl(asAttachment: boolean = false) {
     const constants = AppInjector.get(DoubtfireConstants);
-    return `${constants.API_URL}/units/${this.unit.id}/task_definitions/${this.id}/task_resources.json${
-      asAttachment ? '?as_attachment=true' : ''
-    }`;
+    return `${constants.API_URL}/units/${this.unit.id}/task_definitions/${
+      this.id
+    }/task_resources.json${asAttachment ? '?as_attachment=true' : ''}`;
   }
 
   public get targetGradeText(): string {
@@ -193,7 +217,9 @@ export class TaskDefinition extends Entity {
 
   public deleteTaskResources(): Observable<any> {
     const httpClient = AppInjector.get(HttpClient);
-    return httpClient.delete(this.taskResourcesUploadUrl).pipe(tap(() => (this.hasTaskResources = false)));
+    return httpClient
+      .delete(this.taskResourcesUploadUrl)
+      .pipe(tap(() => (this.hasTaskResources = false)));
   }
 
   public deleteTaskAssessmentResources(): Observable<any> {

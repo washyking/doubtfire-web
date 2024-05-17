@@ -1,0 +1,58 @@
+<table #stageTable mat-table [dataSource]="stages" class="fixed-table">
+  <!-- Stage Title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Title</th>
+    <td mat-cell *matCellDef="let stage">
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          placeholder="Enter title"
+          [(ngModel)]="stage.title"
+          (blur)="updateStage(stage)"
+        />
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <!-- Stage Order Column -->
+  <ng-container matColumnDef="order">
+    <th mat-header-cell *matHeaderCellDef>Order</th>
+    <td mat-cell *matCellDef="let stage; let i = index">
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          type="number"
+          placeholder="Enter order"
+          [(ngModel)]="stage.order"
+          disabled
+        />
+      </mat-form-field>
+      <button mat-icon-button (click)="moveStageUp(i)" [disabled]="i === 0">
+        <mat-icon>arrow_upward</mat-icon>
+      </button>
+      <button mat-icon-button (click)="moveStageDown(i)" [disabled]="i === stages.length - 1">
+        <mat-icon>arrow_downward</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="row-actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let stage">
+      <button mat-icon-button color="warn" (click)="removeStage(stage)" aria-label="Delete stage">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns"></tr>
+</table>
+
+<!-- Button to add a new stage -->
+<div>
+  <button mat-raised-button color="primary" (click)="addStage()">
+    <mat-icon>add</mat-icon> Add New Stage
+  </button>
+</div>
