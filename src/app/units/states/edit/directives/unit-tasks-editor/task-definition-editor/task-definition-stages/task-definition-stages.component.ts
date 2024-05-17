@@ -76,6 +76,8 @@ export class TaskDefinitionStagesComponent implements OnInit {
       (response) => {
         this.stages.push(response);
         this.sortStages();
+        this.table.renderRows();
+
         const message = `Added stage ${response.title} to ${this.taskDefinition.name}`;
         this.alerts.add('success', message, this.successAlertTime);
       },
