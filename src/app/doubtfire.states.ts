@@ -8,6 +8,9 @@ import {TeachingPeriodListComponent} from './admin/states/teaching-periods/teach
 import {AcceptEulaComponent} from './eula/accept-eula/accept-eula.component';
 import {FUsersComponent} from './admin/states/f-users/f-users.component';
 import {FUnitsComponent} from './admin/states/f-units/f-units.component';
+import {ProjectDashboardComponent} from './projects/states/dashboard/project-dashboard/project-dashboard.component';
+import {AppInjector} from './app-injector';
+import {ProjectService} from './api/services/project.service';
 
 /*
  * Use this file to store any states that are sourced by angular components.
@@ -95,7 +98,7 @@ const HomeState: NgHybridStateDeclaration = {
 // };
 
 /**
- * Define the new home state.
+ * Define the new inbox state.
  */
 // const InboxState: NgHybridStateDeclaration = {
 //   name: 'inbox',
@@ -270,6 +273,36 @@ const AdministerUnits: NgHybridStateDeclaration = {
   },
 };
 
+const AbstractProjectState: NgHybridStateDeclaration = {
+  name: 'projects2',
+  url: '/projects2/:projectId',
+  abstract: true,
+  // views: {
+  // },
+  resolve: {
+    project: function ($stateParams) {
+      console.log('Getting project');
+      const projectService = AppInjector.get(ProjectService);
+      return projectService.get({id: $stateParams.project_id});
+    },
+  },
+};
+
+// projectDashboardState which gets the project from the abstract state above
+const ProjectDashboardState: NgHybridStateDeclaration = {
+  name: 'dashboard2',
+  parent: 'projects2',
+  url: '/dashboard2',
+  views: {
+    main: {
+      component: ProjectDashboardComponent,
+    },
+  },
+  data: {
+    pageTitle: 'Project Dashboard',
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+  },
+};
 
 const ViewAllUnits: NgHybridStateDeclaration = {
   name: 'view-all-units',
@@ -307,4 +340,6 @@ export const doubtfireStates = [
   ViewAllProjectsState,
   ViewAllUnits,
   AdministerUnits,
+  AbstractProjectState,
+  ProjectDashboardState,
 ];
