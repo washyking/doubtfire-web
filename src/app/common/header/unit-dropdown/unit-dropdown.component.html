@@ -51,9 +51,7 @@
         <div class="flex items-center w-full">
           <div class="flex-none unitName">{{ unitRole.unit.name }}</div>
           <div class="grow"></div>
-          <f-chip>
-            {{ unitRole.unit.code }}
-          </f-chip>
+          <f-unit-code [unit_code]="unitRole.unit.code"></f-unit-code>
         </div>
       </div>
     }
@@ -72,9 +70,7 @@
         <span class="flex flex-row border-box">
           <div class="unitName">{{ project.unit.name }}</div>
           <span class="flex-1 border-box"></span>
-          <f-chip>
-            {{ project.unit.code }}
-          </f-chip>
+          <f-unit-code [unit_code]="project.unit.code"></f-unit-code>
         </span>
       </button>
     }

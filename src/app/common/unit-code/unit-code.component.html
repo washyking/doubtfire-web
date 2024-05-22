@@ -1,0 +1,13 @@
+<div class="w-40 max-w-40 min-w-40">
+  @if (isDualBadge) {
+    <f-chip class="w-full">
+      <div *ngFor="let part of unitCodeParts; let i = index">
+        <div *ngIf="i === currentIndex" [@flip]="showState">
+          {{ part }}
+        </div>
+      </div>
+    </f-chip>
+  } @else {
+    <f-chip class="w-full">{{ unitCodeParts }}</f-chip>
+  }
+</div>

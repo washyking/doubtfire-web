@@ -1,8 +1,8 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { UIRouter } from '@uirouter/angular';
-import { dateService } from 'src/app/ajs-upgraded-providers';
-import { Project, Unit, UnitRole } from 'src/app/api/models/doubtfire-model';
-import { MediaObserver } from 'ng-flex-layout';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {UIRouter} from '@uirouter/angular';
+import {dateService} from 'src/app/ajs-upgraded-providers';
+import {Project, Unit, UnitRole} from 'src/app/api/models/doubtfire-model';
+import {MediaObserver} from 'ng-flex-layout';
 
 @Component({
   selector: 'unit-dropdown',
@@ -18,7 +18,7 @@ export class UnitDropdownComponent implements OnInit {
 
   constructor(
     @Inject(dateService) private DateService: any,
-    public media: MediaObserver
+    public media: MediaObserver,
   ) {}
 
   ngOnInit(): void {}
