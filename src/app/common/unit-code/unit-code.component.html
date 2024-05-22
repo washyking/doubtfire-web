@@ -1,5 +1,5 @@
 @if (isDualBadge) {
-  <f-chip class="w-full">
+  <f-chip>
     <div
       [style.width.px]="width"
       [style.maxWidth.px]="width"
@@ -17,8 +17,14 @@
     </div>
   </f-chip>
 } @else {
-  <f-chip class="w-full">
-    <div class="w-full flex flex-row items-center justify-center">
+  <f-chip>
+    <div
+      [style.width.px]="width"
+      [style.maxWidth.px]="width"
+      [style.minWidth.px]="width"
+      [ngClass]="{'justify-between': isDropdown, 'justify-center': !isDropdown}"
+      class="flex flex-row items-center justify-center"
+    >
       {{ unitCodeParts }}<ng-container *ngTemplateOutlet="contentProjection"></ng-container>
     </div>
   </f-chip>

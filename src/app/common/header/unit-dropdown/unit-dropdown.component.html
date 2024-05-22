@@ -1,8 +1,8 @@
 <div class="flex items-center">
   @if (unit) {
     <f-unit-code
-      isDropdown="true"
-      class=""
+      [isDropdown]="true"
+      [width]="80"
       [unit_code]="unit?.code"
       matTooltip="{{ unit.name }}"
       [matMenuTriggerFor]="menu"
@@ -51,7 +51,7 @@
         <div class="flex items-center w-full">
           <div class="flex-none unitName">{{ unitRole.unit.name }}</div>
           <div class="grow"></div>
-          <f-unit-code [unit_code]="unitRole.unit.code"></f-unit-code>
+          <f-unit-code [width]="80" [unit_code]="unitRole.unit.code"></f-unit-code>
         </div>
       </div>
     }
@@ -70,7 +70,7 @@
         <span class="flex flex-row border-box">
           <div class="unitName">{{ project.unit.name }}</div>
           <span class="flex-1 border-box"></span>
-          <f-unit-code [unit_code]="project.unit.code"></f-unit-code>
+          <f-unit-code [width]="80" [unit_code]="project.unit.code"></f-unit-code>
         </span>
       </button>
     }
