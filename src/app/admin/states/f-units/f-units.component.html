@@ -18,6 +18,9 @@
       [dataSource]="dataSource"
       matSort
       (matSortChange)="sortTableData($event)"
+      matSortActive="start_date"
+      matSortDirection="desc"
+      matSortDisableClear
     >
       <!-- Unit Code Column -->
       <ng-container matColumnDef="unit_code" sticky>
