@@ -25,6 +25,7 @@ export class UnitCodeComponent implements OnInit, OnDestroy {
   @Input() unit_code: string;
   @Input() width = 90;
   @Input() isDropdown = false;
+  @Input() shiftBetweenBadges = true;
 
   currentIndex = 0; // Index of the currently displayed code part
   showState = 'in'; // Animation state
