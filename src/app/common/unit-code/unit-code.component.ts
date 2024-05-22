@@ -1,6 +1,7 @@
 import {trigger, state, style, animate, transition} from '@angular/animations';
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Subscription, interval} from 'rxjs';
+import {Subscription} from 'rxjs';
+import {UnitCodeService} from './unit-code.service';
 
 @Component({
   selector: 'f-unit-code',
@@ -29,6 +30,8 @@ export class UnitCodeComponent implements OnInit, OnDestroy {
   showState = 'in'; // Animation state
   subscription: Subscription;
 
+  constructor(private unitCodeService: UnitCodeService) {}
+
   get isDualBadge() {
     return this.unit_code?.includes('/');
   }
@@ -42,18 +45,17 @@ export class UnitCodeComponent implements OnInit, OnDestroy {
       this.width += 24;
     }
 
-    this.startFlipping();
+    this.subscription = this.unitCodeService.getInterval().subscribe(() => {
+      this.flip();
+    });
   }
 
-  startFlipping() {
-    const source = interval(3000);
-    this.subscription = source.subscribe(() => {
-      this.showState = 'out'; // Trigger animation out
-      setTimeout(() => {
-        this.currentIndex = (this.currentIndex + 1) % this.unitCodeParts.length;
-        this.showState = 'in'; // Trigger animation in after a delay
-      }, 200); // Delay to match the animation duration
-    });
+  flip() {
+    this.showState = 'out'; // Trigger animation out
+    setTimeout(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.unitCodeParts.length;
+      this.showState = 'in'; // Trigger animation in after a delay
+    }, 200); // Delay to match the animation duration
   }
 
   ngOnDestroy() {
