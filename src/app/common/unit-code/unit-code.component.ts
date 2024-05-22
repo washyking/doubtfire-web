@@ -22,17 +22,27 @@ import {Subscription, interval} from 'rxjs';
 })
 export class UnitCodeComponent implements OnInit, OnDestroy {
   @Input() unit_code: string;
+  @Input() width = 90;
+  @Input() isDropdown = false;
 
   currentIndex = 0; // Index of the currently displayed code part
   showState = 'in'; // Animation state
   subscription: Subscription;
 
   get isDualBadge() {
-    return this.unit_code.includes('/');
+    return this.unit_code?.includes('/');
   }
 
   get unitCodeParts() {
     return this.isDualBadge ? this.unit_code.split('/') : [this.unit_code];
+  }
+
+  ngOnInit(): void {
+    if (this.isDropdown) {
+      this.width += 24;
+    }
+
+    this.startFlipping();
   }
 
   startFlipping() {
@@ -44,10 +54,6 @@ export class UnitCodeComponent implements OnInit, OnDestroy {
         this.showState = 'in'; // Trigger animation in after a delay
       }, 200); // Delay to match the animation duration
     });
-  }
-
-  ngOnInit(): void {
-    this.startFlipping();
   }
 
   ngOnDestroy() {

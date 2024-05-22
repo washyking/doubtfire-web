@@ -23,7 +23,7 @@
       <ng-container matColumnDef="unit_code" sticky>
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Unit Code</th>
         <td mat-cell *matCellDef="let element" class="w-0 min-w-full">
-          <f-chip class="shrink">{{ element.unit_code }}</f-chip>
+          <f-unit-code [unit_code]="element.unit_code"></f-unit-code>
         </td>
       </ng-container>
 

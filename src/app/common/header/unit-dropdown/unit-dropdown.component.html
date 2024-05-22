@@ -1,15 +1,15 @@
 <div class="flex items-center">
   @if (unit) {
-    <div
-      class="bg-formatif-blue text-white rounded-full cursor-pointer pl-6 pr-6 min-h-12 h-12 flex items-center"
-      style="font-size: 14px"
+    <f-unit-code
+      isDropdown="true"
+      class=""
+      [unit_code]="unit?.code"
       matTooltip="{{ unit.name }}"
       [matMenuTriggerFor]="menu"
       #menuState="matMenuTrigger"
     >
-      <span class="text-md">{{ unit?.code }}</span>
       <mat-icon>{{ menuState.menuOpen ? 'arrow_drop_up' : 'arrow_drop_down' }} </mat-icon>
-    </div>
+    </f-unit-code>
   }
   @if (!unit) {
     <button mat-button [matMenuTriggerFor]="menu" #menuState="matMenuTrigger">

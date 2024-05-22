@@ -1,13 +1,31 @@
-<div class="w-40 max-w-40 min-w-40">
-  @if (isDualBadge) {
-    <f-chip class="w-full">
-      <div *ngFor="let part of unitCodeParts; let i = index">
-        <div *ngIf="i === currentIndex" [@flip]="showState">
-          {{ part }}
-        </div>
-      </div>
-    </f-chip>
-  } @else {
-    <f-chip class="w-full">{{ unitCodeParts }}</f-chip>
+@if (isDualBadge) {
+  <f-chip class="w-full">
+    <div
+      [style.width.px]="width"
+      [style.maxWidth.px]="width"
+      [style.minWidth.px]="width"
+      [ngClass]="{'justify-between': isDropdown, 'justify-center': !isDropdown}"
+      class="flex flex-row items-center"
+    >
+      @for (part of unitCodeParts; track part; let i = $index) {
+        @if (i === currentIndex) {
+          <span class="" [@flip]="showState">{{ part }}</span>
+        }
+      }
+
+      <ng-container #projcetion *ngTemplateOutlet="contentProjection"> </ng-container>
+    </div>
+  </f-chip>
+} @else {
+  <f-chip class="w-full">
+    <div class="w-full flex flex-row items-center justify-center">
+      {{ unitCodeParts }}<ng-container *ngTemplateOutlet="contentProjection"></ng-container>
+    </div>
+  </f-chip>
+}
+
+<ng-template #contentProjection>
+  @if (isDropdown) {
+    <ng-content></ng-content>
   }
-</div>
+</ng-template>
