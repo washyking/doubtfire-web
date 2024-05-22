@@ -229,6 +229,7 @@ import {FUnitTaskListComponent} from './units/states/tasks/viewer/directives/f-u
 import {FTaskDetailsViewComponent} from './units/states/tasks/viewer/directives/f-task-details-view/f-task-details-view.component';
 import {FTaskSheetViewComponent} from './units/states/tasks/viewer/directives/f-task-sheet-view/f-task-sheet-view.component';
 import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-viewer.component';
+import {UnitCodeComponent} from './common/unit-code/unit-code.component';
 
 @NgModule({
   // Components we declare
@@ -319,6 +320,7 @@ import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-view
     CreateNewUnitModalContentComponent,
     TiiActionLogComponent,
     FChipComponent,
+    UnitCodeComponent,
     NewTeachingPeriodDialogComponent,
     FileViewerComponent,
     AlertComponent,
