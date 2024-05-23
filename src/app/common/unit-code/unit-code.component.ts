@@ -38,7 +38,10 @@ export class UnitCodeComponent implements OnInit, OnDestroy {
   }
 
   get unitCodeParts() {
-    return this.isDualBadge ? this.unit_code.split('/') : [this.unit_code];
+    if (this.shiftBetweenBadges) {
+      return this.isDualBadge ? this.unit_code.split('/') : [this.unit_code];
+    }
+    return this.unit_code;
   }
 
   ngOnInit(): void {
