@@ -9,14 +9,14 @@ import {UnitCodeService} from './unit-code.service';
   styleUrls: ['./unit-code.component.css'],
   animations: [
     trigger('flip', [
-      state('in', style({transform: 'translateY(0%)', opacity: 1})),
-      state('out', style({transform: 'translateY(100%)', opacity: 0})),
+      state('in', style({transform: 'translateX(0%)', opacity: 1})),
+      state('out', style({transform: 'translateX(-100%)', opacity: 0})),
       transition('void => in', [
-        style({transform: 'translateY(-100%)', opacity: 0}),
+        style({transform: 'translateX(100%)', opacity: 0}),
         animate('500ms ease-in-out'),
       ]),
       transition('in => out', [
-        animate('500ms ease-in-out', style({transform: 'translateY(100%)', opacity: 0})),
+        animate('500ms ease-in-out', style({transform: 'translateX(-100%)', opacity: 0})),
       ]),
     ]),
   ],
