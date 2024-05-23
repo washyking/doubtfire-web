@@ -124,7 +124,8 @@ export class StaffTaskListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (
-      ((!changes.unit?.isFirstChange &&
+      ((changes.unit &&
+        !changes.unit?.isFirstChange &&
         changes.unit.currentValue.id &&
         changes.unit.previousValue.id !== changes.unit.currentValue.id) ||
         this.tasks == null) &&
