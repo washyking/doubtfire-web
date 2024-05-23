@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-6...v8.0.0) (2024-05-23)
+
+
+### Features
+
+* add multi-badge support ([44c1473](https://github.com/macite/doubtfire-deploy/commit/44c1473700a3d7a4a025d68acac5aa61189d8b52))
+* add synchronised multi-badge ([f70ebdc](https://github.com/macite/doubtfire-deploy/commit/f70ebdca92a05e5ca350d4062a8dc8efba9fd681))
+* add working unit-badge ([dd30247](https://github.com/macite/doubtfire-deploy/commit/dd302478e97228e6bfbfdbee0134abb3eabf2587))
+* add working unit-badge ([c7338ff](https://github.com/macite/doubtfire-deploy/commit/c7338ffd88edb457a3443b43ea21706c43231973))
+* qol improvements for unit codes ([f7f928e](https://github.com/macite/doubtfire-deploy/commit/f7f928e485448a69b054dca94f07d623f84e328f))
+
+
+### Bug Fixes
+
+* add missing imports ([659b52c](https://github.com/macite/doubtfire-deploy/commit/659b52c82a26b9496a3dba81401b5147d05248ae))
+* change time exceeded to feedback exceeded ([673619d](https://github.com/macite/doubtfire-deploy/commit/673619d99f177d834fba3643171426092e0d05e0))
+* correct task resource upload actions ([5e9c9b1](https://github.com/macite/doubtfire-deploy/commit/5e9c9b1d05d6d6975fd4ba3a3176314ddd7d8514))
+* ensure loading state changed after projects and unit roles load ([9171d0c](https://github.com/macite/doubtfire-deploy/commit/9171d0c2c37c17d26f464f6aa0ba7c479851e6eb))
+* ensure staff task list checks unit exists ([dbb312d](https://github.com/macite/doubtfire-deploy/commit/dbb312dc3c5c9e2be24161914e8d95e1a5c1bc53))
+* ensure unit load updates unit object if it already exists ([e48ffad](https://github.com/macite/doubtfire-deploy/commit/e48ffadf63891212c3e40ab696d54a3935485b08))
+* hide overseer settings if automation disabled ([0c08fe3](https://github.com/macite/doubtfire-deploy/commit/0c08fe3e82a78dd1e91fb44ce6008fb5298c46ee))
+* slide unit code off left side ([8cd57b5](https://github.com/macite/doubtfire-deploy/commit/8cd57b589812fd59c6da4de02246791fb4410959))
+* sort units desc by start date ([9b78856](https://github.com/macite/doubtfire-deploy/commit/9b788561372a3ddf065d3b28e547a2194ef29655))
+* zip upload for overseer ([5ad2085](https://github.com/macite/doubtfire-deploy/commit/5ad2085b2d730235f61e7b7c603727d8b6736cf2))
+
 ## [8.0.0-6](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-5...v8.0.0-6) (2024-05-13)
 
 ## [8.0.0-5](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-4...v8.0.0-5) (2024-05-13)
