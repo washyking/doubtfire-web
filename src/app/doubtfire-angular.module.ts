@@ -9,10 +9,9 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Lottie animation module
-import {LottieModule, LottieCacheModule} from 'ngx-lottie';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import player from 'lottie-web';
-
+// import {LottieModule, LottieCacheModule} from 'ngx-lottie';
+import { provideLottieOptions, LottieComponent } from "ngx-lottie";
+import player from "lottie-web";
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -212,11 +211,6 @@ import {FUsersComponent} from './admin/states/f-users/f-users.component';
 
 import {CreateNewUnitModal} from './admin/modals/create-new-unit-modal/create-new-unit-modal.component';
 import {CreateNewUnitModalContentComponent} from './admin/modals/create-new-unit-modal/create-new-unit-modal-content.component';
-// Note we need a separate function as it's required
-// by the AOT compiler.
-export function playerFactory() {
-  return import(/* webpackChunkName: 'lottie-web' */ 'lottie-web');
-}
 import {
   TeachingPeriodUnitImportDialogComponent,
   TeachingPeriodUnitImportService,
@@ -402,6 +396,9 @@ import {UnitCodeComponent} from './common/unit-code/unit-code.component';
     TasksForInboxSearchPipe,
     IsActiveUnitRole,
     CreateNewUnitModal,
+    provideLottieOptions({
+      player: () => player,
+    }),
   ],
   imports: [
     FlexLayoutModule,
@@ -454,8 +451,7 @@ import {UnitCodeComponent} from './common/unit-code/unit-code.component';
     PickerModule,
     EmojiModule,
     PdfViewerModule,
-    LottieModule.forRoot({player: playerFactory}),
-    LottieCacheModule.forRoot(),
+    LottieComponent,
     UIRouterUpgradeModule.forRoot({states: doubtfireStates}),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
