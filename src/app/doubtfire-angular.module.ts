@@ -64,7 +64,6 @@ import {
   CsvResultModalProvider,
   AudioRecorderProvider,
   AudioRecorderServiceProvider,
-  gradeServiceProvider,
   commentsModalProvider,
   plagiarismReportModalProvider,
   rootScopeProvider,
@@ -224,6 +223,7 @@ import {FTaskDetailsViewComponent} from './units/states/tasks/viewer/directives/
 import {FTaskSheetViewComponent} from './units/states/tasks/viewer/directives/f-task-sheet-view/f-task-sheet-view.component';
 import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-viewer.component';
 import {UnitCodeComponent} from './common/unit-code/unit-code.component';
+import { GradeService } from './common/services/grade.service';
 
 @NgModule({
   // Components we declare
@@ -347,6 +347,7 @@ import {UnitCodeComponent} from './common/unit-code/unit-code.component';
     TutorialStreamService,
     UserService,
     TaskService,
+    GradeService,
     TaskSimilarityService,
     WebcalService,
     ActivityTypeService,
@@ -361,7 +362,6 @@ import {UnitCodeComponent} from './common/unit-code/unit-code.component';
     rootScopeProvider,
     calendarModalProvider,
     aboutDoubtfireModalProvider,
-    gradeServiceProvider,
     uploadSubmissionModalProvider,
     gradeTaskModalProvider,
     analyticsServiceProvider,
