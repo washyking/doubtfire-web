@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.1](https://github.com/macite/doubtfire-deploy/compare/v8.0.0...v8.0.1) (2024-05-24)
+
+
+### Features
+
+* implement live PDF search that updates dynamically as you type ([b9b9945](https://github.com/macite/doubtfire-deploy/commit/b9b9945346d55392e5ee9a6431d85ae92de1bde5))
+* small fixes to home and unit code ([918e804](https://github.com/macite/doubtfire-deploy/commit/918e8047745b489aae1fafdc67720568dd8d829e))
+
+
+### Bug Fixes
+
+* fix critical bugs ([356846e](https://github.com/macite/doubtfire-deploy/commit/356846e5c385c484a6034553366965cde95ec78b))
+* fix splashscreen ([2692b7f](https://github.com/macite/doubtfire-deploy/commit/2692b7f4a3e1ca2a5bc4df3b82a9dfd4aa2ec68a))
+
 ## [8.0.0](https://github.com/macite/doubtfire-deploy/compare/v8.0.0-6...v8.0.0) (2024-05-23)
 
 
