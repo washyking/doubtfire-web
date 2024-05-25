@@ -27,6 +27,7 @@
       <div class="task-data">
         <h4 style="margin-bottom: 0" class="list-group-item-heading">{{task.definition.name}}</h4>
         <p style="margin-bottom: 0" class="list-group-item-text">
+          {{task.definition.targetGrade}}
           <i class="fa fa-users" aria-hidden="true" ng-show="task.isGroupTask()"></i
           ><i class="fa fa-user" aria-hidden="true" ng-hide="task.isGroupTask()"></i> {{task.definition.abbreviation}} -
           {{gradeNames[task.definition.targetGrade]}} Task

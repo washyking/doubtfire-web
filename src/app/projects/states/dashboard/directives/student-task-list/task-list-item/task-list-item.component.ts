@@ -12,7 +12,7 @@ export class TaskListItemComponent implements OnInit {
   @Input() setSelectedTask: any;
   @Input() isSelectedTask: any;
 
-  public gradeNames: string[];
+  public gradeNames: {};
 
   constructor(private gs: GradeService) {}
 

@@ -1,22 +1,27 @@
-import { Injectable } from '@angular/core';
-import { Project } from 'src/app/api/models/project';
+import {Injectable} from '@angular/core';
+import {Project} from 'src/app/api/models/project';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GradeService {
-  gradeValues = [-1, 0, 1, 2, 3];
+  allGradeValues = [-1, 0, 1, 2, 3];
+  gradeValues = [0, 1, 2, 3];
 
-  allGradeValues = this.gradeValues;
-
-  grades = ['Fail', 'Pass', 'Credit', 'Distinction', 'High Distinction'];
+  grades = {
+    0: 'Pass',
+    1: 'Credit',
+    2: 'Distinction',
+    3: 'High Distinction',
+    '-1': 'Fail',
+  };
 
   gradeViewData = [
-    { value: -1, viewValue: 'Fail' },
-    { value: 0, viewValue: 'Pass' },
-    { value: 1, viewValue: 'Credit' },
-    { value: 2, viewValue: 'Distinction' },
-    { value: 3, viewValue: 'High Distinction' },
+    {value: -1, viewValue: 'Fail'},
+    {value: 0, viewValue: 'Pass'},
+    {value: 1, viewValue: 'Credit'},
+    {value: 2, viewValue: 'Distinction'},
+    {value: 3, viewValue: 'High Distinction'},
   ];
 
   public gradeNumbers = {
