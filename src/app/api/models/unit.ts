@@ -296,7 +296,9 @@ export class Unit extends Entity {
     AppInjector.get(UnitService)
       .fetch(this.id)
       .subscribe({
-        next: (unit) => {},
+        next: (unit) => {
+          console.log(unit.teachingPeriod?.name);
+        },
         error: (message) => alerts.error(message, 6000),
       });
   }
