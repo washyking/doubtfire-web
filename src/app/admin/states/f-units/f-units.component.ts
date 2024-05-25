@@ -75,16 +75,25 @@ export class FUnitsComponent implements OnInit, AfterViewInit {
         this.globalStateService.loadedUnitRoles.values.subscribe({
           next: (unitRoles) => {
             this.dataSource.data = this.mapUnitOrProjectsToColumns(unitRoles);
-            console.log(this.dataSource.data);
           },
         });
       });
     }
     if (this.mode === 'admin') {
       this.title = 'Administer units';
+
       this.globalStateService.onLoad(() => {
+        this.unitService.query(undefined, {params: {include_in_active: true}}).subscribe({
+          next: (units) => {
+            this.globalStateService.loadedUnits.values.subscribe(
+              (loadedUnits) =>
+                (this.dataSource.data = this.mapUnitOrProjectsToColumns(loadedUnits)),
+            );
+          },
+        });
+
         this.globalStateService.loadedUnits.values.subscribe(
-          (projects) => (this.dataSource.data = this.mapUnitOrProjectsToColumns(projects)),
+          (units) => (this.dataSource.data = this.mapUnitOrProjectsToColumns(units)),
         );
       });
     } else if (this.mode === 'student') {
