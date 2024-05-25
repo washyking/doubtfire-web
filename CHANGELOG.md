@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.4](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v8.0.3...v8.0.4) (2024-05-25)
+
+
+### Bug Fixes
+
+* fix various issues with admin unit list ([3720666](https://github.com/doubtfire-lms/doubtfire-deploy/commit/3720666fb4105bac274449eb468ce34e0f68bae7))
+
 ### [8.0.3](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v8.0.2...v8.0.3) (2024-05-25)
 
 
