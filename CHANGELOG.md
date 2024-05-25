@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.5](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v8.0.4...v8.0.5) (2024-05-25)
+
+
+### Bug Fixes
+
+* ensure (click) is on button, not mat-icon ([99c717d](https://github.com/doubtfire-lms/doubtfire-deploy/commit/99c717d2333de0975da1b3f282195a0b3577a3f6))
+
 ### [8.0.4](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v8.0.3...v8.0.4) (2024-05-25)
 
 
