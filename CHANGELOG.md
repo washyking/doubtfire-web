@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.3](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v8.0.2...v8.0.3) (2024-05-25)
+
+
+### Features
+
+* add 4-character abbreviations ([eb62dfc](https://github.com/doubtfire-lms/doubtfire-deploy/commit/eb62dfc90db836870d6c396727fc43c149808e9d))
+
 ### [8.0.2](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v7.0.15...v8.0.2) (2024-05-25)
 
 
