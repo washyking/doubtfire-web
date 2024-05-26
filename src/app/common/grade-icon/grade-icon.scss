@@ -35,10 +35,10 @@ a .grade-icon:hover {
   justify-content: center;
 }
 .grade-icon.colorful {
-  &.grade-0 { background-color: $grade-color-p;  }
-  &.grade-1 { background-color: $grade-color-c;  }
-  &.grade-2 { background-color: $grade-color-d;  }
-  &.grade-3 { background-color: $grade-color-hd; }
+  &.grade-1 { background-color: $grade-color-p;  }
+  &.grade-2 { background-color: $grade-color-c;  }
+  &.grade-3 { background-color: $grade-color-d;  }
+  &.grade-4 { background-color: $grade-color-hd; }
 }
 .text-left .grade-icon {
   margin-left: 0;
