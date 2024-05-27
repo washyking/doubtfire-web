@@ -51,6 +51,7 @@
           <div class="btn-group btn-group-sm select-portfolio-grade">
             <label
               ng-repeat="grade in grades"
+              ng-if="$index != 4"
               class="btn btn-default col-sm-3 text-center"
               ng-model="filterOptions.selectedGrade"
               btn-radio="{{$index}}"
