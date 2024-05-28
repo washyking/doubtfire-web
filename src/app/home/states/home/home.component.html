@@ -139,7 +139,12 @@
     </div>
     <div [hidden]="loadingUnits" class="flex flex-row flex-wrap items-center">
       <div *ngFor="let unit of units">
-        <div uiSref="units/tasks/viewer" [uiParams]="{unitId: unit.id}" class="removeStyle">
+        <div
+          uiSref="units/tasks/inbox"
+          [uiParams]="{unitId: unit.id}"
+          class="removeStyle"
+          *ngIf="!unit.teachingPeriod || unit.teachingPeriod?.active"
+        >
           <mat-card class="unit-card">
             <mat-card-header>
               <mat-card-title class="f-card-title">{{ unit.name }}</mat-card-title>

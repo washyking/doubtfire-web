@@ -99,20 +99,16 @@
       }
       @if (unitRole && currentView === 'UNIT') {
         <!-- <p class="task-dropdown-heading">Tasks</p> -->
-        @if (unitRole.role !== 'Admin' && unitRole.role !== 'Auditor') {
-          <button uiSref="units/tasks/inbox" [uiParams]="{unitId: unitRole.unit.id}" mat-menu-item>
-            <mat-icon aria-label="Inbox icon" fontIcon="inbox"></mat-icon> <span>Inbox</span>
-          </button>
-        }
-        @if (unitRole.role !== 'Admin' && unitRole.role !== 'Auditor') {
-          <button
-            uiSref="units/tasks/definition"
-            [uiParams]="{unitId: unitRole.unit.id}"
-            mat-menu-item
-          >
-            <mat-icon aria-label="Task Explorer Icon" fontIcon="pageview"></mat-icon> Explorer
-          </button>
-        }
+        <button uiSref="units/tasks/inbox" [uiParams]="{unitId: unitRole.unit.id}" mat-menu-item>
+          <mat-icon aria-label="Inbox icon" fontIcon="inbox"></mat-icon> <span>Inbox</span>
+        </button>
+        <button
+          uiSref="units/tasks/definition"
+          [uiParams]="{unitId: unitRole.unit.id}"
+          mat-menu-item
+        >
+          <mat-icon aria-label="Task Explorer Icon" fontIcon="pageview"></mat-icon> Explorer
+        </button>
         <button uiSref="units/tasks/viewer" [uiParams]="{unitId: unitRole.unit.id}" mat-menu-item>
           <mat-icon aria-label="Task list icon" fontIcon="list_alt"></mat-icon> Tasks
         </button>
