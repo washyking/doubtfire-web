@@ -14,13 +14,11 @@ import {Subscription} from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
   projects: Project[];
   unitRoles: UnitRole[];
-  units: Unit[] = [];
   showSpinner: boolean;
   dataLoaded: boolean;
   notEnrolled: boolean;
   ifAdmin: boolean;
   ifConvenor: boolean;
-  loadingUnits: boolean;
   loadingUnitRoles: boolean;
   loadingProjects: boolean;
 
@@ -80,25 +78,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.ifAdmin = this.currentUser.role === 'Admin' || this.currentUser.role === 'Auditor';
     this.ifConvenor = this.currentUser.role === 'Convenor';
-
-    if (this.ifAdmin) {
-      this.loadingUnits = true;
-      this.subscriptions.push(
-        this.unitService.query().subscribe({
-          next: (units) => this.unitsLoaded(units),
-          error: (err) => {},
-        }),
-      );
-    }
   }
 
   get currentUser(): User {
     return this.userService.currentUser;
-  }
-
-  unitsLoaded(units: Unit[]): void {
-    this.units = units;
-    this.loadingUnits = false;
   }
 
   unitRolesLoaded(unitRoles: UnitRole[]): void {

@@ -270,10 +270,29 @@ const AdministerUnits: NgHybridStateDeclaration = {
   },
 };
 
-
 const ViewAllUnits: NgHybridStateDeclaration = {
   name: 'view-all-units',
   url: '/view-all-units',
+  // passes 'mode' as @Input to the component
+  resolve: {
+    'mode': function () {
+      return 'auditor';
+    },
+  },
+  views: {
+    main: {
+      component: FUnitsComponent,
+    },
+  },
+  data: {
+    pageTitle: 'View all units',
+    roleWhitelist: ['Admin', 'Auditor'],
+  },
+};
+
+const ViewTutorUnits: NgHybridStateDeclaration = {
+  name: 'view-tutor-units',
+  url: '/view-tutor-units',
   // passes 'mode' as @Input to the component
   resolve: {
     'mode': function () {
@@ -306,5 +325,6 @@ export const doubtfireStates = [
   usersState,
   ViewAllProjectsState,
   ViewAllUnits,
+  ViewTutorUnits,
   AdministerUnits,
 ];

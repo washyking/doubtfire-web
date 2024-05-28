@@ -98,7 +98,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      @if (mode === 'tutor') {
+      @if (mode === 'tutor' || mode === 'auditor') {
         <tr
           mat-row
           *matRowDef="let row; columns: displayedColumns"
@@ -106,7 +106,7 @@
           [uiParams]="{unitId: row.id}"
         ></tr>
       }
-      @if (mode === 'admin' || mode === 'auditor') {
+      @if (mode === 'admin') {
         <tr
           mat-row
           *matRowDef="let row; columns: displayedColumns"
@@ -126,7 +126,7 @@
     <span class="flex items-center">
       <mat-paginator class="mat-elevation-z0" [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
       <span class="flex-grow"></span>
-      @if (mode === 'admin' || mode === 'auditor') {
+      @if (mode === 'admin') {
         <button mat-raised-button color="primary" (click)="createUnit()">
           <mat-icon class="icon_display">add</mat-icon>
           Create Unit

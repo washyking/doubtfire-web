@@ -63,14 +63,14 @@
         </mat-card-content></mat-card
       >
 
-      <a uiSref="view-all-units">
+      <a uiSref="view-tutor-units">
         <button
           matTooltip="View previous units"
           matTooltipPosition="above"
           color="primary"
           mat-fab
           extended
-          aria-label="view all units"
+          aria-label="view taught units"
         >
           <mat-icon class="items-center" style="color: white; padding-right: 1px">history</mat-icon
           >View all
@@ -134,48 +134,17 @@
   </div>
   <div [hidden]="!ifAdmin">
     <h2>All Units</h2>
-    <div [hidden]="!loadingUnits" style="height: 185px">
-      <mat-spinner diameter="40" color="accent"></mat-spinner>
-    </div>
-    <div [hidden]="loadingUnits" class="flex flex-row flex-wrap items-center">
-      <div *ngFor="let unit of units">
-        <div
-          uiSref="units/tasks/inbox"
-          [uiParams]="{unitId: unit.id}"
-          class="removeStyle"
-          *ngIf="!unit.teachingPeriod || unit.teachingPeriod?.active"
-        >
-          <mat-card class="unit-card">
-            <mat-card-header>
-              <mat-card-title class="f-card-title">{{ unit.name }}</mat-card-title>
-              <mat-card-subtitle>{{ unit.code }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              <mat-divider></mat-divider>
-            </mat-card-content>
-            <mat-card-actions>
-              <f-chip>
-                {{ unit.teachingPeriod?.name || showDate(unit.startDate) }}
-              </f-chip>
-              <f-chip>{{ currentUser.role }}</f-chip>
-            </mat-card-actions>
-            <mat-card-footer
-              matTooltip="{{ unit.teachingPeriodProgress }}% through the teaching period."
-            >
-              <mat-progress-bar
-                class="unit-progress-slider"
-                mode="determinate"
-                [value]="unit.teachingPeriodProgress"
-              ></mat-progress-bar>
-            </mat-card-footer>
-          </mat-card>
-        </div>
-      </div>
-      <mat-card appearance="outlined" class="unit-card" [hidden]="units.length > 0">
-        <mat-card-content>
-          <p>No available units</p>
-        </mat-card-content></mat-card
+    <a uiSref="view-all-units">
+      <button
+        matTooltip="View all units"
+        matTooltipPosition="above"
+        color="primary"
+        mat-fab
+        extended
+        aria-label="view all units"
       >
-    </div>
+        <mat-icon style="color: white">apps</mat-icon> View all
+      </button>
+    </a>
   </div>
 </div>

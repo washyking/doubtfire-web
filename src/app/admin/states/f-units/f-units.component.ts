@@ -79,8 +79,16 @@ export class FUnitsComponent implements OnInit, AfterViewInit {
         });
       });
     }
-    if (this.mode === 'admin' || this.mode === 'auditor') {
+    if (this.mode === 'admin') {
       this.title = 'Administer units';
+
+      this.unitService.query(undefined, {params: {include_in_active: true}}).subscribe({
+        next: (units) => {
+          this.dataSource.data = this.mapUnitOrProjectsToColumns(units);
+        },
+      });
+    } else if (this.mode === 'auditor') {
+      this.title = 'View all units';
 
       this.unitService.query(undefined, {params: {include_in_active: true}}).subscribe({
         next: (units) => {
