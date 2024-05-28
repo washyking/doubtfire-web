@@ -1,4 +1,9 @@
 @if (showHeader) {
+  @if (currentUser.role === 'Auditor') {
+    <mat-toolbar class="auditor-banner bg-formatif-blue flex justify-center items-center w-full h-16 my-0">
+      <span class="text-2xl text-white">You are in view-only mode.</span>
+    </mat-toolbar>
+  }
   <mat-toolbar
     [ngClass]="{inbox: globalState.isInboxState}"
     class="flex items-center justify-start"
