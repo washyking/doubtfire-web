@@ -1,7 +1,7 @@
 <div class="w-full h-full overflow-auto">
   @switch (taskDef) { @case (taskDef) { @if (taskDef) {
 
-  <f-pdf-viewer [pdfUrl]="taskDef.getTaskPDFUrl()"></f-pdf-viewer>
+  <f-pdf-viewer [pdfUrl]="taskDef.getTaskPDFUrl()" [hidden]="!taskDef.hasTaskSheet"></f-pdf-viewer>
 
   } @else {
 
