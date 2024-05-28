@@ -78,47 +78,6 @@
       </a>
     </div>
   </div>
-  <div [hidden]="!ifAdmin">
-    <h2>Units</h2>
-    <div [hidden]="!loadingUnits" style="height: 185px">
-      <mat-spinner diameter="40" color="accent"></mat-spinner>
-    </div>
-    <div [hidden]="loadingUnits" class="flex flex-row flex-wrap items-center">
-      <div *ngFor="let unit of units">
-        <div uiSref="units/tasks/viewer" [uiParams]="{unitId: unit.id}" class="removeStyle">
-          <mat-card class="unit-card">
-            <mat-card-header>
-              <mat-card-title class="f-card-title">{{ unit.name }}</mat-card-title>
-              <mat-card-subtitle>{{ unit.code }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              <mat-divider></mat-divider>
-            </mat-card-content>
-            <mat-card-actions>
-              <f-chip>
-                {{ unit.teachingPeriod?.name || showDate(unit.startDate) }}
-              </f-chip>
-              <f-chip>Admin</f-chip>
-            </mat-card-actions>
-            <mat-card-footer
-              matTooltip="{{ unit.teachingPeriodProgress }}% through the teaching period."
-            >
-              <mat-progress-bar
-                class="unit-progress-slider"
-                mode="determinate"
-                [value]="unit.teachingPeriodProgress"
-              ></mat-progress-bar>
-            </mat-card-footer>
-          </mat-card>
-        </div>
-      </div>
-      <mat-card appearance="outlined" class="unit-card" [hidden]="units.length > 0">
-        <mat-card-content>
-          <p>No available units</p>
-        </mat-card-content></mat-card
-      >
-    </div>
-  </div>
   <div [hidden]="notEnrolled">
     <div class="my-4" [hidden]="projects?.length === 0">
       <h2>Enrolled units</h2>
@@ -171,6 +130,47 @@
           </button>
         </a>
       </div>
+    </div>
+  </div>
+  <div [hidden]="!ifAdmin">
+    <h2>All Units</h2>
+    <div [hidden]="!loadingUnits" style="height: 185px">
+      <mat-spinner diameter="40" color="accent"></mat-spinner>
+    </div>
+    <div [hidden]="loadingUnits" class="flex flex-row flex-wrap items-center">
+      <div *ngFor="let unit of units">
+        <div uiSref="units/tasks/viewer" [uiParams]="{unitId: unit.id}" class="removeStyle">
+          <mat-card class="unit-card">
+            <mat-card-header>
+              <mat-card-title class="f-card-title">{{ unit.name }}</mat-card-title>
+              <mat-card-subtitle>{{ unit.code }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-divider></mat-divider>
+            </mat-card-content>
+            <mat-card-actions>
+              <f-chip>
+                {{ unit.teachingPeriod?.name || showDate(unit.startDate) }}
+              </f-chip>
+              <f-chip>{{ currentUser.role }}</f-chip>
+            </mat-card-actions>
+            <mat-card-footer
+              matTooltip="{{ unit.teachingPeriodProgress }}% through the teaching period."
+            >
+              <mat-progress-bar
+                class="unit-progress-slider"
+                mode="determinate"
+                [value]="unit.teachingPeriodProgress"
+              ></mat-progress-bar>
+            </mat-card-footer>
+          </mat-card>
+        </div>
+      </div>
+      <mat-card appearance="outlined" class="unit-card" [hidden]="units.length > 0">
+        <mat-card-content>
+          <p>No available units</p>
+        </mat-card-content></mat-card
+      >
     </div>
   </div>
 </div>
