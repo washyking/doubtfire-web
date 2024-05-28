@@ -3,7 +3,7 @@ import {DoubtfireConstants} from 'src/app/config/constants/doubtfire-constants';
 import {analyticsService, dateService} from 'src/app/ajs-upgraded-providers';
 import {UIRouter} from '@uirouter/angular';
 import {GlobalStateService, ViewType} from 'src/app/projects/states/index/global-state.service';
-import {Project, UnitRole, User, UserService} from 'src/app/api/models/doubtfire-model';
+import {Project, Unit, UnitRole, UnitService, User, UserService} from 'src/app/api/models/doubtfire-model';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -14,11 +14,13 @@ import {Subscription} from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
   projects: Project[];
   unitRoles: UnitRole[];
+  units: Unit[] = [];
   showSpinner: boolean;
   dataLoaded: boolean;
   notEnrolled: boolean;
   ifAdmin: boolean;
   ifConvenor: boolean;
+  loadingUnits: boolean;
   loadingUnitRoles: boolean;
   loadingProjects: boolean;
 
@@ -27,6 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private constants: DoubtfireConstants,
     private globalState: GlobalStateService,
     private userService: UserService,
+    private unitService: UnitService,
     @Inject(analyticsService) private AnalyticsService: any,
     @Inject(dateService) private DateService: any,
     @Inject(UIRouter) private router: UIRouter,
@@ -77,10 +80,25 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.ifAdmin = this.currentUser.role === 'Admin';
     this.ifConvenor = this.currentUser.role === 'Convenor';
+
+    if (this.ifAdmin) {
+      this.loadingUnits = true;
+      this.subscriptions.push(
+        this.unitService.query().subscribe({
+          next: (units) => this.unitsLoaded(units),
+          error: (err) => {},
+        }),
+      );
+    }
   }
 
   get currentUser(): User {
     return this.userService.currentUser;
+  }
+
+  unitsLoaded(units: Unit[]): void {
+    this.units = units;
+    this.loadingUnits = false;
   }
 
   unitRolesLoaded(unitRoles: UnitRole[]): void {
