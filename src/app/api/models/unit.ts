@@ -155,7 +155,7 @@ export class Unit extends Entity {
   }
 
   public get currentUserIsConvenor(): boolean {
-    return this.myRole === 'Convenor' || this.myRole === 'Admin';
+    return this.myRole === 'Convenor' || this.myRole === 'Auditor' || this.myRole === 'Admin';
   }
 
   public get taskDefinitions(): readonly TaskDefinition[] {

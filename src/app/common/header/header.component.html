@@ -34,7 +34,11 @@
 
     <span class="grow"></span>
 
-    @if (currentUser.role === 'Admin' || currentUser.role === 'Convenor') {
+    @if (
+      currentUser.role === 'Admin' ||
+      currentUser.role === 'Auditor' ||
+      currentUser.role === 'Convenor'
+    ) {
       <button
         #menuState="matMenuTrigger"
         mat-icon-button
@@ -47,7 +51,7 @@
       </button>
     }
     <mat-menu #menu="matMenu">
-      @if (currentUser.role === 'Admin') {
+      @if (currentUser.role === 'Admin' || currentUser.role === 'Auditor') {
         <button mat-menu-item uiSref="institutionsettings">
           <mat-icon matListItemIcon>business</mat-icon>
           Institution Settings
@@ -57,7 +61,7 @@
         <mat-icon matListItemIcon>school</mat-icon>
         Manage Units
       </button>
-      @if (currentUser.role === 'Admin') {
+      @if (currentUser.role === 'Admin' || currentUser.role === 'Auditor') {
         <button mat-menu-item uiSref="admin/users">
           <mat-icon matListItemIcon>people</mat-icon>
           Manage Users

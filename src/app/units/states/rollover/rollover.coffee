@@ -11,7 +11,7 @@ angular.module('doubtfire.units.states.rollover', [
     data:
       task: 'Unit Rollover'
       pageTitle: "_Unit Rollover_"
-      roleWhitelist: ['Convenor', 'Admin']
+      roleWhitelist: ['Convenor', 'Admin', 'Auditor']
    }
 )
 .controller("RolloverUnitState", ($scope, $state, $stateParams, newUserService, alertService, newUnitService, GlobalStateService) ->
@@ -22,8 +22,8 @@ angular.module('doubtfire.units.states.rollover', [
     # Load assessing unit role
     $scope.unitRole = GlobalStateService.loadedUnitRoles.currentValues.find((unitRole) -> unitRole.unit.id == unitId)
 
-    if (! $scope.unitRole?) && ( newUserService.currentUser.role == "Admin" )
-      $scope.unitRole = newUserService.adminRoleFor(unitId, newUserService.currentUser)
+    if (! $scope.unitRole?) && ( newUserService.currentUser.role == "Admin" || newUserService.currentUser.role == "Auditor" )
+      $scope.unitRole = newUserService.adminAuditorRoleFor(newUserService.currentUser.role, unitId, newUserService.currentUser)
 
     # Go home if no unit role was found
     return $state.go('home') unless $scope.unitRole?

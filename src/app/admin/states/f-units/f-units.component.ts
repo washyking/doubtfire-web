@@ -38,7 +38,7 @@ export class FUnitsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  @Input({required: true}) mode: 'admin' | 'tutor' | 'student';
+  @Input({required: true}) mode: 'admin' | 'auditor' | 'tutor' | 'student';
 
   displayedColumns: string[] = [
     'unit_code',
@@ -56,7 +56,7 @@ export class FUnitsComponent implements OnInit, AfterViewInit {
   title: string;
 
   shouldShowUnitRoleColumn(): boolean {
-    return this.mode === 'admin' || this.mode === 'tutor';
+    return this.mode === 'admin' || this.mode === 'auditor' || this.mode === 'tutor';
   }
 
   constructor(
@@ -79,7 +79,7 @@ export class FUnitsComponent implements OnInit, AfterViewInit {
         });
       });
     }
-    if (this.mode === 'admin') {
+    if (this.mode === 'admin' || this.mode === 'auditor') {
       this.title = 'Administer units';
 
       this.unitService.query(undefined, {params: {include_in_active: true}}).subscribe({

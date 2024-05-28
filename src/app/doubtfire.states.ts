@@ -27,7 +27,7 @@ const institutionSettingsState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Institution Settings',
-    roleWhiteList: ['Admin'],
+    roleWhiteList: ['Admin', 'Auditor'],
   },
 };
 
@@ -42,7 +42,7 @@ const usersState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Administer users',
-    roleWhiteList: ['Admin'],
+    roleWhiteList: ['Admin', 'Auditor'],
   },
 };
 
@@ -59,7 +59,7 @@ const HomeState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Home Page',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin', 'Auditor'],
   },
 };
 
@@ -165,7 +165,7 @@ const WelcomeState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Welcome',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin', 'Auditor'],
   },
 };
 
@@ -182,7 +182,7 @@ const SignInState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Sign In',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin', 'Auditor'],
   },
 };
 
@@ -199,7 +199,7 @@ const EditProfileState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Edit Profile',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin', 'Auditor'],
   },
 };
 
@@ -213,7 +213,7 @@ const TeachingPeriodsState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Teaching Periods',
-    roleWhitelist: ['Convenor', 'Admin'],
+    roleWhitelist: ['Convenor', 'Admin', 'Auditor'],
   },
 };
 
@@ -227,7 +227,7 @@ const EulaState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Teaching Periods',
-    roleWhitelist: ['Convenor', 'Admin'],
+    roleWhitelist: ['Convenor', 'Admin', 'Auditor'],
   },
 };
 
@@ -246,7 +246,7 @@ const ViewAllProjectsState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Teaching Periods',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin', 'Auditor'],
   },
 };
 
@@ -266,7 +266,7 @@ const AdministerUnits: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Administer units',
-    roleWhiteList: ['Admin'],
+    roleWhiteList: ['Admin', 'Auditor'],
   },
 };
 
@@ -288,7 +288,7 @@ const ViewAllUnits: NgHybridStateDeclaration = {
   data: {
     pageTitle: 'Teaching Periods',
     mode: 'tutor',
-    roleWhitelist: ['Tutor', 'Convenor', 'Admin'],
+    roleWhitelist: ['Tutor', 'Convenor', 'Admin', 'Auditor'],
   },
 };
 

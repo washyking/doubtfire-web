@@ -84,7 +84,7 @@ export class TeachingPeriodUnitImportDialogComponent implements OnInit {
     // Load all teaching staff
     this.userService.getTutors().subscribe((staff) => {
       this.teachingStaff = staff
-        .filter((s) => ['Convenor', 'Admin'].includes(s.systemRole))
+        .filter((s) => ['Convenor', 'Auditor', 'Admin'].includes(s.systemRole))
         .sort((a, b) => a.name.localeCompare(b.name));
 
       // Load all units now we have the staff

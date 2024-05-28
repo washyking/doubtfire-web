@@ -87,9 +87,9 @@ export class UserService extends CachedEntityService<User> {
     return this.query(undefined, { endpointFormat: this.tutorEndpointFormat });
   }
 
-  public adminRoleFor(unitId: number, user: User): UnitRole {
+  public adminAuditorRoleFor(role: 'Admin' | 'Auditor', unitId: number, user: User): UnitRole {
     const result = new UnitRole();
-    result.role = 'Admin';
+    result.role = role;
     result.user = user;
 
     const unitService = AppInjector.get(UnitService);

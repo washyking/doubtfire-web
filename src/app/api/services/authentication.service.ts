@@ -105,7 +105,7 @@ export class AuthenticationService {
     }
   }
 
-  private readonly validRoles: string[] = ['anon', 'Student', 'Tutor', 'Convenor', 'Admin'];
+  private readonly validRoles: string[] = ['anon', 'Student', 'Tutor', 'Convenor', 'Auditor', 'Admin'];
 
   private isValidRoleWhitelist(roleWhitelist: string[]) {
     return roleWhitelist.filter((role: string) => this.validRoles.includes(role)).length !== 0;

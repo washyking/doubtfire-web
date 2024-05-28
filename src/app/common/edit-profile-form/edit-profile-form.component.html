@@ -74,6 +74,7 @@
         <mat-label>System Role</mat-label>
         <mat-select [(ngModel)]="user.systemRole" name="systemRole" [disabled]="!canEditSystemRole">
           <mat-option value="Admin">Administrator</mat-option>
+          <mat-option value="Auditor">Auditor</mat-option>
           <mat-option value="Convenor">Convenor</mat-option>
           <mat-option value="Tutor">Tutor</mat-option>
           <mat-option value="Student">Student</mat-option>

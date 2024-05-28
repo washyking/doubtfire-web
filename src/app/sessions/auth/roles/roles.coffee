@@ -9,5 +9,6 @@ angular.module("doubtfire.sessions.auth.roles", [
   "Student"
   "Tutor"
   "Convenor"
+  "Auditor"
   "Admin"
 ])

@@ -16,7 +16,7 @@ export class User extends Entity {
   email: string;
   username: string;
   nickname: string;
-  systemRole: 'Admin' | 'Convenor' | 'Tutor' | 'Student';
+  systemRole: 'Admin' | 'Auditor' | 'Convenor' | 'Tutor' | 'Student';
   receiveTaskNotifications: boolean;
   receivePortfolioNotifications: boolean;
   receiveFeedbackNotifications: boolean;
@@ -36,7 +36,7 @@ export class User extends Entity {
   }
 
   public get isStaff(): boolean {
-    return ['Tutor', 'Convenor', 'Admin'].includes(this.systemRole);
+    return ['Tutor', 'Convenor', 'Auditor', 'Admin'].includes(this.systemRole);
   }
 
   public get name(): string {
