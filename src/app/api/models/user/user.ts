@@ -11,7 +11,7 @@ export class User extends Entity {
   email: string;
   username: string;
   nickname: string;
-  systemRole: 'Admin' | 'Convenor' | 'Tutor' | 'Student';
+  systemRole: 'Admin' | 'Convenor' | 'Tutor' | 'Student' | 'Auditor';
   receiveTaskNotifications: boolean;
   receivePortfolioNotifications: boolean;
   receiveFeedbackNotifications: boolean;
