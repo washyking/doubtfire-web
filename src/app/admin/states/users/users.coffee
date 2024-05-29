@@ -51,8 +51,14 @@ angular.module('doubtfire.admin.states.users', [])
   # User settings/create modal
   $scope.showUserModal = (user) ->
     # If we're given a user, show that user, else create a new one
-    userToShow = if user? then user else newUserService.createInstanceFrom { }
-    EditProfileService.openDialog(userToShow)
+    if user?
+      userToShow = user
+      mode = 'edit'
+    else
+      userToShow = newUserService.createInstanceFrom { }
+      mode = 'new'
+
+    EditProfileService.openDialog(userToShow, mode)
 
   $scope.downloadUsersCSV = () ->
     fileDownloaderService.downloadFile(newUserService.csvURL, "Users.csv")
