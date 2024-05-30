@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.8](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v8.0.7...v8.0.8) (2024-05-30)
+
+
+### Features
+
+* added percentage to tooltip when hovering student's task progress ([69ed613](https://github.com/doubtfire-lms/doubtfire-deploy/commit/69ed61380bd7681d4496cb109e628111873b6e82))
+
+
+### Bug Fixes
+
+* change from hiding element to not loading ([414da65](https://github.com/doubtfire-lms/doubtfire-deploy/commit/414da65fcef9b10367f53112239a60e1b271d475))
+* change grade values, change grade display ([081c35b](https://github.com/doubtfire-lms/doubtfire-deploy/commit/081c35ba0fbc7ab4ddb2fba3c58892d0e66f325c))
+* fix task inbox shortcuts ([9bc949f](https://github.com/doubtfire-lms/doubtfire-deploy/commit/9bc949fd6dcb71ea165e89de9a4ec9d9347e6562))
+* remove pdf viewer on task view when no sheet ([f3e973d](https://github.com/doubtfire-lms/doubtfire-deploy/commit/f3e973dacc5b079ab58da239194d802c5586ca07))
+* revert index changes, html changes for grade ([8f41cd1](https://github.com/doubtfire-lms/doubtfire-deploy/commit/8f41cd1656971963c2035a9249acdde0a257766e))
+
 ### [8.0.7](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v8.0.6...v8.0.7) (2024-05-26)
 
 
