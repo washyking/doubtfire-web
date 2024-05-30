@@ -9,11 +9,11 @@ export class GradeService {
   gradeValues = [0, 1, 2, 3];
 
   grades = {
+    '-1': 'Fail',
     0: 'Pass',
     1: 'Credit',
     2: 'Distinction',
     3: 'High Distinction',
-    '-1': 'Fail',
   };
 
   gradeViewData = [
