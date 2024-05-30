@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.notEnrolled = this.checkEnrolled();
 
-    this.ifAdmin = this.currentUser.role === 'Admin';
+    this.ifAdmin = this.currentUser.role === 'Admin' || this.currentUser.role === 'Auditor';
     this.ifConvenor = this.currentUser.role === 'Convenor';
   }
 

@@ -126,11 +126,11 @@ export class Unit extends Entity {
   }
 
   public get currentUserIsStaff(): boolean {
-    return this.myRole !== "Student";
+    return this.myRole !== 'Student';
   }
 
-  public get currentUserIsConvenor(): boolean {
-    return this.myRole === "Convenor" || this.myRole === "Admin";
+  public get currentUserCanViewUnitAdmin(): boolean {
+    return this.myRole === 'Convenor' || this.myRole === 'Admin' || this.myRole === 'Auditor';
   }
 
   public get taskDefinitions(): readonly TaskDefinition[] {
