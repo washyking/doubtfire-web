@@ -19,6 +19,7 @@ import {SelectedTaskService} from 'src/app/projects/states/dashboard/selected-ta
 import {HotkeysService, HotkeysHelpComponent} from '@ngneat/hotkeys';
 import {MatDialog} from '@angular/material/dialog';
 import {UserService} from 'src/app/api/services/user.service';
+import {DoubtfireConstants} from 'src/app/config/constants/doubtfire-constants';
 
 @Component({
   selector: 'f-inbox',
@@ -58,6 +59,7 @@ export class InboxComponent implements OnInit, AfterViewInit {
     private router: UIRouter,
     public dialog: MatDialog,
     private userService: UserService,
+    private constants: DoubtfireConstants,
   ) {
     this.selectedTask.currentPdfUrl$.subscribe((url) => {
       this.visiblePdfUrl = url;
@@ -76,7 +78,7 @@ export class InboxComponent implements OnInit, AfterViewInit {
         const ref = this.dialog.open(HotkeysHelpComponent, {
           // width: '250px',
         });
-        ref.componentInstance.title = 'Formatif Marking Shortcuts';
+        ref.componentInstance.title = `${this.constants.ExternalName.value} Marking Shortcuts`;
         ref.componentInstance.dismiss.subscribe(() => ref.close());
       });
     }
@@ -85,17 +87,31 @@ export class InboxComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.hotkeys
       .addShortcut({
-        keys: 'control.c',
+        keys: 'alt.shift.r',
+        description: 'Mark selected task as redo',
+      })
+      .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('redo'));
+
+    this.hotkeys
+      .addShortcut({
+        keys: 'alt.shift.f',
+        description: 'Mark selected task as fix',
+      })
+      .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('fix_and_resubmit'));
+
+    this.hotkeys
+      .addShortcut({
+        keys: 'alt.shift.c',
         description: 'Mark selected task as complete',
       })
       .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('complete'));
 
     this.hotkeys
       .addShortcut({
-        keys: 'control.f',
-        description: 'Mark selected task as fix',
+        keys: 'alt.shift.d',
+        description: 'Mark selected task as discuss',
       })
-      .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('fix_and_resubmit'));
+      .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('discuss'));
 
     this.dragMoveAudited$ = this.dragMove$.pipe(
       withLatestFrom(this.inboxStartSize$),
