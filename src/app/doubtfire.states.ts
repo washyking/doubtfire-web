@@ -74,7 +74,6 @@ const SignInState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Sign In',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
   },
 };
 
