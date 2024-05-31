@@ -13,7 +13,7 @@ angular.module('doubtfire.units.states.plagiarism', [
     data:
       task: "Student Plagiarism"
       pageTitle: "_Home_"
-      roleWhitelist: ['Tutor', 'Convenor', 'Admin']
+      roleWhitelist: ['Tutor', 'Convenor', 'Admin', 'Auditor']
    }
 )
 .controller("UnitPlagiarismStateCtrl", ($scope) ->

@@ -9,7 +9,7 @@ angular.module('doubtfire.units.states.all.directives.all-units-list', [])
         templateUrl: "units/states/all/directives/all-units-list/all-units-list.tpl.html"
     data:
       pageTitle: "_All-Units_"
-      roleWhitelist: ['Tutor', 'Convenor', 'Admin']
+      roleWhitelist: ['Tutor', 'Convenor', 'Admin', 'Auditor']
   $stateProvider.state 'view-all-units', allUnitsStateData
 )
 

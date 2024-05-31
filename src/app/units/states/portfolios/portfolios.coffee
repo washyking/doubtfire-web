@@ -11,7 +11,7 @@ angular.module('doubtfire.units.states.portfolios', [])
     data:
       task: "Student Portfolios"
       pageTitle: "_Home_"
-      roleWhitelist: ['Tutor', 'Convenor', 'Admin']
+      roleWhitelist: ['Tutor', 'Convenor', 'Admin', 'Auditor']
    }
 )
 .controller("UnitPortfoliosStateCtrl", ($scope, analyticsService, gradeService, newProjectService, Visualisation, newTaskService, fileDownloaderService, newUserService, alertService) ->

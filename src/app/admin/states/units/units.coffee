@@ -15,7 +15,7 @@ angular.module('doubtfire.admin.states.units', [])
         templateUrl: "admin/states/units/units.tpl.html"
     data:
       pageTitle: "_Unit Administration_"
-      roleWhitelist: ['Admin', 'Convenor']
+      roleWhitelist: ['Admin', 'Convenor', 'Auditor']
   $stateProvider.state "admin/units", unitsAdminViewStateData
 )
 .controller("AdministerUnitsState", ($scope, $state, $modal, DoubtfireConstants, CreateUnitModal, alertService, GlobalStateService, newUnitService) ->
