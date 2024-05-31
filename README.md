@@ -189,8 +189,6 @@ TODO:
 - [ ] ./src/app/projects/states/tutorials/tutorials.coffee
 - [ ] ./src/app/sessions/auth/auth.coffee
 - [ ] ./src/app/sessions/auth/http-auth-injector.coffee
-- [ ] ./src/app/sessions/auth/roles/if-role.coffee
-- [ ] ./src/app/sessions/auth/roles/roles.coffee
 - [ ] ./src/app/sessions/cookies/cookies.coffee
 - [ ] ./src/app/sessions/current-user/current-user.coffee
 - [ ] ./src/app/sessions/sessions.coffee
