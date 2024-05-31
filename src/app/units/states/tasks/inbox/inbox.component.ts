@@ -83,19 +83,19 @@ export class InboxComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.hotkeys
-      .addShortcut({
-        keys: 'control.c',
-        description: 'Mark selected task as complete',
-      })
-      .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('complete'));
+    // this.hotkeys
+    //   .addShortcut({
+    //     keys: 'control.c',
+    //     description: 'Mark selected task as complete',
+    //   })
+    //   .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('complete'));
 
-    this.hotkeys
-      .addShortcut({
-        keys: 'control.f',
-        description: 'Mark selected task as fix',
-      })
-      .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('fix_and_resubmit'));
+    // this.hotkeys
+    //   .addShortcut({
+    //     keys: 'control.f',
+    //     description: 'Mark selected task as fix',
+    //   })
+    //   .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('fix_and_resubmit'));
 
     this.dragMoveAudited$ = this.dragMove$.pipe(
       withLatestFrom(this.inboxStartSize$),
