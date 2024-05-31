@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.22](https://github.com/macite/doubtfire-deploy/compare/v7.0.21...v7.0.22) (2024-05-31)
+
+
+### Features
+
+* add auditor option to user ([3201aa6](https://github.com/macite/doubtfire-deploy/commit/3201aa60e018124833243aeea358e9d23c7f5f8f))
+* auditor home is the unit list ([3717a75](https://github.com/macite/doubtfire-deploy/commit/3717a75fd3b378da57fc70f6cab491f2d09bd4ce))
+* authorise auditor to access staff pages ([0a8a9ba](https://github.com/macite/doubtfire-deploy/commit/0a8a9ba28a715e6131b30d06b900d0404624fae2))
+* enable admin to see all unit pages ([fee563f](https://github.com/macite/doubtfire-deploy/commit/fee563f7c91da4f8383cfcf2f2d49614699a883b))
+* ensure auditor can view unit list ([cc653f9](https://github.com/macite/doubtfire-deploy/commit/cc653f946d4e60de4c5fc55281e8ed36f9f54181))
+* remove misleading progress statement ([2fbaf82](https://github.com/macite/doubtfire-deploy/commit/2fbaf825cc094ed9a9cf81fadb7971a8fb22d6c5))
+
+
+### Bug Fixes
+
+* ensure you can create new users via ui ([8bf06f9](https://github.com/macite/doubtfire-deploy/commit/8bf06f9a11fadffd14d452d1694c0b3375dc34b9))
+* use transitions to authorise page access ([87ace80](https://github.com/macite/doubtfire-deploy/commit/87ace80c9fd78613b54dc625d55ca62ce8e15433))
+
 ### [7.0.21](https://github.com/macite/doubtfire-deploy/compare/v7.0.21-0...v7.0.21) (2024-04-14)
 
 ### [7.0.21-0](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v7.0.20...v7.0.21-0) (2024-04-10)
