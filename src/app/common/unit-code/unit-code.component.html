@@ -1,12 +1,11 @@
 <f-chip>
   <div
-    [style.width.px]="width"
-    [style.maxWidth.px]="width"
+
     [style.minWidth.px]="width"
     [ngClass]="{'justify-between': isDropdown, 'justify-center': !isDropdown}"
     class="flex flex-row items-center"
   >
-    @if (isDualBadge) {
+    @if (isDualBadge && shiftBetweenBadges) {
       @for (part of unitCodeParts; track part; let i = $index) {
         @if (i === currentIndex) {
           <span [@flip]="showState">{{ part }}</span>

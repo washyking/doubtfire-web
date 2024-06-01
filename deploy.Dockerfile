@@ -7,7 +7,7 @@ USER node
 # Copy in doubtfire-web code
 WORKDIR /doubtfire-web
 COPY package.json package-lock.json ./
-RUN npm ci --force
+RUN npm ci --force --include=optional
 
 COPY --chown=node:node . .
 RUN chmod 777 src

@@ -2,6 +2,7 @@
   @if (unit) {
     <f-unit-code
       [isDropdown]="true"
+      [shiftBetweenBadges]="false"
       [width]="80"
       [unit_code]="unit?.code"
       matTooltip="{{ unit.name }}"
@@ -49,7 +50,7 @@
         class="w-full"
       >
         <div class="flex items-center w-full">
-          <div class="flex-none unitName">{{ unitRole.unit.name }}</div>
+          <div class="flex-none unitName truncate max-w-[220px]">{{ unitRole.unit.name }}</div>
           <div class="grow"></div>
           <f-unit-code [width]="80" [unit_code]="unitRole.unit.code"></f-unit-code>
         </div>

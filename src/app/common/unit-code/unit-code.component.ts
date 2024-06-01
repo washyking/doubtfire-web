@@ -9,14 +9,14 @@ import {UnitCodeService} from './unit-code.service';
   styleUrls: ['./unit-code.component.css'],
   animations: [
     trigger('flip', [
-      state('in', style({transform: 'translateY(0%)', opacity: 1})),
-      state('out', style({transform: 'translateY(100%)', opacity: 0})),
+      state('in', style({transform: 'translateX(0%)', opacity: 1})),
+      state('out', style({transform: 'translateX(-100%)', opacity: 0})),
       transition('void => in', [
-        style({transform: 'translateY(-100%)', opacity: 0}),
+        style({transform: 'translateX(100%)', opacity: 0}),
         animate('500ms ease-in-out'),
       ]),
       transition('in => out', [
-        animate('500ms ease-in-out', style({transform: 'translateY(100%)', opacity: 0})),
+        animate('500ms ease-in-out', style({transform: 'translateX(-100%)', opacity: 0})),
       ]),
     ]),
   ],
@@ -25,6 +25,7 @@ export class UnitCodeComponent implements OnInit, OnDestroy {
   @Input() unit_code: string;
   @Input() width = 90;
   @Input() isDropdown = false;
+  @Input() shiftBetweenBadges = true;
 
   currentIndex = 0; // Index of the currently displayed code part
   showState = 'in'; // Animation state
@@ -37,7 +38,10 @@ export class UnitCodeComponent implements OnInit, OnDestroy {
   }
 
   get unitCodeParts() {
-    return this.isDualBadge ? this.unit_code.split('/') : [this.unit_code];
+    if (this.shiftBetweenBadges) {
+      return this.isDualBadge ? this.unit_code.split('/') : [this.unit_code];
+    }
+    return this.unit_code;
   }
 
   ngOnInit(): void {
