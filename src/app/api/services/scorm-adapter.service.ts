@@ -29,6 +29,10 @@ export class ScormAdapterService {
     this.context.mode = mode;
   }
 
+  set testAttemptId(testAttemptId: number) {
+    this.context.attemptId = testAttemptId;
+  }
+
   get state() {
     return this.context.state;
   }
@@ -51,6 +55,31 @@ export class ScormAdapterService {
         this.context.errorCode = 104;
         console.log('Content Instance Terminated');
         break;
+    }
+
+    if (this.context.mode === 'review') {
+      this.xhr.open('GET', `${API_URL}/test_attempts/${this.context.attemptId}/review`, false);
+
+      this.xhr.onload = () => {
+        if (this.xhr.status >= 200 && this.xhr.status < 400) {
+          console.log('Retrieved the attempt.');
+        } else if (this.xhr.status == 404) {
+          console.log('Not found.');
+          noTestFound = true;
+        } else {
+          console.error('Error saving DataModel:', this.xhr.responseText);
+        }
+      };
+
+      this.xhr.send();
+      console.log(this.xhr.responseText);
+
+      const reviewSession = JSON.parse(this.xhr.responseText);
+      this.dataModel.restore(reviewSession.cmi_datamodel);
+      console.log(this.dataModel.dump());
+
+      this.context.state = 'Initialized';
+      return 'true';
     }
 
     // TODO: move this part into the player component

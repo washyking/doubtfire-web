@@ -295,9 +295,9 @@ const ViewAllUnits: NgHybridStateDeclaration = {
 /**
  * Define the SCORM Player state.
  */
-const ScormPlayerState: NgHybridStateDeclaration = {
-  name: 'scorm-player',
-  url: '/projects/:project_id/task_def_id/:task_definition_id/scorm-player/:mode',
+const ScormPlayerNormalState: NgHybridStateDeclaration = {
+  name: 'scorm-player-normal',
+  url: '/projects/:project_id/task_def_id/:task_definition_id/scorm-player/normal',
   resolve: {
     projectId: function ($stateParams) {
       return $stateParams.project_id;
@@ -305,8 +305,8 @@ const ScormPlayerState: NgHybridStateDeclaration = {
     taskDefId: function ($stateParams) {
       return $stateParams.task_definition_id;
     },
-    mode: function ($stateParams) {
-      return $stateParams.mode;
+    mode: function () {
+      return 'normal';
     },
   },
   views: {
@@ -316,6 +316,31 @@ const ScormPlayerState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Knowledge Check',
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+  },
+};
+
+const ScormPlayerReviewState: NgHybridStateDeclaration = {
+  name: 'scorm-player-review',
+  url: '/task_def_id/:task_definition_id/scorm-player/review/:test_attempt_id',
+  resolve: {
+    taskDefId: function ($stateParams) {
+      return $stateParams.task_definition_id;
+    },
+    testAttemptId: function ($stateParams) {
+      return $stateParams.test_attempt_id;
+    },
+    mode: function () {
+      return 'review';
+    },
+  },
+  views: {
+    main: {
+      component: ScormPlayerComponent,
+    },
+  },
+  data: {
+    pageTitle: 'Review Knowledge Check',
     roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
   },
 };
@@ -335,5 +360,6 @@ export const doubtfireStates = [
   ViewAllProjectsState,
   ViewAllUnits,
   AdministerUnits,
-  ScormPlayerState,
+  ScormPlayerNormalState,
+  ScormPlayerReviewState,
 ];

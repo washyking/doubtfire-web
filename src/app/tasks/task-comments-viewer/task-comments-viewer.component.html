@@ -73,11 +73,11 @@
               </div>
 
               <div *ngSwitchCase="'scorm'" class="comment-scorm">
-                <scorm-comment
+                <f-scorm-comment
                   [task]="task"
                   [comment]="comment"
                   *ngIf="scormEnabled"
-                ></scorm-comment>
+                ></f-scorm-comment>
               </div>
 
               <div class="bubble" [ngClass]="commentClasses(comment)">

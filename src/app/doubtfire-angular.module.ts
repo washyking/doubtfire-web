@@ -229,6 +229,7 @@ import {ScormPlayerComponent} from './common/scorm-player/scorm-player.component
 import {ScormAdapterService} from './api/services/scorm-adapter.service';
 import {ScormCommentComponent} from './tasks/task-comments-viewer/scorm-comment/scorm-comment.component';
 import {TaskScormCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-scorm-card/task-scorm-card.component';
+import {TestAttemptService} from './api/services/test-attempt.service';
 
 @NgModule({
   // Components we declare
@@ -406,6 +407,7 @@ import {TaskScormCardComponent} from './projects/states/dashboard/directives/tas
     IsActiveUnitRole,
     CreateNewUnitModal,
     ScormAdapterService,
+    TestAttemptService,
     provideLottieOptions({
       player: () => player,
     }),

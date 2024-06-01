@@ -34,6 +34,8 @@ export * from './task-similarity';
 export * from './tii-action';
 export * from './scorm-datamodel';
 export * from './scorm-player-context';
+export * from './test-attempt';
+export * from './task-comment/scorm-comment';
 
 // Users -- are students or staff
 export * from './user/user';
@@ -58,3 +60,4 @@ export * from '../services/teaching-period-break.service';
 export * from '../services/learning-outcome.service';
 export * from '../services/group-set.service';
 export * from '../services/task-similarity.service';
+export * from '../services/test-attempt.service';

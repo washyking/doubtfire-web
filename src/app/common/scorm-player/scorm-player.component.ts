@@ -29,6 +29,9 @@ export class ScormPlayerComponent implements OnInit {
   @Input()
   mode: 'browse' | 'normal' | 'review';
 
+  @Input()
+  testAttemptId: number;
+
   iframeSrc: SafeResourceUrl;
 
   constructor(
@@ -41,9 +44,13 @@ export class ScormPlayerComponent implements OnInit {
     this.globalState.setView(ViewType.OTHER);
     this.globalState.hideHeader();
 
-    this.scormAdapter.projectId = this.projectId;
-    this.scormAdapter.taskDefId = this.taskDefId;
     this.scormAdapter.mode = this.mode;
+    if (this.mode === 'normal') {
+      this.scormAdapter.projectId = this.projectId;
+      this.scormAdapter.taskDefId = this.taskDefId;
+    } else if (this.mode === 'review') {
+      this.scormAdapter.testAttemptId = this.testAttemptId;
+    }
 
     window.API_1484_11 = {
       Initialize: () => this.scormAdapter.Initialize(),

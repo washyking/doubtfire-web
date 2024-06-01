@@ -1,10 +1,13 @@
-<div fxLayout="row" fxLayoutAlign="space-evenly center">
-  <div fxLayout="column" fxLayoutAlign="space-around center">
+<div class="flex-row justify-evenly items-center">
+  <div class="flex-column justify-around items-center">
     <div>
       <hr class="hr-text" data-content="Knowledge Check Summary" />
       <div class="markdown-to-html" [innerHTML]="comment.text"></div>
-      <button mat-button (click)="reviewScormTest()" [hidden]="!task.definition.scormAllowReview">Review test</button>
-      <br/>
+      <div class="flex-row">
+        <button mat-button (click)="reviewScormTest()" [hidden]="!task.definition.scormAllowReview">Review test</button>
+        <button mat-button (click)="passScormAttempt()" [hidden]="!canOverridePass">Pass attempt</button>
+        <button mat-button (click)="deleteScormAttempt()" [hidden]="!user.isStaff">Delete attempt</button>
+      </div>
       <hr class="hr-fade" />
     </div>
   </div>

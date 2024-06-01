@@ -1,4 +1,4 @@
-import { Task, TaskComment, UserService } from 'src/app/api/models/doubtfire-model';
+import { ScormComment, Task, TaskComment, TestAttemptService, UserService } from 'src/app/api/models/doubtfire-model';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -32,7 +32,8 @@ export class TaskCommentService extends CachedEntityService<TaskComment> {
     httpClient: HttpClient,
     private emojiService: EmojiService,
     private userService: UserService,
-    private downloader: FileDownloaderService
+    private downloader: FileDownloaderService,
+    private testAttemptService: TestAttemptService,
   ) {
     super(httpClient, API_URL);
 
@@ -85,7 +86,20 @@ export class TaskCommentService extends CachedEntityService<TaskComment> {
       'status',
       'numberOfPrompts',
       'timeDiscussionComplete',
-      'timeDiscussionStarted'
+      'timeDiscussionStarted',
+
+      // Scorm Comments
+      {
+        keys: 'testAttempt',
+        toEntityFn: (data: object, key: string, comment: ScormComment) => {
+          const testAttempt = this.testAttemptService.cache.getOrCreate(
+            data[key].id,
+            testAttemptService,
+            data[key],
+          );
+          return testAttempt;
+        },
+      },
     );
 
     this.mapping.addJsonKey(
@@ -103,6 +117,8 @@ export class TaskCommentService extends CachedEntityService<TaskComment> {
         return new DiscussionComment(other);
       case 'extension':
         return new ExtensionComment(other);
+      case 'scorm':
+        return new ScormComment(other);
       default:
         return new TaskComment(other);
     }
