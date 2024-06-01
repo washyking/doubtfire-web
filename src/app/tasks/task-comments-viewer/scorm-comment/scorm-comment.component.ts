@@ -15,6 +15,9 @@ export class ScormCommentComponent implements OnInit {
   ngOnInit() {}
 
   reviewScormTest() {
-    window.open(`#/task_def/${this.task.taskDefId}/task/${this.task.id}/scorm-player/review`, '_blank');
+    window.open(
+      `#/projects/${this.task.project.id}/task_def_id/${this.task.taskDefId}/scorm-player/review`,
+      '_blank',
+    );
   }
 }

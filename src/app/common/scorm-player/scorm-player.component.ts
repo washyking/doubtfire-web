@@ -21,7 +21,7 @@ export class ScormPlayerComponent implements OnInit {
   context: ScormPlayerContext;
 
   @Input()
-  taskId: number;
+  projectId: number;
 
   @Input()
   taskDefId: number;
@@ -41,7 +41,8 @@ export class ScormPlayerComponent implements OnInit {
     this.globalState.setView(ViewType.OTHER);
     this.globalState.hideHeader();
 
-    this.scormAdapter.taskId = this.taskId;
+    this.scormAdapter.projectId = this.projectId;
+    this.scormAdapter.taskDefId = this.taskDefId;
     this.scormAdapter.mode = this.mode;
 
     window.API_1484_11 = {

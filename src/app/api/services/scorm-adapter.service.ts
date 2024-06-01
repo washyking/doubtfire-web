@@ -7,7 +7,6 @@ import {ScormDataModel, ScormPlayerContext} from 'src/app/api/models/doubtfire-m
   providedIn: 'root',
 })
 export class ScormAdapterService {
-  private readonly apiBaseUrl = `${API_URL}/test_attempts`;
   private dataModel: ScormDataModel;
   private context: ScormPlayerContext;
   private xhr: XMLHttpRequest;
@@ -18,8 +17,12 @@ export class ScormAdapterService {
     this.xhr = new XMLHttpRequest();
   }
 
-  set taskId(taskId: number) {
-    this.context.taskId = taskId;
+  set projectId(projectId: number) {
+    this.context.projectId = projectId;
+  }
+
+  set taskDefId(taskDefId: number) {
+    this.context.taskDefId = taskDefId;
   }
 
   set mode(mode: 'browse' | 'normal' | 'review') {
@@ -51,7 +54,11 @@ export class ScormAdapterService {
     }
 
     // TODO: move this part into the player component
-    this.xhr.open('GET', `${this.apiBaseUrl}/${this.context.taskId}/latest`, false);
+    this.xhr.open(
+      'GET',
+      `${API_URL}/projects/${this.context.projectId}/task_def_id/${this.context.taskDefId}/test_attempts/latest`,
+      false,
+    );
 
     let noTestFound = false;
     let startNewTest = false;
@@ -82,11 +89,7 @@ export class ScormAdapterService {
     }
 
     if (!startNewTest) {
-      this.xhr.open(
-        'PATCH',
-        `${this.apiBaseUrl}/${this.context.taskId}/session/${this.context.attemptId}`,
-        false,
-      );
+      this.xhr.open('PATCH', `${API_URL}/test_attempts/${this.context.attemptId}`, false);
       this.xhr.send();
       console.log(this.xhr.responseText);
 
@@ -96,7 +99,11 @@ export class ScormAdapterService {
       this.dataModel.restore(currentSession.cmi_datamodel);
       console.log(this.dataModel.dump());
     } else {
-      this.xhr.open('POST', `${this.apiBaseUrl}/${this.context.taskId}/session`, false);
+      this.xhr.open(
+        'POST',
+        `${API_URL}/projects/${this.context.projectId}/task_def_id/${this.context.taskDefId}/test_attempts`,
+        false,
+      );
       this.xhr.send();
       console.log(this.xhr.responseText);
 
@@ -126,11 +133,7 @@ export class ScormAdapterService {
         break;
     }
 
-    this.xhr.open(
-      'PATCH',
-      `${this.apiBaseUrl}/${this.context.taskId}/session/${this.context.attemptId}`,
-      false,
-    );
+    this.xhr.open('PATCH', `${API_URL}/test_attempts/${this.context.attemptId}`, false);
     this.xhr.setRequestHeader('Content-Type', 'application/json');
     const requestData = {
       cmi_datamodel: JSON.stringify(this.dataModel.dump()),
@@ -202,11 +205,7 @@ export class ScormAdapterService {
     }
 
     const xhr = new XMLHttpRequest();
-    xhr.open(
-      'PATCH',
-      `${this.apiBaseUrl}/${this.context.taskId}/session/${this.context.attemptId}`,
-      true,
-    );
+    xhr.open('PATCH', `${API_URL}/test_attempts/${this.context.attemptId}`, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     const requestData = {
       cmi_datamodel: JSON.stringify(this.dataModel.dump()),

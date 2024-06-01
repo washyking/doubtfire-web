@@ -297,13 +297,13 @@ const ViewAllUnits: NgHybridStateDeclaration = {
  */
 const ScormPlayerState: NgHybridStateDeclaration = {
   name: 'scorm-player',
-  url: '/task_def/:task_def_id/task/:task_id/scorm-player/:mode',
+  url: '/projects/:project_id/task_def_id/:task_definition_id/scorm-player/:mode',
   resolve: {
-    taskId: function ($stateParams) {
-      return $stateParams.task_id;
+    projectId: function ($stateParams) {
+      return $stateParams.project_id;
     },
     taskDefId: function ($stateParams) {
-      return $stateParams.task_def_id;
+      return $stateParams.task_definition_id;
     },
     mode: function ($stateParams) {
       return $stateParams.mode;

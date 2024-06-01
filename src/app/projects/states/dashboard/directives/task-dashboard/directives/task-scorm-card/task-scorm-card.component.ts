@@ -22,7 +22,10 @@ export class TaskScormCardComponent implements OnInit {
   }
 
   launchScormPlayer(): void {
-    window.open(`#/task_def/${this.task.taskDefId}/task/${this.task.id}/scorm-player/normal`, '_blank');
+    window.open(
+      `#/projects/${this.task.project.id}/task_def_id/${this.task.taskDefId}/scorm-player/normal`,
+      '_blank',
+    );
   }
 
   requestMoreAttempts(): void {

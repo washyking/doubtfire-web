@@ -48,7 +48,8 @@ export class ScormPlayerContext {
     return CMIErrorCodes[value];
   }
 
-  taskId: number;
+  projectId: number;
+  taskDefId: number;
   user: User;
 
   attemptNumber: number;
