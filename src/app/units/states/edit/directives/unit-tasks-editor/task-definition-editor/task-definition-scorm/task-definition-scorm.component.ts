@@ -1,10 +1,10 @@
-import { Component, Inject, Input } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { alertService } from 'src/app/ajs-upgraded-providers';
-import { TaskDefinition } from 'src/app/api/models/task-definition';
-import { Unit } from 'src/app/api/models/unit';
-import { TaskDefinitionService } from 'src/app/api/services/task-definition.service';
-import { FileDownloaderService } from 'src/app/common/file-downloader/file-downloader.service';
+import {Component, Input} from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
+import {AlertService} from 'src/app/common/services/alert.service';
+import {TaskDefinition} from 'src/app/api/models/task-definition';
+import {Unit} from 'src/app/api/models/unit';
+import {TaskDefinitionService} from 'src/app/api/services/task-definition.service';
+import {FileDownloaderService} from 'src/app/common/file-downloader/file-downloader.service';
 
 @Component({
   selector: 'f-task-definition-scorm',
@@ -16,8 +16,8 @@ export class TaskDefinitionScormComponent {
 
   constructor(
     private fileDownloaderService: FileDownloaderService,
-    @Inject(alertService) private alerts: any,
-    private taskDefinitionService: TaskDefinitionService
+    private alerts: AlertService,
+    private taskDefinitionService: TaskDefinitionService,
   ) {}
 
   public attemptLimitControl = new FormControl('', [Validators.max(100), Validators.min(0)]);
@@ -41,9 +41,11 @@ export class TaskDefinitionScormComponent {
   }
 
   public uploadScormData(files: FileList) {
-    console.log(Array.from(files).map(f => f.type));
+    console.log(Array.from(files).map((f) => f.type));
     const validMimeTypes = ['application/zip', 'application/x-zip-compressed', 'multipart/x-zip'];
-    const validFiles = Array.from(files as ArrayLike<File>).filter(f => validMimeTypes.includes(f.type));
+    const validFiles = Array.from(files as ArrayLike<File>).filter((f) =>
+      validMimeTypes.includes(f.type),
+    );
     if (validFiles.length > 0) {
       const file = validFiles[0];
       this.taskDefinitionService.uploadScormData(this.taskDefinition, file).subscribe({
