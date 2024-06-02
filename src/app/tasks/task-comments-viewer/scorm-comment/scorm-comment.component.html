@@ -2,11 +2,21 @@
   <div class="flex-column justify-around items-center">
     <div>
       <hr class="hr-text" data-content="Knowledge Check Summary" />
-      <div class="markdown-to-html" [innerHTML]="comment.text"></div>
+      <div class="markdown-to-html my-1.5" [innerHTML]="comment.text"></div>
       <div class="flex-row">
-        <button mat-button (click)="reviewScormTest()" [hidden]="!task.definition.scormAllowReview">Review test</button>
-        <button mat-button (click)="passScormAttempt()" [hidden]="!canOverridePass">Pass attempt</button>
-        <button mat-button (click)="deleteScormAttempt()" [hidden]="!user.isStaff">Delete attempt</button>
+        <button
+          mat-button
+          (click)="reviewScormTest()"
+          [hidden]="!user.isStaff && !task.definition.scormAllowReview"
+        >
+          Review test
+        </button>
+        <button mat-button (click)="passScormAttempt()" [hidden]="!canOverridePass">
+          Pass attempt
+        </button>
+        <button mat-button (click)="deleteScormAttempt()" [hidden]="!user.isStaff">
+          Delete attempt
+        </button>
       </div>
       <hr class="hr-fade" />
     </div>

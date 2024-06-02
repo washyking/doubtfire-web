@@ -10,11 +10,10 @@ import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class TestAttemptService extends CachedEntityService<TestAttempt> {
-  protected readonly endpointFormat = 'test_attempts/:id:';
-  protected readonly forTaskEndpoint =
-    '/projects/:project_id:/task_definition_id/:task_def_id:/test_attempts';
+  protected readonly endpointFormat =
+    '/projects/:project_id:/task_def_id/:task_def_id:/test_attempts';
   protected readonly latestCompletedEndpoint =
-    this.forTaskEndpoint + '/latest?completed=:completed:';
+    this.endpointFormat + '/latest?completed=:completed:';
 
   constructor(httpClient: HttpClient) {
     super(httpClient, API_URL);
@@ -33,19 +32,6 @@ export class TestAttemptService extends CachedEntityService<TestAttempt> {
 
   public override createInstanceFrom(_json: object, constructorParams: Task): TestAttempt {
     return new TestAttempt(constructorParams);
-  }
-
-  public getAttemptsForTask(task: Task): Observable<TestAttempt[]> {
-    return this.query(
-      {
-        project_id: task.project.id,
-        task_def_id: task.taskDefId,
-      },
-      {
-        endpointFormat: this.forTaskEndpoint,
-        constructorParams: task,
-      },
-    );
   }
 
   public getLatestCompletedAttempt(task: Task): Observable<TestAttempt> {

@@ -1,23 +1,29 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Task} from 'src/app/api/models/task';
-import {TaskService} from 'src/app/api/services/task.service';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Task} from 'src/app/api/models/doubtfire-model';
 
 @Component({
   selector: 'f-task-scorm-card',
   templateUrl: './task-scorm-card.component.html',
   styleUrls: ['./task-scorm-card.component.scss'],
 })
-export class TaskScormCardComponent implements OnInit {
+export class TaskScormCardComponent implements OnChanges {
   @Input() task: Task;
   attemptsLeft: number;
 
-  constructor(
-    private taskService: TaskService,
-  ) {}
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.task && changes.task.currentValue) {
+      this.attemptsLeft = undefined;
+      this.getAttemptsLeft();
+    }
+  }
 
-  ngOnInit(): void {
-    if (this.task) {
-
+  getAttemptsLeft(): void {
+    if (this.task.definition.scormAttemptLimit != 0) {
+      this.task.fetchTestAttempts().subscribe((attempts) => {
+        let count = attempts.length;
+        if (count > 0 && attempts[0].terminated === false) count--;
+        this.attemptsLeft = this.task.definition.scormAttemptLimit - count;
+      });
     }
   }
 
@@ -28,7 +34,5 @@ export class TaskScormCardComponent implements OnInit {
     );
   }
 
-  requestMoreAttempts(): void {
-
-  }
+  requestMoreAttempts(): void {}
 }

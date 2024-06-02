@@ -15,6 +15,8 @@ import {
   TaskCommentService,
   TaskSimilarity,
   TaskSimilarityService,
+  TestAttempt,
+  TestAttemptService,
 } from './doubtfire-model';
 import {Grade} from './grade';
 import {LOCALE_ID} from '@angular/core';
@@ -53,6 +55,7 @@ export class Task extends Entity {
   public readonly commentCache: EntityCache<TaskComment> = new EntityCache<TaskComment>();
 
   public readonly similarityCache: EntityCache<TaskSimilarity> = new EntityCache<TaskSimilarity>();
+  public readonly testAttemptCache: EntityCache<TestAttempt> = new EntityCache<TestAttempt>();
 
   private _unit: Unit;
 
@@ -766,6 +769,23 @@ export class Task extends Entity {
       {taskId: this.id},
       {
         cache: this.similarityCache,
+        constructorParams: this,
+      },
+    );
+  }
+
+  /**
+   * Fetch the SCORM test attempts for this task.
+   */
+  public fetchTestAttempts(): Observable<TestAttempt[]> {
+    const testAttemptService: TestAttemptService = AppInjector.get(TestAttemptService);
+    return testAttemptService.query(
+      {
+        project_id: this.project.id,
+        task_def_id: this.taskDefId,
+      },
+      {
+        cache: this.testAttemptCache,
         constructorParams: this,
       },
     );
