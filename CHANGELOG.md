@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.23](https://github.com/macite/doubtfire-deploy/compare/v7.0.22...v7.0.23) (2024-06-04)
+
+
+### Bug Fixes
+
+* tidy up portfolio marking page to avoid save issues ([58d091f](https://github.com/macite/doubtfire-deploy/commit/58d091fe52e108a6063907b3b486ff14648862d1))
+* update entity service to correct portfolio progress load ([96cd698](https://github.com/macite/doubtfire-deploy/commit/96cd6984073b689adcc85207ce54913a07f5c5f1))
+
 ### [7.0.22](https://github.com/macite/doubtfire-deploy/compare/v7.0.21...v7.0.22) (2024-05-31)
 
 
