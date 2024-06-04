@@ -64,8 +64,6 @@ angular.module('doubtfire.units.states.portfolios', [])
 
   $scope.setActiveTab($scope.tabs.selectStudent)
 
-  $scope.grades = gradeService.grades
-
   $scope.tutor = newUserService.currentUser
 
   $scope.search = ""
@@ -76,6 +74,7 @@ angular.module('doubtfire.units.states.portfolios', [])
   $scope.pageSize = 10
 
   $scope.filterOptions = {selectedGrade: -1}
+  $scope.gradeValues = gradeService.gradeValues
   $scope.grades = gradeService.grades
   $scope.gradeAcronyms = gradeService.gradeAcronyms
 

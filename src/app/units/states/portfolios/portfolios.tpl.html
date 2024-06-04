@@ -50,7 +50,7 @@
           </div>
           <div class="btn-group btn-group-sm select-portfolio-grade">
             <label
-              ng-repeat="grade in grades"
+              ng-repeat="grade in gradeValues"
               ng-if="$index != 4"
               class="btn btn-default col-sm-3 text-center"
               ng-model="filterOptions.selectedGrade"
@@ -58,7 +58,7 @@
             >
               <grade-icon
                 grade="grade"
-                tooltip="Select to show student's aiming for {{grade}}"
+                tooltip="Select to show student's aiming for {{grades[grade]}}"
                 tooltip-append-to-body="true"
                 class="text-{{$index == filterOptions.selectedGrade ? 'primary' : 'muted'}}"
               ></grade-icon>
