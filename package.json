@@ -82,7 +82,7 @@
     "ng-flex-layout": "^17.3.4-beta.1",
     "ng2-pdf-viewer": "^10.0",
     "ngx-bootstrap": "^6.1.0",
-    "ngx-entity-service": "^0.0.38",
+    "ngx-entity-service": "^0.0.39",
     "ngx-lottie": "^11.0.2",
     "nvd3": "1.8.6",
     "rxjs": "~7.4.0",

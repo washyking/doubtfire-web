@@ -327,8 +327,17 @@ All notable changes to this project will be documented in this file. See [standa
 * remove unused loading from f-units ([c4c38fa](https://github.com/macite/doubtfire-deploy/commit/c4c38fad4fbdfe248e383cf247f949197ad0a047))
 * use tailwindcss classes ([8d7e160](https://github.com/macite/doubtfire-deploy/commit/8d7e160e2d40c42284ee0c1fc85d6d9e01166cda))
 
-### [7.0.22](https://github.com/macite/doubtfire-deploy/compare/v7.0.21...v7.0.22) (2024-05-31)
 
+### [7.0.23](https://github.com/macite/doubtfire-deploy/compare/v7.0.22...v7.0.23) (2024-06-04)
+
+
+### Bug Fixes
+
+* tidy up portfolio marking page to avoid save issues ([58d091f](https://github.com/macite/doubtfire-deploy/commit/58d091fe52e108a6063907b3b486ff14648862d1))
+* update entity service to correct portfolio progress load ([96cd698](https://github.com/macite/doubtfire-deploy/commit/96cd6984073b689adcc85207ce54913a07f5c5f1))
+
+
+### [7.0.22](https://github.com/macite/doubtfire-deploy/compare/v7.0.21...v7.0.22) (2024-05-31)
 
 ### Features
 
