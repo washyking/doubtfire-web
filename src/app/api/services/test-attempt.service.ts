@@ -20,7 +20,6 @@ export class TestAttemptService extends CachedEntityService<TestAttempt> {
 
     this.mapping.addKeys(
       'id',
-      'attemptNumber',
       'terminated',
       'completionStatus',
       'successStatus',

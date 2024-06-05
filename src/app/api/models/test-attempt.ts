@@ -3,7 +3,6 @@ import {Task} from './doubtfire-model';
 
 export class TestAttempt extends Entity {
   id: number;
-  attemptNumber: number;
   terminated: boolean;
   completionStatus: boolean;
   successStatus: boolean;

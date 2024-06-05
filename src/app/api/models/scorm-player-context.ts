@@ -52,7 +52,6 @@ export class ScormPlayerContext {
   taskDefId: number;
   user: User;
 
-  attemptNumber: number;
   attemptId: number;
   learnerName: string;
   learnerId: number;
