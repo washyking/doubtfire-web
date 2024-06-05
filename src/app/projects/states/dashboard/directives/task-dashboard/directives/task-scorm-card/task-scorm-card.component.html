@@ -22,10 +22,10 @@
     </button>
     <button
       mat-stroked-button
-      (click)="requestMoreAttempts()"
-      [hidden]="task.definition.scormAttemptLimit === 0"
+      (click)="requestExtraAttempt()"
+      [hidden]="task.definition.scormAttemptLimit === 0 || attemptsLeft !== 0"
     >
-      Request more attempts
+      Request extra attempt
     </button>
   </mat-card-actions>
 </mat-card>

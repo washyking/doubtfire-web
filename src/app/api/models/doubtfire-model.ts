@@ -36,6 +36,7 @@ export * from './scorm-datamodel';
 export * from './scorm-player-context';
 export * from './test-attempt';
 export * from './task-comment/scorm-comment';
+export * from './task-comment/scorm-extension-comment';
 
 // Users -- are students or staff
 export * from './user/user';

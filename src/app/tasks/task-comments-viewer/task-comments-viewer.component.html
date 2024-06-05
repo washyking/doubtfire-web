@@ -95,6 +95,11 @@
                   <extension-comment [task]="task" [comment]="comment"> </extension-comment>
                 </div>
 
+                <div *ngSwitchCase="'scorm_extension'" class="comment-scorm-extension">
+                  <f-scorm-extension-comment [task]="task" [comment]="comment">
+                  </f-scorm-extension-comment>
+                </div>
+
                 <div *ngSwitchCase="'text'" class="comment-text">
                   <div class="markdown-to-html" [innerHTML]="comment.text | marked"></div>
                 </div>

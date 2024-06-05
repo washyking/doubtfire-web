@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Task} from 'src/app/api/models/doubtfire-model';
+import {ScormExtensionModalService} from 'src/app/common/modals/scorm-extension-modal/scorm-extension-modal.service';
 
 @Component({
   selector: 'f-task-scorm-card',
@@ -9,6 +10,8 @@ import {Task} from 'src/app/api/models/doubtfire-model';
 export class TaskScormCardComponent implements OnChanges {
   @Input() task: Task;
   attemptsLeft: number;
+
+  constructor(private extensions: ScormExtensionModalService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.task && changes.task.currentValue) {
@@ -22,7 +25,7 @@ export class TaskScormCardComponent implements OnChanges {
       this.task.fetchTestAttempts().subscribe((attempts) => {
         let count = attempts.length;
         if (count > 0 && attempts[0].terminated === false) count--;
-        this.attemptsLeft = this.task.definition.scormAttemptLimit - count;
+        this.attemptsLeft = this.task.definition.scormAttemptLimit + this.task.scormExtensions - count;
       });
     }
   }
@@ -34,5 +37,9 @@ export class TaskScormCardComponent implements OnChanges {
     );
   }
 
-  requestMoreAttempts(): void {}
+  requestExtraAttempt(): void {
+    this.extensions.show(this.task, () => {
+      this.task.refresh();
+    });
+  }
 }

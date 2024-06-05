@@ -32,6 +32,7 @@ export class Task extends Entity {
   status: TaskStatusEnum = 'not_started';
   dueDate: Date;
   extensions: number;
+  scormExtensions: number;
   submissionDate: Date;
   completionDate: Date;
   timesAssessed: number;

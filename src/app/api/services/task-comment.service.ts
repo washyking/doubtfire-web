@@ -11,6 +11,7 @@ import API_URL from 'src/app/config/constants/apiURL';
 import { EmojiService } from 'src/app/common/services/emoji.service';
 import { MappingFunctions } from './mapping-fn';
 import { FileDownloaderService } from 'src/app/common/file-downloader/file-downloader.service';
+import { ScormExtensionComment } from '../models/task-comment/scorm-extension-comment';
 
 @Injectable()
 export class TaskCommentService extends CachedEntityService<TaskComment> {
@@ -22,6 +23,10 @@ export class TaskCommentService extends CachedEntityService<TaskComment> {
     'projects/:projectId:/task_def_id/:taskDefinitionId:/assess_extension/:id:';
   private readonly requestExtensionEndpointFormat =
     'projects/:projectId:/task_def_id/:taskDefinitionId:/request_extension';
+  private readonly scormExtensionGrantEndpointFormat =
+    'projects/:projectId:/task_def_id/:taskDefinitionId:/assess_scorm_extension/:id:';
+  private readonly scormRequestExtensionEndpointFormat =
+    'projects/:projectId:/task_def_id/:taskDefinitionId:/request_scorm_extension';
   private readonly discussionCommentReplyEndpointFormat = "/projects/:project_id:/task_def_id/:task_definition_id:/comments/:task_comment_id:/discussion_comment/reply";
   private readonly getDiscussionCommentPromptEndpointFormat = "/projects/:project_id:/task_def_id/:task_definition_id:/comments/:task_comment_id:/discussion_comment/prompt_number/:prompt_number:";
 
@@ -100,6 +105,9 @@ export class TaskCommentService extends CachedEntityService<TaskComment> {
           return testAttempt;
         },
       },
+
+      // Scorm Extension Comments
+      ['taskScormExtensions', 'scorm_extensions']
     );
 
     this.mapping.addJsonKey(
@@ -119,6 +127,8 @@ export class TaskCommentService extends CachedEntityService<TaskComment> {
         return new ExtensionComment(other);
       case 'scorm':
         return new ScormComment(other);
+      case 'scorm_extension':
+        return new ScormExtensionComment(other);
       default:
         return new TaskComment(other);
     }
@@ -215,6 +225,39 @@ export class TaskCommentService extends CachedEntityService<TaskComment> {
         taskDefinitionId: task.definition.id,
       },
       opts
+    );
+  }
+
+  public assessScormExtension(extension: ScormExtensionComment): Observable<TaskComment> {
+    const opts: RequestOptions<TaskComment> = {
+      endpointFormat: this.scormExtensionGrantEndpointFormat,
+      entity: extension,
+    };
+
+    return super.update(
+      {
+        id: extension.id,
+        projectId: extension.project.id,
+        taskDefinitionId: extension.task.definition.id,
+      },
+      opts,
+    );
+  }
+
+  public requestScormExtension(reason: string, task: any): Observable<TaskComment> {
+    const opts: RequestOptions<TaskComment> = {
+      endpointFormat: this.scormRequestExtensionEndpointFormat,
+      body: {
+        comment: reason,
+      },
+      cache: task.commentCache,
+    };
+    return super.create(
+      {
+        projectId: task.project.id,
+        taskDefinitionId: task.definition.id,
+      },
+      opts,
     );
   }
 
