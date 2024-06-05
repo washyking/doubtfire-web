@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.24](https://github.com/macite/doubtfire-deploy/compare/v7.0.23...v7.0.24) (2024-06-05)
+
+
+### Bug Fixes
+
+* ensure download blob supports 206 responses ([6445f9f](https://github.com/macite/doubtfire-deploy/commit/6445f9f998db70fbe9b9abf723dc17fd298b5d2f))
+
 ### [7.0.23](https://github.com/macite/doubtfire-deploy/compare/v7.0.22...v7.0.23) (2024-06-04)
 
 
