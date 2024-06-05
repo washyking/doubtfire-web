@@ -11,6 +11,9 @@ import {FUnitsComponent} from './admin/states/f-units/f-units.component';
 import {ProjectDashboardComponent} from './projects/states/dashboard/project-dashboard/project-dashboard.component';
 import {AppInjector} from './app-injector';
 import {ProjectService} from './api/services/project.service';
+import {Observable, first} from 'rxjs';
+import {GlobalStateService} from './projects/states/index/global-state.service';
+import {Project} from './api/models/project';
 
 /*
  * Use this file to store any states that are sourced by angular components.
@@ -277,13 +280,28 @@ const AbstractProjectState: NgHybridStateDeclaration = {
   name: 'projects2',
   url: '/projects2/:projectId',
   abstract: true,
-  // views: {
-  // },
+  views: {
+    main: {
+      component: ProjectDashboardComponent,
+    },
+  },
   resolve: {
-    project: function ($stateParams) {
-      console.log('Getting project');
+    project$: function ($stateParams) {
       const projectService = AppInjector.get(ProjectService);
-      return projectService.get({id: $stateParams.project_id});
+      const globalState = AppInjector.get(GlobalStateService);
+
+      return new Observable((observer) => {
+        globalState.onLoad(() => {
+          projectService
+            .get({id: $stateParams.projectId}, {cacheBehaviourOnGet: 'cacheQuery'})
+            .subscribe({
+              next: (project: Project) => {
+                observer.next(project);
+                observer.complete();
+              },
+            });
+        });
+      }).pipe(first());
     },
   },
 };
