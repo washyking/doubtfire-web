@@ -59,6 +59,8 @@ export class ScormAdapterService {
 
     if (this.context.mode === 'review') {
       this.xhr.open('GET', `${API_URL}/test_attempts/${this.context.attemptId}/review`, false);
+      this.xhr.setRequestHeader('Auth-Token', this.context.user.authenticationToken);
+      this.xhr.setRequestHeader('Username', this.context.user.username);
 
       this.xhr.onload = () => {
         if (this.xhr.status >= 200 && this.xhr.status < 400) {
@@ -88,6 +90,8 @@ export class ScormAdapterService {
       `${API_URL}/projects/${this.context.projectId}/task_def_id/${this.context.taskDefId}/test_attempts/latest`,
       false,
     );
+    this.xhr.setRequestHeader('Auth-Token', this.context.user.authenticationToken);
+    this.xhr.setRequestHeader('Username', this.context.user.username);
 
     let noTestFound = false;
     let startNewTest = false;
@@ -119,6 +123,8 @@ export class ScormAdapterService {
 
     if (!startNewTest) {
       this.xhr.open('PATCH', `${API_URL}/test_attempts/${this.context.attemptId}`, false);
+      this.xhr.setRequestHeader('Auth-Token', this.context.user.authenticationToken);
+      this.xhr.setRequestHeader('Username', this.context.user.username);
       this.xhr.send();
       console.log(this.xhr.responseText);
 
@@ -133,6 +139,8 @@ export class ScormAdapterService {
         `${API_URL}/projects/${this.context.projectId}/task_def_id/${this.context.taskDefId}/test_attempts`,
         false,
       );
+      this.xhr.setRequestHeader('Auth-Token', this.context.user.authenticationToken);
+      this.xhr.setRequestHeader('Username', this.context.user.username);
       this.xhr.send();
       console.log(this.xhr.responseText);
 
@@ -163,6 +171,8 @@ export class ScormAdapterService {
     }
 
     this.xhr.open('PATCH', `${API_URL}/test_attempts/${this.context.attemptId}`, false);
+    this.xhr.setRequestHeader('Auth-Token', this.context.user.authenticationToken);
+    this.xhr.setRequestHeader('Username', this.context.user.username);
     this.xhr.setRequestHeader('Content-Type', 'application/json');
     const requestData = {
       cmi_datamodel: JSON.stringify(this.dataModel.dump()),
@@ -233,26 +243,28 @@ export class ScormAdapterService {
         break;
     }
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('PATCH', `${API_URL}/test_attempts/${this.context.attemptId}`, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    this.xhr.open('PATCH', `${API_URL}/test_attempts/${this.context.attemptId}`, true);
+    this.xhr.setRequestHeader('Auth-Token', this.context.user.authenticationToken);
+    this.xhr.setRequestHeader('Username', this.context.user.username);
+    this.xhr.setRequestHeader('Content-Type', 'application/json');
     const requestData = {
       cmi_datamodel: JSON.stringify(this.dataModel.dump()),
     };
-    xhr.send(JSON.stringify(requestData));
+    
 
-    xhr.onload = () => {
-      if (xhr.status >= 200 && xhr.status < 400) {
+    this.xhr.onload = () => {
+      if (this.xhr.status >= 200 && this.xhr.status < 400) {
         console.log('DataModel saved successfully.');
       } else {
-        console.error('Error saving DataModel:', xhr.responseText);
+        console.error('Error saving DataModel:', this.xhr.responseText);
       }
     };
 
-    xhr.onerror = () => {
+    this.xhr.onerror = () => {
       console.error('Request failed.');
     };
 
+    this.xhr.send(JSON.stringify(requestData));
     this.context.errorCode = 0;
     return 'true';
   }
