@@ -111,6 +111,7 @@ import {StudentTutorialSelectComponent} from './units/states/edit/directives/uni
 import {StudentCampusSelectComponent} from './units/states/edit/directives/unit-students-editor/student-campus-select/student-campus-select.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from 'src/environments/environment';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {PickerModule} from '@ctrl/ngx-emoji-mart';
 import {EmojiModule} from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import {EmojiService} from './common/services/emoji.service';
@@ -170,6 +171,7 @@ import {UnitDropdownComponent} from './common/header/unit-dropdown/unit-dropdown
 import {TaskDropdownComponent} from './common/header/task-dropdown/task-dropdown.component';
 import {SplashScreenComponent} from './home/splash-screen/splash-screen.component';
 import {HttpErrorInterceptor} from './common/services/http-error.interceptor';
+import {ProjectDashboardComponent} from './projects/states/dashboard/project-dashboard/project-dashboard.component';
 import {TaskDefinitionService} from './api/services/task-definition.service';
 import {NewTeachingPeriodDialogComponent} from './admin/states/teaching-periods/teaching-period-list/teaching-period-list.component';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -207,7 +209,7 @@ import {UnitAnalyticsComponent} from './units/states/analytics/unit-analytics-ro
 import {FileDropComponent} from './common/file-drop/file-drop.component';
 import {UnitTaskEditorComponent} from './units/states/edit/directives/unit-tasks-editor/unit-task-editor.component';
 import {FUsersComponent} from './admin/states/f-users/f-users.component';
-
+import {ProjectProgressComponent} from './common/project-progress/project-progress.component';
 import {CreateNewUnitModal} from './admin/modals/create-new-unit-modal/create-new-unit-modal.component';
 import {CreateNewUnitModalContentComponent} from './admin/modals/create-new-unit-modal/create-new-unit-modal-content.component';
 import {
@@ -293,6 +295,7 @@ import {GradeService} from './common/services/grade.service';
     UnitDropdownComponent,
     TaskDropdownComponent,
     SplashScreenComponent,
+    ProjectDashboardComponent,
     ObjectSelectComponent,
     WelcomeComponent,
     AcceptEulaComponent,
@@ -323,6 +326,7 @@ import {GradeService} from './common/services/grade.service';
     FTaskSheetViewComponent,
     TasksViewerComponent,
     FUsersComponent,
+    ProjectProgressComponent,
     FTaskBadgeComponent,
     FUnitsComponent,
   ],
@@ -450,6 +454,7 @@ import {GradeService} from './common/services/grade.service';
     ReactiveFormsModule,
     PickerModule,
     EmojiModule,
+    NgxChartsModule,
     PdfViewerModule,
     LottieComponent,
     UIRouterUpgradeModule.forRoot({states: doubtfireStates}),
