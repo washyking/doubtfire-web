@@ -14,7 +14,12 @@
     </p>
   </mat-card-content>
   <mat-card-actions class="space-x-2">
-    <button mat-stroked-button (click)="launchScormPlayer()" [hidden]="attemptsLeft === 0">
+    <button
+      mat-stroked-button
+      (click)="launchScormPlayer()"
+      [hidden]="attemptsLeft === 0"
+      [disabled]="user.isStaff"
+    >
       <mat-icon style="width: 20px; height: 20px; font-size: 20px" aria-label="Launch icon">
         launch
       </mat-icon>

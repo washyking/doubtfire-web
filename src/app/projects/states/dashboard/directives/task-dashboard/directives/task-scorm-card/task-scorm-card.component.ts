@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {Task} from 'src/app/api/models/doubtfire-model';
+import {Task, User, UserService} from 'src/app/api/models/doubtfire-model';
 import {ScormExtensionModalService} from 'src/app/common/modals/scorm-extension-modal/scorm-extension-modal.service';
 
 @Component({
@@ -10,8 +10,14 @@ import {ScormExtensionModalService} from 'src/app/common/modals/scorm-extension-
 export class TaskScormCardComponent implements OnChanges {
   @Input() task: Task;
   attemptsLeft: number;
+  user: User;
 
-  constructor(private extensions: ScormExtensionModalService) {}
+  constructor(
+    private extensions: ScormExtensionModalService,
+    private userService: UserService,
+  ) {
+    this.user = userService.currentUser;
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.task && changes.task.currentValue) {
