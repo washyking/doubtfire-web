@@ -49,7 +49,10 @@ export class TaskDefinitionScormComponent {
     if (validFiles.length > 0) {
       const file = validFiles[0];
       this.taskDefinitionService.uploadScormData(this.taskDefinition, file).subscribe({
-        next: () => this.alerts.success('Uploaded SCORM test data', 2000),
+        next: () => {
+          this.alerts.success('Uploaded SCORM test data', 2000);
+          this.taskDefinition.hasScormData = true;
+        },
         error: (message) => this.alerts.error(message, 6000),
       });
     } else {
