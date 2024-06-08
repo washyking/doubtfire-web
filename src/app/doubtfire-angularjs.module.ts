@@ -98,8 +98,6 @@ import 'build/src/app/units/modals/modals.js';
 import 'build/src/app/units/units.js';
 import 'build/src/app/units/states/tasks/inbox/inbox.js';
 import 'build/src/app/units/states/tasks/tasks.js';
-import 'build/src/app/units/states/tasks/viewer/directives/directives.js';
-import 'build/src/app/units/states/tasks/viewer/viewer.js';
 import 'build/src/app/units/states/tasks/definition/definition.js';
 import 'build/src/app/units/states/portfolios/portfolios.js';
 import 'build/src/app/units/states/groups/groups.js';
@@ -216,10 +214,10 @@ import {UnitTaskEditorComponent} from './units/states/edit/directives/unit-tasks
 import {TeachingPeriodUnitImportService} from './admin/states/teaching-periods/teaching-period-unit-import/teaching-period-unit-import.dialog';
 import {CreateNewUnitModal} from './admin/modals/create-new-unit-modal/create-new-unit-modal.component';
 import {FUsersComponent} from './admin/states/users/users.component';
-import {FUnitTaskListComponent} from './units/states/tasks/viewer/directives/unit-task-list/unit-task-list.component';
-import {FTaskDetailsViewComponent} from './units/states/tasks/viewer/directives/task-details-view/task-details-view.component';
-import {FTaskSheetViewComponent} from './units/states/tasks/viewer/directives/task-sheet-view/task-sheet-view.component';
-import {TasksViewerComponent} from './units/states/tasks/viewer/directives/tasks-viewer/tasks-viewer.component';
+import {FUnitTaskListComponent} from './units/task-viewer/directives/unit-task-list/unit-task-list.component';
+import {FTaskDetailsViewComponent} from './units/task-viewer/directives/task-details-view/task-details-view.component';
+import {FTaskSheetViewComponent} from './units/task-viewer/directives/task-sheet-view/task-sheet-view.component';
+import {TasksViewerComponent} from './units/task-viewer/directives/tasks-viewer/tasks-viewer.component';
 
 import {FUnitsComponent} from './admin/states/units/units.component';
 import {MarkedPipe} from './common/pipes/marked.pipe';
