@@ -227,6 +227,7 @@ import {UnitCodeComponent} from './common/unit-code/unit-code.component';
 import {GradeService} from './common/services/grade.service';
 import { UnitRootStateComponent } from './units/unit-root-state.component';
 import { TaskViewerStateComponent } from './units/task-viewer/task-viewer-state.component';
+import { ProjectRootStateComponent } from './projects/states/project-root-state.component';
 
 @NgModule({
   // Components we declare
@@ -326,6 +327,7 @@ import { TaskViewerStateComponent } from './units/task-viewer/task-viewer-state.
     FTaskDetailsViewComponent,
     FTaskSheetViewComponent,
     UnitRootStateComponent,
+    ProjectRootStateComponent,
     TaskViewerStateComponent,
     FUsersComponent,
     ProjectProgressComponent,
