@@ -18,12 +18,19 @@
       mat-stroked-button
       (click)="launchScormPlayer()"
       [hidden]="attemptsLeft === 0"
-      [disabled]="user.isStaff"
+      [disabled]="user.isStaff || checkIfPassed()"
     >
       <mat-icon style="width: 20px; height: 20px; font-size: 20px" aria-label="Launch icon">
         launch
       </mat-icon>
       Attempt test
+    </button>
+    <button
+      mat-stroked-button
+      (click)="reviewLatestCompletedAttempt()"
+      [hidden]="(!user.isStaff && !task.definition.scormAllowReview) || !latestCompletedAttempt"
+    >
+      Review last attempt
     </button>
     <button
       mat-stroked-button
