@@ -16,6 +16,7 @@ import {ScormExtensionModalService} from 'src/app/common/modals/scorm-extension-
 export class TaskScormCardComponent implements OnInit, OnChanges {
   @Input() task: Task;
   attemptsLeft: number;
+  isPassed: boolean;
   latestCompletedAttempt: TestAttempt;
   user: User;
 
@@ -39,10 +40,13 @@ export class TaskScormCardComponent implements OnInit, OnChanges {
 
   refreshAttemptData(): void {
     this.attemptsLeft = undefined;
-    this.getAttemptsLeft();
+    this.isPassed = undefined;
     this.latestCompletedAttempt = undefined;
+
+    this.getAttemptsLeft();
     this.testAttemptService.getLatestCompletedAttempt(this.task).subscribe((attempt) => {
       this.latestCompletedAttempt = attempt;
+      this.isPassed = attempt.successStatus;
     });
   }
 
@@ -55,13 +59,6 @@ export class TaskScormCardComponent implements OnInit, OnChanges {
           this.task.definition.scormAttemptLimit + this.task.scormExtensions - count;
       });
     }
-  }
-
-  checkIfPassed(): boolean {
-    if (this.latestCompletedAttempt) {
-      return this.latestCompletedAttempt.successStatus;
-    }
-    return false;
   }
 
   launchScormPlayer(): void {
