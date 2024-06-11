@@ -39,17 +39,6 @@ export class ScormExtensionCommentComponent implements OnInit {
     return this.task.unit.currentUserIsStaff;
   }
 
-  denyExtension() {
-    this.comment.deny().subscribe({
-      next: (tc: TaskComment) => {
-        this.alerts.success('Attempt request denied', 2000);
-      },
-      error: (response) => {
-        this.handleError(response);
-      },
-    });
-  }
-
   grantExtension() {
     this.comment.grant().subscribe({
       next: (tc: TaskComment) => {

@@ -26,11 +26,6 @@ export class ScormExtensionComment extends TaskComment {
     );
   }
 
-  public deny(): Observable<TaskComment> {
-    this.granted = false;
-    return this.assessScormExtension();
-  }
-
   public grant(): Observable<TaskComment> {
     this.granted = true;
     return this.assessScormExtension();
