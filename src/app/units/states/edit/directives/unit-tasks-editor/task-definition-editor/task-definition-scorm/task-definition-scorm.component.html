@@ -24,10 +24,7 @@
     </div>
 
     <div class="flex-grow flex flex-row gap-4 pt-4">
-      <div class="basis-1/2" >
-        <mat-checkbox matInput required [(ngModel)]="taskDefinition.scormTimeDelayEnabled" disabled>
-          Enable incremental time delays between test attempts
-        </mat-checkbox>
+      <div class="basis-1/2">
         <mat-checkbox matInput required [(ngModel)]="taskDefinition.scormAllowReview">
           Allow students to review completed test attempt
         </mat-checkbox>
@@ -43,6 +40,22 @@
           [formControl]="attemptLimitControl"
         />
       </mat-form-field>
+    </div>
+
+    <div class="flex-grow flex flex-row gap-4 pt-4">
+      <mat-checkbox
+        matInput
+        required
+        [(ngModel)]="taskDefinition.scormTimeDelayEnabled"
+        disabled
+        class="basis-1/2"
+      >
+        Enable incremental time delays between test attempts
+      </mat-checkbox>
+      <span class="basis-1/2" disabled
+        >If enabled, first 2 attempts can be completed immediately. Subsequently, a time delay will
+        be added, increasing by 2 hours every attempt made.</span
+      >
     </div>
   }
 </div>
