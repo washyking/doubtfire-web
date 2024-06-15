@@ -11,7 +11,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class TestAttemptService extends CachedEntityService<TestAttempt> {
   protected readonly endpointFormat =
-    '/projects/:project_id:/task_def_id/:task_def_id:/test_attempts';
+    'projects/:project_id:/task_def_id/:task_def_id:/test_attempts';
   protected readonly latestCompletedEndpoint =
     this.endpointFormat + '/latest?completed=:completed:';
 

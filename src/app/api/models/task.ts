@@ -512,9 +512,22 @@ export class Task extends Entity {
   }
 
   public get scormEnabled(): boolean {
-    return (
-      this.definition.scormEnabled && this.definition.hasScormData
-    );
+    return this.definition.scormEnabled && this.definition.hasScormData;
+  }
+
+  public get scormPassed(): boolean {
+    if (this.latestCompletedTestAttempt) {
+      return this.latestCompletedTestAttempt.successStatus;
+    }
+    return false;
+  }
+
+  public get isReadyForUpload(): boolean {
+    return !this.scormEnabled || this.definition.scormBypassTest || this.scormPassed;
+  }
+
+  public get latestCompletedTestAttempt(): TestAttempt {
+    return this.testAttemptCache.currentValues.find((attempt) => attempt.terminated);
   }
 
   public submissionUrl(asAttachment: boolean = false): string {
@@ -669,12 +682,15 @@ export class Task extends Entity {
 
   public triggerTransition(status: TaskStatusEnum): void {
     if (this.status === status) return;
+    const alerts: AlertService = AppInjector.get(AlertService);
 
     const requiresFileUpload =
       ['ready_for_feedback', 'need_help'].includes(status) && this.requiresFileUpload();
 
-    if (requiresFileUpload) {
+    if (requiresFileUpload && this.isReadyForUpload) {
       this.presentTaskSubmissionModal(status);
+    } else if (requiresFileUpload && !this.isReadyForUpload) {
+      alerts.error('Complete Knowledge Check first to submit files', 6000);
     } else {
       this.updateTaskStatus(status);
     }

@@ -28,6 +28,9 @@
         <mat-checkbox matInput required [(ngModel)]="taskDefinition.scormAllowReview">
           Allow students to review completed test attempt
         </mat-checkbox>
+        <mat-checkbox matInput required [(ngModel)]="taskDefinition.scormBypassTest">
+          Allow file upload regardless of test pass status
+        </mat-checkbox>
       </div>
       <mat-form-field appearance="outline" class="basis-1/2">
         <mat-label>Attempt limit</mat-label>

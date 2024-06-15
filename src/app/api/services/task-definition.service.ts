@@ -96,6 +96,7 @@ export class TaskDefinitionService extends CachedEntityService<TaskDefinition> {
       'scormEnabled',
       'hasScormData',
       'scormAllowReview',
+      'scormBypassTest',
       'scormTimeDelayEnabled',
       'scormAttemptLimit',
       'isGraded',

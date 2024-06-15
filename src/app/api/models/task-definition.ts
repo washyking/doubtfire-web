@@ -34,6 +34,7 @@ export class TaskDefinition extends Entity {
   scormEnabled: boolean;
   hasScormData: boolean;
   scormAllowReview: boolean;
+  scormBypassTest: boolean;
   scormTimeDelayEnabled: boolean;
   scormAttemptLimit: number = 0;
   hasTaskAssessmentResources: boolean;

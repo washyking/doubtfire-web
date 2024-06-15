@@ -1,11 +1,5 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {
-  Task,
-  TestAttempt,
-  TestAttemptService,
-  User,
-  UserService,
-} from 'src/app/api/models/doubtfire-model';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Task, User, UserService} from 'src/app/api/models/doubtfire-model';
 import {ScormExtensionModalService} from 'src/app/common/modals/scorm-extension-modal/scorm-extension-modal.service';
 
 @Component({
@@ -13,51 +7,39 @@ import {ScormExtensionModalService} from 'src/app/common/modals/scorm-extension-
   templateUrl: './task-scorm-card.component.html',
   styleUrls: ['./task-scorm-card.component.scss'],
 })
-export class TaskScormCardComponent implements OnInit, OnChanges {
+export class TaskScormCardComponent implements OnChanges {
   @Input() task: Task;
   attemptsLeft: number;
   isPassed: boolean;
-  latestCompletedAttempt: TestAttempt;
   user: User;
 
   constructor(
     private extensions: ScormExtensionModalService,
-    private testAttemptService: TestAttemptService,
     private userService: UserService,
   ) {
     this.user = this.userService.currentUser;
   }
 
-  ngOnInit() {
-    this.refreshAttemptData();
-  }
-
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.task && changes.task.currentValue) {
-      this.refreshAttemptData();
+    if (changes.task && changes.task.currentValue && changes.task.currentValue.scormEnabled) {
+      this.attemptsLeft = undefined;
+      this.isPassed = undefined;
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      this.task?.fetchTestAttempts().subscribe((_) => {
+        this.getAttemptsLeft();
+        if (this.task.latestCompletedTestAttempt) this.isPassed = this.task.scormPassed;
+      });
     }
-  }
-
-  refreshAttemptData(): void {
-    this.attemptsLeft = undefined;
-    this.isPassed = undefined;
-    this.latestCompletedAttempt = undefined;
-
-    this.getAttemptsLeft();
-    this.testAttemptService.getLatestCompletedAttempt(this.task).subscribe((attempt) => {
-      this.latestCompletedAttempt = attempt;
-      this.isPassed = attempt.successStatus;
-    });
   }
 
   getAttemptsLeft(): void {
     if (this.task.definition.scormAttemptLimit != 0) {
-      this.task.fetchTestAttempts().subscribe((attempts) => {
-        let count = attempts.length;
-        if (count > 0 && attempts[0].terminated === false) count--;
-        this.attemptsLeft =
-          this.task.definition.scormAttemptLimit + this.task.scormExtensions - count;
-      });
+      const attempts = this.task.testAttemptCache.currentValues;
+      let count = attempts.length;
+      if (count > 0 && attempts[0].terminated === false) count--;
+      this.attemptsLeft =
+        this.task.definition.scormAttemptLimit + this.task.scormExtensions - count;
     }
   }
 
@@ -70,7 +52,7 @@ export class TaskScormCardComponent implements OnInit, OnChanges {
 
   reviewLatestCompletedAttempt(): void {
     window.open(
-      `#/task_def_id/${this.task.taskDefId}/scorm-player/review/${this.latestCompletedAttempt.id}`,
+      `#/task_def_id/${this.task.taskDefId}/scorm-player/review/${this.task.latestCompletedTestAttempt.id}`,
       '_blank',
     );
   }
