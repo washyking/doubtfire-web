@@ -17,6 +17,7 @@ import {
   TaskSimilarityService,
   TestAttempt,
   TestAttemptService,
+  ScormComment,
 } from './doubtfire-model';
 import {Grade} from './grade';
 import {LOCALE_ID} from '@angular/core';
@@ -384,6 +385,14 @@ export class Task extends Entity {
       // Link in original messages for replies
       if (comments[i].replyToId) {
         comments[i].originalComment = comments.find((tc) => tc.id === comments[i].replyToId);
+      }
+
+      // Scorm series
+      if (comments[i].commentType === 'scorm') {
+        comments[i].firstInSeries = i === 0 || comments[i - 1].commentType !== 'scorm';
+        (comments[i] as ScormComment).lastInScormSeries =
+          i + 1 === comments.length || comments[i + 1]?.commentType !== 'scorm';
+        if (!comments[i].firstInSeries) comments[i].shouldShowTimestamp = false;
       }
     }
 

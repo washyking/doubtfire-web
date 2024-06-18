@@ -27,10 +27,6 @@ export class ScormCommentComponent {
     this.user = this.userService.currentUser;
   }
 
-  get canOverridePass(): boolean {
-    return this.user.isStaff && !this.comment.testAttempt.successStatus;
-  }
-
   reviewScormTest() {
     window.open(
       `#/task_def_id/${this.task.taskDefId}/scorm-player/review/${this.comment.testAttempt.id}`,
