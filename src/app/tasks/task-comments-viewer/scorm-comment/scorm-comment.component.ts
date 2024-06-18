@@ -50,6 +50,7 @@ export class ScormCommentComponent {
       'Are you sure you want to delete this test attempt? This action is final and will delete information associated with this test attempt.',
       () => {
         this.testAttemptService.deleteAttempt(this.comment.testAttempt.id);
+        this.comment.delete();
       },
     );
   }
