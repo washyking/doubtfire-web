@@ -16,6 +16,10 @@ export class GradeService {
     3: 'High Distinction',
   };
 
+  public stringToGrade(value: string): number {
+    return this.gradeViewData.find((grade) => grade.viewValue === value)?.value;
+  }
+
   gradeViewData = [
     {value: -1, viewValue: 'Fail'},
     {value: 0, viewValue: 'Pass'},
