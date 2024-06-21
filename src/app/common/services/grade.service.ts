@@ -16,9 +16,13 @@ export class GradeService {
     3: 'High Distinction',
   };
 
-  public stringToGrade(value: string): number {
-    return this.gradeViewData.find((grade) => grade.viewValue === value)?.value;
-  }
+  gradeIndex = {
+    Fail: -1,
+    Pass: 0,
+    Credit: 1,
+    Distinction: 2,
+    'High Distinction': 3,
+  };
 
   gradeViewData = [
     {value: -1, viewValue: 'Fail'},
@@ -67,7 +71,7 @@ export class GradeService {
     HD: '#80FF00',
   };
 
-  public gradeFor = (project: Project): string => {
-    return this.gradeNumbers[project.targetGrade];
-  };
+  public stringToGrade(value: string): number {
+    return this.gradeIndex[value];
+  }
 }
