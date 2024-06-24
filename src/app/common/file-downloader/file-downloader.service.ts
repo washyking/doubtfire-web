@@ -3,13 +3,13 @@ import {Injectable} from '@angular/core';
 import {AlertService} from '../services/alert.service';
 
 interface FileDownloaderData {
-  url: string,
-  response: HttpResponse<Blob>,
-  success: (url: string, response: HttpResponse<Blob>) => void,
+  url: string;
+  response: HttpResponse<Blob>;
+  success: (url: string, response: HttpResponse<Blob>) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  failure: (error: any) => void,
+  failure: (error: any) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  binaryData: Blob[],
+  binaryData: Blob[];
 }
 
 @Injectable({
@@ -100,7 +100,7 @@ export class FileDownloaderService {
   public downloadBlob(
     url: string,
     success: (url: string, response: HttpResponse<Blob>) => void,
-    failure: (error: any) => void,
+    failure: (error) => void,
   ) {
     // Declare binary data outside of the subscription so that it can be accessed in the second requests when partial content is returned
     const binaryData = [];
@@ -146,7 +146,7 @@ export class FileDownloaderService {
         downloadLink.click();
         downloadLink.parentNode.removeChild(downloadLink);
       },
-      (error: any) => {
+      (error) => {
         this.alerts.error(`Error downloading file - ${error}`);
       },
     );
