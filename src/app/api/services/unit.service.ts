@@ -58,7 +58,7 @@ export class UnitService extends CachedEntityService<Unit> {
           const unitRoleService = AppInjector.get(UnitRoleService);
           // Add staff
           entity.staffCache.clear();
-          data[key].forEach(staff => {
+          data[key]?.forEach(staff => {
             entity.staffCache.add(unitRoleService.buildInstance(staff));
           });
         }
@@ -133,7 +133,7 @@ export class UnitService extends CachedEntityService<Unit> {
       {
         keys: 'ilos',
         toEntityOp: (data: object, key: string, unit: Unit) => {
-          data[key].forEach(ilo => {
+          data[key]?.forEach(ilo => {
             unit.learningOutcomesCache.getOrCreate(ilo['id'], this.learningOutcomeService, ilo);
           });
         }
@@ -160,7 +160,7 @@ export class UnitService extends CachedEntityService<Unit> {
       {
         keys: 'groupSets',
         toEntityOp: (data, key, unit) => {
-          data[key].forEach((groupSetJson: object) => {
+          data[key]?.forEach((groupSetJson: object) => {
             unit.groupSetsCache.add(this.groupSetService.buildInstance(groupSetJson, {constructorParams: unit}));
           });
         }
@@ -168,7 +168,7 @@ export class UnitService extends CachedEntityService<Unit> {
       {
         keys: 'groups',
         toEntityOp: (data, key, unit) => {
-          data[key].forEach((groupJson: object) => {
+          data[key]?.forEach((groupJson: object) => {
             const group = this.groupService.buildInstance(groupJson, {constructorParams: unit});
             group.groupSet.groupsCache.add(group);
           });
