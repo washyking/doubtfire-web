@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.12](https://github.com/macite/doubtfire-deploy/compare/v8.0.11...v8.0.12) (2024-06-25)
+
+
+### Bug Fixes
+
+* ensure null fields will not break in entity mapping ([32046e8](https://github.com/macite/doubtfire-deploy/commit/32046e89eaaf2a9b36e88f078a7b695b1506886d))
+* reinstate unit import for teaching period ([991230f](https://github.com/macite/doubtfire-deploy/commit/991230f7b527957116263b6abaa588ed43d3a787))
+
 ### [8.0.11](https://github.com/macite/doubtfire-deploy/compare/v8.0.10...v8.0.11) (2024-06-24)
 
 
