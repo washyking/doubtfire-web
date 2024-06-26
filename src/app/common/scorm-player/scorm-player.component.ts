@@ -1,6 +1,10 @@
 import {Component, OnInit, Input, HostListener} from '@angular/core';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
-import {ScormPlayerContext} from 'src/app/api/models/doubtfire-model';
+import {
+  AuthenticationService,
+  ScormPlayerContext,
+  UserService,
+} from 'src/app/api/models/doubtfire-model';
 import {ScormAdapterService} from 'src/app/api/services/scorm-adapter.service';
 import {AppInjector} from 'src/app/app-injector';
 import {DoubtfireConstants} from 'src/app/config/constants/doubtfire-constants';
@@ -37,6 +41,8 @@ export class ScormPlayerComponent implements OnInit {
   constructor(
     private globalState: GlobalStateService,
     private scormAdapter: ScormAdapterService,
+    private userService: UserService,
+    private authService: AuthenticationService,
     private sanitizer: DomSanitizer,
   ) {}
 
@@ -44,6 +50,14 @@ export class ScormPlayerComponent implements OnInit {
     this.globalState.setView(ViewType.OTHER);
     this.globalState.hideHeader();
 
+    if (this.userService.currentUser.scormAuthenticationToken) {
+      this.setupScorm();
+    } else {
+      this.authService.getScormToken().subscribe(() => this.setupScorm());
+    }
+  }
+
+  setupScorm(): void {
     this.scormAdapter.mode = this.mode;
     if (this.mode === 'normal') {
       this.scormAdapter.projectId = this.projectId;
@@ -64,7 +78,7 @@ export class ScormPlayerComponent implements OnInit {
     };
 
     this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
-      `${AppInjector.get(DoubtfireConstants).API_URL}/scorm/${this.taskDefId}/index.html`,
+      `${AppInjector.get(DoubtfireConstants).API_URL}/scorm/${this.taskDefId}/${this.userService.currentUser.username}/${this.userService.currentUser.scormAuthenticationToken}/index.html`,
     );
   }
 
