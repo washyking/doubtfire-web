@@ -126,6 +126,10 @@ export class TeachingPeriodUnitImportDialogComponent implements OnInit {
 
   public codeChange(code: string, value: UnitImportData) {
     value.relatedUnits = this.relatedUnits(code);
+    // add source unit to realted units - so that it is retained on code change
+    if (value.sourceUnit && !value.relatedUnits.find((u) => u.value.id === value.sourceUnit.id)) {
+      value.relatedUnits.unshift({value: value.sourceUnit, text: value.sourceUnit.codeAndPeriod});
+    }
     value.sourceUnit = value.relatedUnits.length > 0 ? value.relatedUnits[0].value : null;
   }
 
