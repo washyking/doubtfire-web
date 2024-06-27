@@ -66,7 +66,9 @@ export class UnitService extends CachedEntityService<Unit> {
       {
         keys: ['mainConvenor', 'main_convenor_id'],
         toEntityFn: (data, key, entity) => {
-          return entity.staffCache.get(data[key]);
+          let result = entity.staffCache.get(data[key]);
+          entity.mainConvenorUser = result?.user;
+          return result;
         },
         toJsonFn: (unit: Unit, key: string) => {
           return unit.mainConvenor?.id;
