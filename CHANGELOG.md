@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.16](https://github.com/macite/doubtfire-deploy/compare/v8.0.15...v8.0.16) (2024-06-28)
+
+
+### Bug Fixes
+
+* ensure drop works on task resource upload in windows ([f0505d7](https://github.com/macite/doubtfire-deploy/commit/f0505d7b62b97f1b821b19b1c4178973503789da))
+
 ### [8.0.15](https://github.com/macite/doubtfire-deploy/compare/v8.0.14...v8.0.15) (2024-06-28)
 
 
