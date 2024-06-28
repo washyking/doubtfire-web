@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.15](https://github.com/macite/doubtfire-deploy/compare/v8.0.14...v8.0.15) (2024-06-28)
+
+
+### Bug Fixes
+
+* ensure zip uploads work on windows ([1857bdc](https://github.com/macite/doubtfire-deploy/commit/1857bdc708c81dc39d467f42c9e316a8664dc080))
+
 ### [8.0.14](https://github.com/macite/doubtfire-deploy/compare/v8.0.13...v8.0.14) (2024-06-27)
 
 
