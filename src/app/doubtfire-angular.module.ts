@@ -97,7 +97,11 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatOptionModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MomentDateAdapter} from '@angular/material-moment-adapter';
+
+import { DateFnsAdapter, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
+import { enAU } from 'date-fns/locale';
+
+
 import {doubtfireStates} from './doubtfire.states';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -229,13 +233,13 @@ import {GradeService} from './common/services/grade.service';
 // See https://stackoverflow.com/questions/55721254/how-to-change-mat-datepicker-date-format-to-dd-mm-yyyy-in-simplest-way/58189036#58189036
 const MY_DATE_FORMAT = {
   parse: {
-    dateInput: 'DD/MM/YYYY', // this is how your date will be parsed from Input
+    dateInput: 'dd/MM/yyyy', // this is how your date will be parsed from Input
   },
   display: {
-    dateInput: 'DD/MM/YYYY', // this is how your date will get displayed on the Input
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
+    dateInput: 'dd/MM/yyyy', // this is how your date will get displayed on the Input
+    monthYearLabel: 'MMMM yyyy',
+    dateA11yLabel: 'do MMMM yyyy',
+    monthYearA11yLabel: 'MMMM yyyy',
   },
 };
 
@@ -382,8 +386,8 @@ const MY_DATE_FORMAT = {
     dateServiceProvider,
     CsvUploadModalProvider,
     CsvResultModalProvider,
-    {provide: MAT_DATE_LOCALE, useValue: 'en-AU'},
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_LOCALE, useValue: enAU},
+    {provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE]},
     {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT},
     UnitStudentEnrolmentModalProvider,
     TaskCommentService,
