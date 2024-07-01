@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.17](https://github.com/macite/doubtfire-deploy/compare/v8.0.16...v8.0.17) (2024-07-01)
+
+
+### Bug Fixes
+
+* correct broken template in activities list ([4d81fa1](https://github.com/macite/doubtfire-deploy/commit/4d81fa1fabb07e40d0d42068f23b8e756f4cdf4b))
+* correct campus list templates ([1795895](https://github.com/macite/doubtfire-deploy/commit/17958955f65bab2b268826f2a7e19f311071615b))
+* switch date formats to date-fns ([2394efb](https://github.com/macite/doubtfire-deploy/commit/2394efb07c03da18fb8114d87b0c89e68bf7fd2d))
+
 ### [8.0.16](https://github.com/macite/doubtfire-deploy/compare/v8.0.15...v8.0.16) (2024-06-28)
 
 
