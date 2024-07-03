@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.18](https://github.com/macite/doubtfire-deploy/compare/v8.0.17...v8.0.18) (2024-07-03)
+
+
+### Features
+
+* add ability to set unit code on import from rollover ([d47d105](https://github.com/macite/doubtfire-deploy/commit/d47d10561bd7bfad495f878ebb0bab399ce144b7))
+
 ### [8.0.17](https://github.com/macite/doubtfire-deploy/compare/v8.0.16...v8.0.17) (2024-07-01)
 
 
