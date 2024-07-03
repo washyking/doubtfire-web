@@ -8,6 +8,7 @@ import {TeachingPeriodListComponent} from './admin/states/teaching-periods/teach
 import {AcceptEulaComponent} from './eula/accept-eula/accept-eula.component';
 import {FUsersComponent} from './admin/states/f-users/f-users.component';
 import {FUnitsComponent} from './admin/states/f-units/f-units.component';
+import {ScormPlayerComponent} from './common/scorm-player/scorm-player.component';
 
 /*
  * Use this file to store any states that are sourced by angular components.
@@ -292,6 +293,59 @@ const ViewAllUnits: NgHybridStateDeclaration = {
 };
 
 /**
+ * Define the SCORM Player state.
+ */
+const ScormPlayerNormalState: NgHybridStateDeclaration = {
+  name: 'scorm-player-normal',
+  url: '/projects/:project_id/task_def_id/:task_definition_id/scorm-player/normal',
+  resolve: {
+    projectId: function ($stateParams) {
+      return $stateParams.project_id;
+    },
+    taskDefId: function ($stateParams) {
+      return $stateParams.task_definition_id;
+    },
+    mode: function () {
+      return 'normal';
+    },
+  },
+  views: {
+    main: {
+      component: ScormPlayerComponent,
+    },
+  },
+  data: {
+    pageTitle: 'Knowledge Check',
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+  },
+};
+
+const ScormPlayerReviewState: NgHybridStateDeclaration = {
+  name: 'scorm-player-review',
+  url: '/task_def_id/:task_definition_id/scorm-player/review/:test_attempt_id',
+  resolve: {
+    taskDefId: function ($stateParams) {
+      return $stateParams.task_definition_id;
+    },
+    testAttemptId: function ($stateParams) {
+      return $stateParams.test_attempt_id;
+    },
+    mode: function () {
+      return 'review';
+    },
+  },
+  views: {
+    main: {
+      component: ScormPlayerComponent,
+    },
+  },
+  data: {
+    pageTitle: 'Review Knowledge Check',
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+  },
+};
+
+/**
  * Export the list of states we have created in angular
  */
 export const doubtfireStates = [
@@ -306,4 +360,6 @@ export const doubtfireStates = [
   ViewAllProjectsState,
   ViewAllUnits,
   AdministerUnits,
+  ScormPlayerNormalState,
+  ScormPlayerReviewState,
 ];

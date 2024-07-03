@@ -31,6 +31,12 @@ export class TaskDefinition extends Entity {
   groupSet: GroupSet = null;
   hasTaskSheet: boolean;
   hasTaskResources: boolean;
+  scormEnabled: boolean;
+  hasScormData: boolean;
+  scormAllowReview: boolean;
+  scormBypassTest: boolean;
+  scormTimeDelayEnabled: boolean;
+  scormAttemptLimit: number = 0;
   hasTaskAssessmentResources: boolean;
   isGraded: boolean;
   maxQualityPts: number;
@@ -152,6 +158,13 @@ export class TaskDefinition extends Entity {
     }`;
   }
 
+  public getScormDataUrl(asAttachment: boolean = false) {
+    const constants = AppInjector.get(DoubtfireConstants);
+    return `${constants.API_URL}/units/${this.unit.id}/task_definitions/${this.id}/scorm_data.json${
+      asAttachment ? '?as_attachment=true' : ''
+    }`;
+  }
+
   public get targetGradeText(): string {
     return Grade.GRADES[this.targetGrade];
   }
@@ -176,6 +189,12 @@ export class TaskDefinition extends Entity {
     }/task_resources`;
   }
 
+  public get scormDataUploadUrl(): string {
+    return `${AppInjector.get(DoubtfireConstants).API_URL}/units/${this.unit.id}/task_definitions/${
+      this.id
+    }/scorm_data`;
+  }
+
   public get taskAssessmentResourcesUploadUrl(): string {
     return `${AppInjector.get(DoubtfireConstants).API_URL}/units/${this.unit.id}/task_definitions/${
       this.id
@@ -196,6 +215,11 @@ export class TaskDefinition extends Entity {
   public deleteTaskResources(): Observable<any> {
     const httpClient = AppInjector.get(HttpClient);
     return httpClient.delete(this.taskResourcesUploadUrl).pipe(tap(() => (this.hasTaskResources = false)));
+  }
+
+  public deleteScormData(): Observable<any> {
+    const httpClient = AppInjector.get(HttpClient);
+    return httpClient.delete(this.scormDataUploadUrl).pipe(tap(() => (this.hasScormData = false)));
   }
 
   public deleteTaskAssessmentResources(): Observable<any> {

@@ -208,6 +208,7 @@ import {TaskDefinitionUploadComponent} from './units/states/edit/directives/unit
 import {TaskDefinitionOptionsComponent} from './units/states/edit/directives/unit-tasks-editor/task-definition-editor/task-definition-options/task-definition-options.component';
 import {TaskDefinitionResourcesComponent} from './units/states/edit/directives/unit-tasks-editor/task-definition-editor/task-definition-resources/task-definition-resources.component';
 import {TaskDefinitionOverseerComponent} from './units/states/edit/directives/unit-tasks-editor/task-definition-editor/task-definition-overseer/task-definition-overseer.component';
+import {TaskDefinitionScormComponent} from './units/states/edit/directives/unit-tasks-editor/task-definition-editor/task-definition-scorm/task-definition-scorm.component';
 import {UnitAnalyticsComponent} from './units/states/analytics/unit-analytics-route.component';
 import {FileDropComponent} from './common/file-drop/file-drop.component';
 import {UnitTaskEditorComponent} from './units/states/edit/directives/unit-tasks-editor/unit-task-editor.component';
@@ -229,6 +230,13 @@ import {FTaskSheetViewComponent} from './units/states/tasks/viewer/directives/f-
 import {TasksViewerComponent} from './units/states/tasks/tasks-viewer/tasks-viewer.component';
 import {UnitCodeComponent} from './common/unit-code/unit-code.component';
 import {GradeService} from './common/services/grade.service';
+import {ScormPlayerComponent} from './common/scorm-player/scorm-player.component';
+import {ScormAdapterService} from './api/services/scorm-adapter.service';
+import {ScormCommentComponent} from './tasks/task-comments-viewer/scorm-comment/scorm-comment.component';
+import {TaskScormCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-scorm-card/task-scorm-card.component';
+import {TestAttemptService} from './api/services/test-attempt.service';
+import {ScormExtensionCommentComponent} from './tasks/task-comments-viewer/scorm-extension-comment/scorm-extension-comment.component';
+import {ScormExtensionModalComponent} from './common/modals/scorm-extension-modal/scorm-extension-modal.component';
 
 // See https://stackoverflow.com/questions/55721254/how-to-change-mat-datepicker-date-format-to-dd-mm-yyyy-in-simplest-way/58189036#58189036
 const MY_DATE_FORMAT = {
@@ -280,6 +288,7 @@ const MY_DATE_FORMAT = {
     TaskDefinitionOptionsComponent,
     TaskDefinitionResourcesComponent,
     TaskDefinitionOverseerComponent,
+    TaskDefinitionScormComponent,
     UnitAnalyticsComponent,
     StudentTutorialSelectComponent,
     StudentCampusSelectComponent,
@@ -343,6 +352,11 @@ const MY_DATE_FORMAT = {
     FUsersComponent,
     FTaskBadgeComponent,
     FUnitsComponent,
+    ScormPlayerComponent,
+    ScormCommentComponent,
+    TaskScormCardComponent,
+    ScormExtensionCommentComponent,
+    ScormExtensionModalComponent,
   ],
   // Services we provide
   providers: [
@@ -416,6 +430,8 @@ const MY_DATE_FORMAT = {
     TasksForInboxSearchPipe,
     IsActiveUnitRole,
     CreateNewUnitModal,
+    ScormAdapterService,
+    TestAttemptService,
     provideLottieOptions({
       player: () => player,
     }),

@@ -99,6 +99,12 @@ export class TaskDefinitionService extends CachedEntityService<TaskDefinition> {
       'hasTaskSheet',
       'hasTaskResources',
       'hasTaskAssessmentResources',
+      'scormEnabled',
+      'hasScormData',
+      'scormAllowReview',
+      'scormBypassTest',
+      'scormTimeDelayEnabled',
+      'scormAttemptLimit',
       'isGraded',
       'maxQualityPts',
       'overseerImageId',
@@ -109,7 +115,8 @@ export class TaskDefinitionService extends CachedEntityService<TaskDefinition> {
       'id',
       'hasTaskSheet',
       'hasTaskResources',
-      'hasTaskAssessmentResources'
+      'hasTaskAssessmentResources',
+      'hasScormData'
     );
   }
 
@@ -133,5 +140,11 @@ export class TaskDefinitionService extends CachedEntityService<TaskDefinition> {
     const formData = new FormData();
     formData.append('file', file);
     return AppInjector.get(HttpClient).post<boolean>(taskDefinition.taskAssessmentResourcesUploadUrl, formData);
+  }
+
+  public uploadScormData(taskDefinition: TaskDefinition, file: File): Observable<boolean> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return AppInjector.get(HttpClient).post<boolean>(taskDefinition.scormDataUploadUrl, formData);
   }
 }
