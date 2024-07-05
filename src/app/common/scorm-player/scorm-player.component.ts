@@ -85,7 +85,7 @@ export class ScormPlayerComponent implements OnInit {
   @HostListener('window:beforeunload', ['$event'])
   beforeUnload($event: any): void {
     if (this.scormAdapter.state == 'Initialized') {
-      console.log('SCORM player closing during an initialized session, commiting DataModel');
+      // console.log('SCORM player closing during an initialized session, commiting DataModel');
       this.scormAdapter.Commit();
     }
   }
