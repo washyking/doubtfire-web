@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.19](https://github.com/macite/doubtfire-deploy/compare/v8.0.18...v8.0.19) (2024-07-10)
+
+
+### Features
+
+* add ability to minimise task details in task viewer ([e904640](https://github.com/macite/doubtfire-deploy/commit/e9046400e827481e09492bcb458b00b4e3aca347))
+
+
+### Bug Fixes
+
+* ensure pdf is visible in task viewer mobile/narrow ([f5388e4](https://github.com/macite/doubtfire-deploy/commit/f5388e45715597f0c92f252f721cf274bb8de0d5))
+* task def editor so save is not over fields and header visible for task being edited ([22a2616](https://github.com/macite/doubtfire-deploy/commit/22a26165c9f2ef634b3e79d1e5d5d6b74e6f2731))
+
 ### [8.0.18](https://github.com/macite/doubtfire-deploy/compare/v8.0.17...v8.0.18) (2024-07-03)
 
 
