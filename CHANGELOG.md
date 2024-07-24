@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.21](https://github.com/macite/doubtfire-deploy/compare/v8.0.20...v8.0.21) (2024-07-24)
+
+
+### Bug Fixes
+
+* ensure groups can be locked ([b671065](https://github.com/macite/doubtfire-deploy/commit/b67106589b71660bdfe01151deb68d3092b9091f))
+
 ### [8.0.20](https://github.com/macite/doubtfire-deploy/compare/v8.0.19...v8.0.20) (2024-07-15)
 
 
