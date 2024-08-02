@@ -125,26 +125,40 @@ export class FileDownloaderService {
     window.URL.revokeObjectURL(url);
   }
 
+  /**
+   * Download or save a blob to a file. This will trigger the user to "download"
+   * the blob, with the suggested filename.
+   *
+   * @param blobUrl the url of the blob to download/save to file
+   * @param filename the name of the file
+   */
+  public downloadBlobToFile(blobUrl: string, filename: string): void {
+    const downloadLink = document.createElement('a');
+    downloadLink.href = blobUrl;
+    downloadLink.target = '_blank';
+    downloadLink.setAttribute('download', filename);
+    document.body.appendChild(downloadLink);
+
+    downloadLink.click();
+    downloadLink.parentNode.removeChild(downloadLink);
+  }
+
   public downloadFile(url: string, defaultFilename: string) {
     this.downloadBlob(
       url,
       (resourceUrl: string, response: HttpResponse<Blob>) => {
-        const downloadLink = document.createElement('a');
-        downloadLink.href = resourceUrl;
-        downloadLink.target = '_blank';
         const filenameRegex = /filename[^;=\n]*=((['']).*?\2|[^;\n]*)/;
+
         const matches = filenameRegex.exec(response.headers.get('Content-Disposition'));
+        let filename: string;
+
         if (matches != null && matches[1]) {
-          const filename = matches[1].replace(/['']/g, '');
-          downloadLink.setAttribute('download', filename);
+          filename = matches[1].replace(/['']/g, '');
         } else {
-          downloadLink.setAttribute('download', defaultFilename);
+          filename = defaultFilename;
         }
 
-        document.body.appendChild(downloadLink);
-
-        downloadLink.click();
-        downloadLink.parentNode.removeChild(downloadLink);
+        this.downloadBlobToFile(resourceUrl, filename);
       },
       (error) => {
         this.alerts.error(`Error downloading file - ${error}`);
