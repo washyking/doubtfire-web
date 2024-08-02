@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.23](https://github.com/macite/doubtfire-deploy/compare/v8.0.22...v8.0.23) (2024-08-02)
+
+
+### Features
+
+* allow pdf download and switch to native viewer ([16ac9c8](https://github.com/macite/doubtfire-deploy/commit/16ac9c8bc488607025ee95dbb4b41134a5346b00))
+
+
+### Bug Fixes
+
+* ensure overseer menu only shows when active for task ([c04e9fe](https://github.com/macite/doubtfire-deploy/commit/c04e9fe3a824e316a632b3f7b53b08887e57c831))
+
 ### [8.0.22](https://github.com/macite/doubtfire-deploy/compare/v8.0.21...v8.0.22) (2024-07-26)
 
 
