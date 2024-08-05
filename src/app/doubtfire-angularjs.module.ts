@@ -224,6 +224,8 @@ import {FUnitsComponent} from './admin/states/f-units/f-units.component';
 import {MarkedPipe} from './common/pipes/marked.pipe';
 import {AlertService} from './common/services/alert.service';
 import {GradeService} from './common/services/grade.service';
+import {TaskScormCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-scorm-card/task-scorm-card.component';
+
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.config',
   'doubtfire.sessions',
@@ -357,6 +359,10 @@ DoubtfireAngularJSModule.directive(
 DoubtfireAngularJSModule.directive(
   'activityTypeList',
   downgradeComponent({component: ActivityTypeListComponent}),
+);
+DoubtfireAngularJSModule.directive(
+  'fTaskScormCard',
+  downgradeComponent({component: TaskScormCardComponent}),
 );
 DoubtfireAngularJSModule.directive(
   'fTaskStatusCard',
