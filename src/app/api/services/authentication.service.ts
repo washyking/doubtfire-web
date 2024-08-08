@@ -192,20 +192,10 @@ export class AuthenticationService {
     }
   }
 
-  public getScormToken(): Observable<any> {
+  public getScormToken(): Observable<string> {
     return this.httpClient.get(this.AUTH_URL + '/scorm').pipe(
       map((response) => {
-        this.userService.currentUser.scormAuthenticationToken = response['scorm_auth_token'];
-        localStorage.setItem(this.USERNAME_KEY, JSON.stringify(this.userService.currentUser));
-
-        // Token expires after 2 hours
-        setTimeout(
-          () => {
-            this.userService.currentUser.scormAuthenticationToken = '';
-            localStorage.setItem(this.USERNAME_KEY, JSON.stringify(this.userService.currentUser));
-          },
-          1000 * 60 * 60 * 2,
-        );
+        return response['scorm_auth_token'];
       }),
     );
   }

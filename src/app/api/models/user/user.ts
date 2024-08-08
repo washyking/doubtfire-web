@@ -22,7 +22,6 @@ export class User extends Entity {
   receiveFeedbackNotifications: boolean;
   hasRunFirstTimeSetup: boolean;
   authenticationToken: string;
-  scormAuthenticationToken: string;
   pronouns: string | null;
   acceptedTiiEula: boolean;
 

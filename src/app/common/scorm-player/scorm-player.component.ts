@@ -49,15 +49,10 @@ export class ScormPlayerComponent implements OnInit {
   ngOnInit(): void {
     this.globalState.setView(ViewType.OTHER);
     this.globalState.hideHeader();
-
-    if (this.userService.currentUser.scormAuthenticationToken) {
-      this.setupScorm();
-    } else {
-      this.authService.getScormToken().subscribe(() => this.setupScorm());
-    }
+    this.authService.getScormToken().subscribe((value: string) => this.setupScorm(value));
   }
 
-  setupScorm(): void {
+  private setupScorm(token: string): void {
     this.scormAdapter.mode = this.mode;
     if (this.mode === 'normal') {
       this.scormAdapter.projectId = this.projectId;
@@ -78,7 +73,7 @@ export class ScormPlayerComponent implements OnInit {
     };
 
     this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
-      `${AppInjector.get(DoubtfireConstants).API_URL}/scorm/${this.taskDefId}/${this.userService.currentUser.username}/${this.userService.currentUser.scormAuthenticationToken}/index.html`,
+      `${AppInjector.get(DoubtfireConstants).API_URL}/scorm/${this.taskDefId}/${this.userService.currentUser.username}/${token}/index.html`,
     );
   }
 
