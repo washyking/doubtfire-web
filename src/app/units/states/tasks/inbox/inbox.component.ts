@@ -82,15 +82,6 @@ export class InboxComponent implements OnInit, OnDestroy {
       });
     }
 
-    if (!registeredHotkeys.includes('control.shift.r')) {
-      this.hotkeys
-        .addShortcut({
-          keys: 'control.shift.r',
-          description: 'Mark selected task as redo',
-        })
-        .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('redo'));
-    }
-
     if (!registeredHotkeys.includes('control.shift.f')) {
       this.hotkeys
         .addShortcut({
@@ -100,7 +91,7 @@ export class InboxComponent implements OnInit, OnDestroy {
         .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('fix_and_resubmit'));
     }
 
-    if (!registeredHotkeys.includes('altleft.shift.c')) {
+    if (!registeredHotkeys.includes('control.shift.c')) {
       this.hotkeys
         .addShortcut({
           keys: 'control.Shift.c',
@@ -152,8 +143,10 @@ export class InboxComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.hotkeys.removeShortcuts('control.shift.arrowdown');
-    this.hotkeys.removeShortcuts('control.shift.arrowup');
+    this.hotkeys.removeShortcuts('control.shift.d');
+    this.hotkeys.removeShortcuts('control.shift.f');
+    this.hotkeys.removeShortcuts('control.shift.c');
+    this.hotkeys.removeShortcuts('shift.?');
   }
 
   startedDragging(event: CdkDragStart, div: HTMLDivElement) {
