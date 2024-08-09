@@ -123,26 +123,26 @@ export class StaffTaskListComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
   ngOnDestroy(): void {
-    this.hotkeys.removeShortcuts('meta.shift.arrowdown');
-    this.hotkeys.removeShortcuts('meta.shift.arrowup');
+    this.hotkeys.removeShortcuts('alt.shift.arrowdown');
+    this.hotkeys.removeShortcuts('alt.shift.arrowup');
   }
 
   ngOnInit(): void {
     const registeredHotkeys = this.hotkeys.getHotkeys().map((hotkey) => hotkey.keys);
 
-    if (!registeredHotkeys.includes('meta.shift.arrowdown')) {
+    if (!registeredHotkeys.includes('alt.shift..arrowdown')) {
       this.hotkeys
         .addShortcut({
-          keys: 'meta.shift.arrowdown',
+          keys: 'alt.shift.arrowdown',
           description: 'Select next task',
         })
         .subscribe(() => this.nextTask());
     }
 
-    if (!registeredHotkeys.includes('meta.shift.arrowup')) {
+    if (!registeredHotkeys.includes('alt.shift.arrowup')) {
       this.hotkeys
         .addShortcut({
-          keys: 'meta.shift.arrowup',
+          keys: 'alt.shift.arrowup',
           description: 'Select previous task',
         })
         .subscribe(() => this.previousTask());
