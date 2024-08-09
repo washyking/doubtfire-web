@@ -85,8 +85,11 @@ export class ScormPlayerComponent implements OnInit {
       window.API_1484_11 = undefined;
     }
 
+    // Encode . as %2e to avoid issue with grape treating the username as a file extension
+    const username = this.userService.currentUser.username.replaceAll('.', '%2e');
+
     this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
-      `${AppInjector.get(DoubtfireConstants).API_URL}/scorm/${this.taskDefId}/${this.userService.currentUser.username}/${token}/index.html`,
+      `${AppInjector.get(DoubtfireConstants).API_URL}/scorm/${this.taskDefId}/${username}/${token}/index.html`,
     );
   }
 
