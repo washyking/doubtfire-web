@@ -270,7 +270,6 @@ const AdministerUnits: NgHybridStateDeclaration = {
   },
 };
 
-
 const ViewAllUnits: NgHybridStateDeclaration = {
   name: 'view-all-units',
   url: '/view-all-units',
@@ -299,12 +298,18 @@ const ScormPlayerNormalState: NgHybridStateDeclaration = {
   name: 'scorm-player-normal',
   url: '/projects/:project_id/task_def_id/:task_definition_id/scorm-player/normal',
   resolve: {
-    projectId: function ($stateParams: {project_id: number}) {
-      return $stateParams.project_id;
-    },
-    taskDefId: function ($stateParams: {task_definition_id: number}) {
-      return $stateParams.task_definition_id;
-    },
+    projectId: [
+      '$stateParams',
+      function ($stateParams: {project_id: number}) {
+        return $stateParams.project_id;
+      }
+    ],
+    taskDefId: [
+      '$stateParams',
+      function ($stateParams: {task_definition_id: number}) {
+        return $stateParams.task_definition_id;
+      }
+    ],
     mode: function () {
       return 'normal';
     },
@@ -327,15 +332,24 @@ const ScormPlayerStudentReviewState: NgHybridStateDeclaration = {
   name: 'scorm-player-student-review',
   url: '/projects/:project_id/task_def_id/:task_definition_id/scorm-player/review/:test_attempt_id',
   resolve: {
-    projectId: function ($stateParams) {
-      return $stateParams.project_id;
-    },
-    taskDefId: function ($stateParams) {
-      return $stateParams.task_definition_id;
-    },
-    testAttemptId: function ($stateParams) {
-      return $stateParams.test_attempt_id;
-    },
+    projectId: [
+      '$stateParams',
+      function ($stateParams) {
+        return $stateParams.project_id;
+      }
+    ],
+    taskDefId: [
+      '$stateParams',
+      function ($stateParams) {
+        return $stateParams.task_definition_id;
+      }
+    ],
+    testAttemptId: [
+      '$stateParams',
+      function ($stateParams) {
+        return $stateParams.test_attempt_id;
+      }
+    ],
     mode: function () {
       return 'review';
     },
@@ -355,9 +369,12 @@ const ScormPlayerReviewState: NgHybridStateDeclaration = {
   name: 'scorm-preview',
   url: '/task_def_id/:task_definition_id/preview-scorm',
   resolve: {
-    taskDefId: function ($stateParams) {
-      return $stateParams.task_definition_id;
-    },
+    taskDefId: [
+      '$stateParams',
+      function ($stateParams) {
+        return $stateParams.task_definition_id;
+      }
+    ],
     mode: function () {
       return 'preview';
     },
