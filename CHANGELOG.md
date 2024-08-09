@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.27](https://github.com/macite/doubtfire-deploy/compare/v8.0.26...v8.0.27) (2024-08-09)
+
+
+### Bug Fixes
+
+* encode . in the username in scorm player ([1ec1754](https://github.com/macite/doubtfire-deploy/commit/1ec175419ab3ef80f22ac8a6384f6ed40a17c217))
+
 ### [8.0.26](https://github.com/macite/doubtfire-deploy/compare/v8.0.25...v8.0.26) (2024-08-09)
 
 
