@@ -1,6 +1,5 @@
 import {CdkDragEnd, CdkDragStart, CdkDragMove} from '@angular/cdk/drag-drop';
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   Input,
@@ -26,7 +25,7 @@ import {DoubtfireConstants} from 'src/app/config/constants/doubtfire-constants';
   templateUrl: './inbox.component.html',
   styleUrls: ['./inbox.component.scss'],
 })
-export class InboxComponent implements OnInit {
+export class InboxComponent implements OnInit, OnDestroy {
   @Input() unit: Unit;
   @Input() unitRole: UnitRole;
   @Input() taskData: {selectedTask: Task; any};
@@ -78,38 +77,48 @@ export class InboxComponent implements OnInit {
         const ref = this.dialog.open(HotkeysHelpComponent, {
           // width: '250px',
         });
-        ref.componentInstance.title = `${this.constants.ExternalName.value} Marking Shortcuts`;
+        ref.componentInstance.title = `${this.constants.ExternalName.value} Feedback Shortcuts`;
         ref.componentInstance.dismiss.subscribe(() => ref.close());
       });
     }
 
-    this.hotkeys
-      .addShortcut({
-        keys: 'alt.shift.r',
-        description: 'Mark selected task as redo',
-      })
-      .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('redo'));
+    if (!registeredHotkeys.includes('control.shift.r')) {
+      this.hotkeys
+        .addShortcut({
+          keys: 'control.shift.r',
+          description: 'Mark selected task as redo',
+        })
+        .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('redo'));
+    }
 
-    this.hotkeys
-      .addShortcut({
-        keys: 'alt.shift.f',
-        description: 'Mark selected task as fix',
-      })
-      .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('fix_and_resubmit'));
+    if (!registeredHotkeys.includes('control.shift.f')) {
+      this.hotkeys
+        .addShortcut({
+          keys: 'control.shift.f',
+          description: 'Mark selected task as fix',
+        })
+        .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('fix_and_resubmit'));
+    }
 
-    this.hotkeys
-      .addShortcut({
-        keys: 'alt.shift.c',
-        description: 'Mark selected task as complete',
-      })
-      .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('complete'));
+    if (!registeredHotkeys.includes('altleft.shift.c')) {
+      this.hotkeys
+        .addShortcut({
+          keys: 'control.Shift.c',
+          description: 'Mark selected task as complete',
+        })
+        .subscribe(() =>
+          this.selectedTask.selectedTask?.updateTaskStatus('complete')
+      );
+    }
 
-    this.hotkeys
-      .addShortcut({
-        keys: 'alt.shift.d',
-        description: 'Mark selected task as discuss',
-      })
-      .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('discuss'));
+    if (!registeredHotkeys.includes('control.shift.d')) {
+      this.hotkeys
+        .addShortcut({
+          keys: 'control.shift.d',
+          description: 'Mark selected task as discuss',
+        })
+        .subscribe(() => this.selectedTask.selectedTask?.updateTaskStatus('discuss'));
+    }
 
     this.dragMoveAudited$ = this.dragMove$.pipe(
       withLatestFrom(this.inboxStartSize$),
@@ -140,6 +149,11 @@ export class InboxComponent implements OnInit {
     );
     this.subs$ = merge(this.dragMoveAudited$, of(true));
     window.dispatchEvent(new Event('resize'));
+  }
+
+  ngOnDestroy(): void {
+    this.hotkeys.removeShortcuts('control.shift.arrowdown');
+    this.hotkeys.removeShortcuts('control.shift.arrowup');
   }
 
   startedDragging(event: CdkDragStart, div: HTMLDivElement) {

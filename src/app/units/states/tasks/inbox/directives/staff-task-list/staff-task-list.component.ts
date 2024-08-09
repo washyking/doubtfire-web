@@ -122,27 +122,28 @@ export class StaffTaskListComponent implements OnInit, OnChanges, OnDestroy {
       this.refreshData();
     }
   }
+
   ngOnDestroy(): void {
-    this.hotkeys.removeShortcuts('alt.shift.arrowdown');
-    this.hotkeys.removeShortcuts('alt.shift.arrowup');
+    this.hotkeys.removeShortcuts('control.shift.arrowdown');
+    this.hotkeys.removeShortcuts('control.shift.arrowup');
   }
 
   ngOnInit(): void {
     const registeredHotkeys = this.hotkeys.getHotkeys().map((hotkey) => hotkey.keys);
 
-    if (!registeredHotkeys.includes('alt.shift..arrowdown')) {
+    if (!registeredHotkeys.includes('control.shift.arrowdown')) {
       this.hotkeys
         .addShortcut({
-          keys: 'alt.shift.arrowdown',
+          keys: 'control.shift.arrowdown',
           description: 'Select next task',
         })
         .subscribe(() => this.nextTask());
     }
 
-    if (!registeredHotkeys.includes('alt.shift.arrowup')) {
+    if (!registeredHotkeys.includes('control.shift.arrowup')) {
       this.hotkeys
         .addShortcut({
-          keys: 'alt.shift.arrowup',
+          keys: 'control.shift.arrowup',
           description: 'Select previous task',
         })
         .subscribe(() => this.previousTask());
@@ -385,6 +386,9 @@ export class StaffTaskListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   nextTask(): void {
+    if (!this.filteredTasks) {
+      return;
+    }
     const currentTaskIndex = this.filteredTasks.findIndex((task) => this.isSelectedTask(task));
     if (currentTaskIndex >= this.filteredTasks.length) {
       return;
