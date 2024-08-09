@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.25](https://github.com/macite/doubtfire-deploy/compare/v8.0.24...v8.0.25) (2024-08-09)
+
+
+### Bug Fixes
+
+* adjust shortcuts and unregister on inbox destroy ([8a2ce3b](https://github.com/macite/doubtfire-deploy/commit/8a2ce3bfe32d99be1bc0667ca1aba55d36f987d2))
+* marking shortcuts no longer conflict with common browser shortcuts ([ec7524a](https://github.com/macite/doubtfire-deploy/commit/ec7524aaae040794de76521363c2d885a0425db0))
+* switch to control shift ([a0c1185](https://github.com/macite/doubtfire-deploy/commit/a0c1185bf4af3acb8f58c97cc27021c952861603))
+
 ### [8.0.24](https://github.com/doubtfire-lms/doubtfire-deploy/compare/v8.0.23...v8.0.24) (2024-08-09)
 
 
