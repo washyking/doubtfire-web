@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.26](https://github.com/macite/doubtfire-deploy/compare/v8.0.25...v8.0.26) (2024-08-09)
+
+
+### Bug Fixes
+
+* register service names in state resolve functions ([64e41f4](https://github.com/macite/doubtfire-deploy/commit/64e41f4aedcf519a2786d7fe4929900f86731896))
+
 ### [8.0.25](https://github.com/macite/doubtfire-deploy/compare/v8.0.24...v8.0.25) (2024-08-09)
 
 
