@@ -299,10 +299,10 @@ const ScormPlayerNormalState: NgHybridStateDeclaration = {
   name: 'scorm-player-normal',
   url: '/projects/:project_id/task_def_id/:task_definition_id/scorm-player/normal',
   resolve: {
-    projectId: function ($stateParams) {
+    projectId: function ($stateParams: {project_id: number}) {
       return $stateParams.project_id;
     },
-    taskDefId: function ($stateParams) {
+    taskDefId: function ($stateParams: {task_definition_id: number}) {
       return $stateParams.task_definition_id;
     },
     mode: function () {
@@ -320,10 +320,16 @@ const ScormPlayerNormalState: NgHybridStateDeclaration = {
   },
 };
 
-const ScormPlayerReviewState: NgHybridStateDeclaration = {
-  name: 'scorm-player-review',
-  url: '/task_def_id/:task_definition_id/scorm-player/review/:test_attempt_id',
+/**
+ * Define the SCORM Player state.
+ */
+const ScormPlayerStudentReviewState: NgHybridStateDeclaration = {
+  name: 'scorm-player-student-review',
+  url: '/projects/:project_id/task_def_id/:task_definition_id/scorm-player/review/:test_attempt_id',
   resolve: {
+    projectId: function ($stateParams) {
+      return $stateParams.project_id;
+    },
     taskDefId: function ($stateParams) {
       return $stateParams.task_definition_id;
     },
@@ -345,6 +351,28 @@ const ScormPlayerReviewState: NgHybridStateDeclaration = {
   },
 };
 
+const ScormPlayerReviewState: NgHybridStateDeclaration = {
+  name: 'scorm-preview',
+  url: '/task_def_id/:task_definition_id/preview-scorm',
+  resolve: {
+    taskDefId: function ($stateParams) {
+      return $stateParams.task_definition_id;
+    },
+    mode: function () {
+      return 'preview';
+    },
+  },
+  views: {
+    main: {
+      component: ScormPlayerComponent,
+    },
+  },
+  data: {
+    pageTitle: 'Preview Scorm Test',
+    roleWhitelist: ['Tutor', 'Convenor', 'Admin'],
+  },
+};
+
 /**
  * Export the list of states we have created in angular
  */
@@ -362,4 +390,5 @@ export const doubtfireStates = [
   AdministerUnits,
   ScormPlayerNormalState,
   ScormPlayerReviewState,
+  ScormPlayerStudentReviewState,
 ];

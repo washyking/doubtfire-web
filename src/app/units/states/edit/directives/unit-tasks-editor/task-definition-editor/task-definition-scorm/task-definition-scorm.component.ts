@@ -20,10 +20,15 @@ export class TaskDefinitionScormComponent {
     private taskDefinitionService: TaskDefinitionService,
   ) {}
 
-  public attemptLimitControl = new FormControl('', [Validators.max(100), Validators.min(0)]);
-
   public get unit(): Unit {
     return this.taskDefinition?.unit;
+  }
+
+  /**
+   * Open the SCORM test in a new tab - using preview mode.
+   */
+  public previewScormTest() {
+    this.taskDefinition.previewScormTest();
   }
 
   public downloadScormData() {

@@ -12,7 +12,16 @@ import {GlobalStateService, ViewType} from 'src/app/projects/states/index/global
 
 declare global {
   interface Window {
-    API_1484_11: any;
+    API_1484_11: {
+      Initialize: () => void;
+      Terminate: () => void;
+      GetValue: (element: string) => string;
+      SetValue: (element: string, value: string) => void;
+      Commit: () => void;
+      GetLastError: () => string;
+      GetErrorString: (errorCode: string) => string;
+      GetDiagnostic: (errorCode: string) => string;
+    };
   }
 }
 
@@ -31,7 +40,7 @@ export class ScormPlayerComponent implements OnInit {
   taskDefId: number;
 
   @Input()
-  mode: 'browse' | 'normal' | 'review';
+  mode: 'browse' | 'normal' | 'review' | 'preview';
 
   @Input()
   testAttemptId: number;
@@ -61,16 +70,20 @@ export class ScormPlayerComponent implements OnInit {
       this.scormAdapter.testAttemptId = this.testAttemptId;
     }
 
-    window.API_1484_11 = {
-      Initialize: () => this.scormAdapter.Initialize(),
-      Terminate: () => this.scormAdapter.Terminate(),
-      GetValue: (element: string) => this.scormAdapter.GetValue(element),
-      SetValue: (element: string, value: string) => this.scormAdapter.SetValue(element, value),
-      Commit: () => this.scormAdapter.Commit(),
-      GetLastError: () => this.scormAdapter.GetLastError(),
-      GetErrorString: (errorCode: string) => this.scormAdapter.GetErrorString(errorCode),
-      GetDiagnostic: (errorCode: string) => this.scormAdapter.GetDiagnostic(errorCode),
-    };
+    if (this.mode !== 'preview') {
+      window.API_1484_11 = {
+        Initialize: () => this.scormAdapter.Initialize(),
+        Terminate: () => this.scormAdapter.Terminate(),
+        GetValue: (element: string) => this.scormAdapter.GetValue(element),
+        SetValue: (element: string, value: string) => this.scormAdapter.SetValue(element, value),
+        Commit: () => this.scormAdapter.Commit(),
+        GetLastError: () => this.scormAdapter.GetLastError(),
+        GetErrorString: (errorCode: string) => this.scormAdapter.GetErrorString(errorCode),
+        GetDiagnostic: (errorCode: string) => this.scormAdapter.GetDiagnostic(errorCode),
+      };
+    } else {
+      window.API_1484_11 = undefined;
+    }
 
     this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
       `${AppInjector.get(DoubtfireConstants).API_URL}/scorm/${this.taskDefId}/${this.userService.currentUser.username}/${token}/index.html`,
@@ -78,7 +91,7 @@ export class ScormPlayerComponent implements OnInit {
   }
 
   @HostListener('window:beforeunload', ['$event'])
-  beforeUnload($event: any): void {
+  beforeUnload(_event: Event): void {
     if (this.scormAdapter.state == 'Initialized') {
       // console.log('SCORM player closing during an initialized session, commiting DataModel');
       this.scormAdapter.Commit();
@@ -86,7 +99,7 @@ export class ScormPlayerComponent implements OnInit {
   }
 
   @HostListener('window:unload', ['$event'])
-  onUnload($event: any): void {
+  onUnload(_event: Event): void {
     this.scormAdapter.destroy();
   }
 }

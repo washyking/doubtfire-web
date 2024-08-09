@@ -101,6 +101,9 @@ export class TaskCommentService extends CachedEntityService<TaskComment> {
             data[key].id,
             testAttemptService,
             data[key],
+            {
+              constructorParams: comment.task,
+            },
           );
           return testAttempt;
         },

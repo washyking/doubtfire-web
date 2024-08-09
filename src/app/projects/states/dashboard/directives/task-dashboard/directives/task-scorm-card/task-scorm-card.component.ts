@@ -44,17 +44,11 @@ export class TaskScormCardComponent implements OnChanges {
   }
 
   launchScormPlayer(): void {
-    window.open(
-      `#/projects/${this.task.project.id}/task_def_id/${this.task.taskDefId}/scorm-player/normal`,
-      '_blank',
-    );
+    this.task.launchScormPlayer();
   }
 
   reviewLatestCompletedAttempt(): void {
-    window.open(
-      `#/task_def_id/${this.task.taskDefId}/scorm-player/review/${this.task.latestCompletedTestAttempt.id}`,
-      '_blank',
-    );
+    this.task.latestCompletedTestAttempt.review();
   }
 
   requestExtraAttempt(): void {

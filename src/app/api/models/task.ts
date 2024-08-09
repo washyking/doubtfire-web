@@ -531,6 +531,14 @@ export class Task extends Entity {
     return false;
   }
 
+  /**
+   * Launch the SCORM player for this task in a new window.
+   */
+  public launchScormPlayer(): void {
+    const url = `#/projects/${this.project.id}/task_def_id/${this.taskDefId}/scorm-player/normal`;
+    window.open(url, '_blank');
+  }
+
   public get isReadyForUpload(): boolean {
     return !this.scormEnabled || this.definition.scormBypassTest || this.scormPassed;
   }

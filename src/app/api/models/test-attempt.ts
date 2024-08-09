@@ -16,4 +16,13 @@ export class TestAttempt extends Entity {
     super();
     this.task = task;
   }
+
+  /**
+   * Open a test attempt window in review mode
+   */
+  public review() {
+    const url = `#/projects/${this.task.project.id}/task_def_id/${this.task.taskDefId}/scorm-player/review/${this.id}`;
+
+    window.open(url, '_blank');
+  }
 }

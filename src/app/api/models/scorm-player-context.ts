@@ -33,7 +33,7 @@ const CMIErrorCodes: DataModelError = {
 };
 
 export class ScormPlayerContext {
-  mode: 'browse' | 'normal' | 'review';
+  mode: 'browse' | 'normal' | 'review' | 'preview';
   state: DataModelState;
 
   private _errorCode: number;

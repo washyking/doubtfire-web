@@ -25,7 +25,7 @@ export class ScormAdapterService {
     this.context.taskDefId = taskDefId;
   }
 
-  set mode(mode: 'browse' | 'normal' | 'review') {
+  set mode(mode: 'browse' | 'normal' | 'review' | 'preview') {
     this.context.mode = mode;
   }
 

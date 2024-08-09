@@ -28,10 +28,7 @@ export class ScormCommentComponent {
   }
 
   reviewScormTest() {
-    window.open(
-      `#/task_def_id/${this.task.taskDefId}/scorm-player/review/${this.comment.testAttempt.id}`,
-      '_blank',
-    );
+    this.comment.testAttempt.review();
   }
 
   passScormAttempt() {
