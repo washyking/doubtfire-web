@@ -186,37 +186,39 @@ import {
   UnitService,
   UserService,
 } from './api/models/doubtfire-model';
-import {FileDownloaderService} from './common/file-downloader/file-downloader.service';
-import {CheckForUpdateService} from './sessions/service-worker-updater/check-for-update.service';
-import {TaskSubmissionService} from './common/services/task-submission.service';
-import {TaskAssessmentModalService} from './common/modals/task-assessment-modal/task-assessment-modal.service';
-import {TaskSubmissionHistoryComponent} from './tasks/task-submission-history/task-submission-history.component';
-import {HeaderComponent} from './common/header/header.component';
-import {SplashScreenComponent} from './home/splash-screen/splash-screen.component';
-import {GlobalStateService} from './projects/states/index/global-state.service';
-import {TransitionHooksService} from './sessions/transition-hooks.service';
-import {AuthenticationService} from './api/services/authentication.service';
-import {ProjectService} from './api/services/project.service';
-import {ObjectSelectComponent} from './common/obect-select/object-select.component';
-import {TaskDefinitionService} from './api/services/task-definition.service';
-import {EditProfileDialogService} from './common/modals/edit-profile-dialog/edit-profile-dialog.service';
-import {GroupService} from './api/services/group.service';
-import {UserBadgeComponent} from './common/user-badge/user-badge.component';
-import {TaskStatusCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-status-card/task-status-card.component';
-import {TaskDueCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-due-card/task-due-card.component';
-import {FooterComponent} from './common/footer/footer.component';
-import {TaskAssessmentCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-assessment-card/task-assessment-card.component';
-import {TaskSubmissionCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-submission-card/task-submission-card.component';
-import {InboxComponent} from './units/states/tasks/inbox/inbox.component';
-import {TaskDefinitionEditorComponent} from './units/states/edit/directives/unit-tasks-editor/task-definition-editor/task-definition-editor.component';
-import {UnitAnalyticsComponent} from './units/states/analytics/unit-analytics-route.component';
-import {UnitTaskEditorComponent} from './units/states/edit/directives/unit-tasks-editor/unit-task-editor.component';
-import {TeachingPeriodUnitImportService} from './admin/states/teaching-periods/teaching-period-unit-import/teaching-period-unit-import.dialog';
-import {CreateNewUnitModal} from './admin/modals/create-new-unit-modal/create-new-unit-modal.component';
-import {FUsersComponent} from './admin/states/users/users.component';
-import {FUnitTaskListComponent} from './units/task-viewer/directives/unit-task-list/unit-task-list.component';
-import {FTaskDetailsViewComponent} from './units/task-viewer/directives/task-details-view/task-details-view.component';
-import {FTaskSheetViewComponent} from './units/task-viewer/directives/task-sheet-view/task-sheet-view.component';
+import { FileDownloaderService } from './common/file-downloader/file-downloader.service';
+import { CheckForUpdateService } from './sessions/service-worker-updater/check-for-update.service';
+import { TaskSubmissionService } from './common/services/task-submission.service';
+import { TaskAssessmentModalService } from './common/modals/task-assessment-modal/task-assessment-modal.service';
+import { TaskSubmissionHistoryComponent } from './tasks/task-submission-history/task-submission-history.component';
+import { HeaderComponent } from './common/header/header.component';
+import { SplashScreenComponent } from './home/splash-screen/splash-screen.component';
+import { GlobalStateService } from './projects/states/index/global-state.service';
+import { TransitionHooksService } from './sessions/transition-hooks.service';
+import { AuthenticationService } from './api/services/authentication.service';
+import { ProjectService } from './api/services/project.service';
+import { ObjectSelectComponent } from './common/obect-select/object-select.component';
+import { TaskDefinitionService } from './api/services/task-definition.service';
+import { EditProfileDialogService } from './common/modals/edit-profile-dialog/edit-profile-dialog.service';
+import { GroupService } from './api/services/group.service';
+import { UserBadgeComponent } from './common/user-badge/user-badge.component';
+import { TaskStatusCardComponent } from './projects/states/dashboard/directives/task-dashboard/directives/task-status-card/task-status-card.component';
+import { TaskDueCardComponent } from './projects/states/dashboard/directives/task-dashboard/directives/task-due-card/task-due-card.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { TaskAssessmentCardComponent } from './projects/states/dashboard/directives/task-dashboard/directives/task-assessment-card/task-assessment-card.component';
+import { TaskSubmissionCardComponent } from './projects/states/dashboard/directives/task-dashboard/directives/task-submission-card/task-submission-card.component';
+import { InboxComponent } from './units/states/tasks/inbox/inbox.component';
+import { TaskDefinitionEditorComponent } from './units/states/edit/directives/unit-tasks-editor/task-definition-editor/task-definition-editor.component';
+import { UnitAnalyticsComponent } from './units/states/analytics/unit-analytics-route.component';
+import { UnitTaskEditorComponent } from './units/states/edit/directives/unit-tasks-editor/unit-task-editor.component';
+import { TeachingPeriodUnitImportService } from './admin/states/teaching-periods/teaching-period-unit-import/teaching-period-unit-import.dialog';
+import { CreateNewUnitModal } from './admin/modals/create-new-unit-modal/create-new-unit-modal.component';
+import { FUsersComponent } from './admin/states/users/users.component';
+import { FUnitTaskListComponent } from './units/task-viewer/directives/unit-task-list/unit-task-list.component';
+import { FTaskDetailsViewComponent } from './units/task-viewer/directives/task-details-view/task-details-view.component';
+import { FTaskSheetViewComponent } from './units/task-viewer/directives/task-sheet-view/task-sheet-view.component';
+import { ProgressBurndownChartComponent } from './visualisations/progress-burndown-chart/progressburndownchart.component';
+import { TaskVisualisationComponent } from './visualisations/task-visualisation/taskvisualisation.component';
 
 import {FUnitsComponent} from './admin/states/units/units.component';
 import {MarkedPipe} from './common/pipes/marked.pipe';
@@ -469,3 +471,14 @@ const otherwiseConfigBlock = [
   },
 ];
 DoubtfireAngularJSModule.config(otherwiseConfigBlock);
+
+
+DoubtfireAngularJSModule.directive(
+  'appProgressBurndownChart',
+  downgradeComponent({ component: ProgressBurndownChartComponent })
+);
+
+DoubtfireAngularJSModule.directive(
+  'appTaskVisualisation',
+  downgradeComponent({ component: TaskVisualisationComponent })
+);
