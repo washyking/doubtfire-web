@@ -1,12 +1,13 @@
 import {interval} from 'rxjs';
 import {take} from 'rxjs/operators';
 
-import {NgModule, Injector, DoBootstrap} from '@angular/core';
-import {BrowserModule, DomSanitizer, Title} from '@angular/platform-browser';
-import {UpgradeModule} from '@angular/upgrade/static';
-import {AppInjector, setAppInjector} from './app-injector';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgModule, Injector, DoBootstrap } from '@angular/core';
+import { BrowserModule, DomSanitizer, Title } from '@angular/platform-browser';
+import { UpgradeModule } from '@angular/upgrade/static';
+import { AppInjector, setAppInjector } from './app-injector';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 // Lottie animation module
 // import {LottieModule, LottieCacheModule} from 'ngx-lottie';
@@ -112,7 +113,6 @@ import {StudentTutorialSelectComponent} from './units/states/edit/directives/uni
 import {StudentCampusSelectComponent} from './units/states/edit/directives/unit-students-editor/student-campus-select/student-campus-select.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from 'src/environments/environment';
-import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {PickerModule} from '@ctrl/ngx-emoji-mart';
 import {EmojiModule} from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import {EmojiService} from './common/services/emoji.service';
@@ -217,19 +217,23 @@ import {
   TeachingPeriodUnitImportDialogComponent,
   TeachingPeriodUnitImportService,
 } from './admin/states/teaching-periods/teaching-period-unit-import/teaching-period-unit-import.dialog';
-import {AcceptEulaComponent} from './eula/accept-eula/accept-eula.component';
-import {TiiActionLogComponent} from './admin/tii-action-log/tii-action-log.component';
-import {TiiActionService} from './api/services/tii-action.service';
-import {FUnitsComponent} from './admin/states/units/units.component';
-import {FUnitTaskListComponent} from './units/task-viewer/directives/unit-task-list/unit-task-list.component';
-import {FTaskDetailsViewComponent} from './units/task-viewer/directives/task-details-view/task-details-view.component';
-import {FTaskSheetViewComponent} from './units/task-viewer/directives/task-sheet-view/task-sheet-view.component';
-import {UnitCodeComponent} from './common/unit-code/unit-code.component';
-import {GradeService} from './common/services/grade.service';
-import {UnitRootStateComponent} from './units/unit-root-state.component';
-import {TaskViewerStateComponent} from './units/task-viewer/task-viewer-state.component';
-import {ProjectRootStateComponent} from './projects/states/project-root-state.component';
-import {ProjectProgressDashboardComponent} from './projects/project-progress-dashboard/project-progress-dashboard.component';
+
+import { AcceptEulaComponent } from './eula/accept-eula/accept-eula.component';
+import { TiiActionLogComponent } from './admin/tii-action-log/tii-action-log.component';
+import { TiiActionService } from './api/services/tii-action.service';
+import { FUnitsComponent } from './admin/states/units/units.component';
+import { FUnitTaskListComponent } from './units/task-viewer/directives/unit-task-list/unit-task-list.component';
+import { FTaskDetailsViewComponent } from './units/task-viewer/directives/task-details-view/task-details-view.component';
+import { FTaskSheetViewComponent } from './units/task-viewer/directives/task-sheet-view/task-sheet-view.component';
+import { UnitCodeComponent } from './common/unit-code/unit-code.component';
+import { GradeService } from './common/services/grade.service';
+import { UnitRootStateComponent } from './units/unit-root-state.component';
+import { TaskViewerStateComponent } from './units/task-viewer/task-viewer-state.component';
+import { ProjectRootStateComponent } from './projects/states/project-root-state.component';
+import { ProjectProgressDashboardComponent } from './projects/project-progress-dashboard/project-progress-dashboard.component';
+import { ProgressBurndownChartComponent } from './visualisations/progress-burndown-chart/progressburndownchart.component';
+import { TaskVisualisationComponent } from './visualisations/task-visualisation/taskvisualisation.component';
+import { ChartBaseComponent } from './common/chart-base/chart-base-component/chart-base-component.component';
 
 @NgModule({
   // Components we declare
@@ -336,6 +340,10 @@ import {ProjectProgressDashboardComponent} from './projects/project-progress-das
     ProjectProgressGaugeComponent,
     FTaskBadgeComponent,
     FUnitsComponent,
+    ChartBaseComponent,
+    ProgressBurndownChartComponent,
+    TaskVisualisationComponent
+
   ],
   // Services we provide
   providers: [
@@ -472,6 +480,7 @@ import {ProjectProgressDashboardComponent} from './projects/project-progress-das
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModuleNew,
+    NgxChartsModule
   ],
 })
 
