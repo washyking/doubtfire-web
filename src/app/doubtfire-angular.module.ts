@@ -113,7 +113,6 @@ import {StudentTutorialSelectComponent} from './units/states/edit/directives/uni
 import {StudentCampusSelectComponent} from './units/states/edit/directives/unit-students-editor/student-campus-select/student-campus-select.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from 'src/environments/environment';
-import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {PickerModule} from '@ctrl/ngx-emoji-mart';
 import {EmojiModule} from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import {EmojiService} from './common/services/emoji.service';
@@ -230,7 +229,6 @@ import { UnitCodeComponent } from './common/unit-code/unit-code.component';
 import { GradeService } from './common/services/grade.service';
 import { UnitRootStateComponent } from './units/unit-root-state.component';
 import { TaskViewerStateComponent } from './units/task-viewer/task-viewer-state.component';
-// import { TasksViewerComponent } from './units/states/tasks/tasks-viewer/tasks-viewer.component';
 import { ProjectRootStateComponent } from './projects/states/project-root-state.component';
 import { ProjectProgressDashboardComponent } from './projects/project-progress-dashboard/project-progress-dashboard.component';
 import { ProgressBurndownChartComponent } from './visualisations/progress-burndown-chart/progressburndownchart.component';
