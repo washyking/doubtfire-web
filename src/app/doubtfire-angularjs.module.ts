@@ -474,11 +474,11 @@ DoubtfireAngularJSModule.config(otherwiseConfigBlock);
 
 
 DoubtfireAngularJSModule.directive(
-  'appProgressBurndownChart',
+  'fProgressBurndownChart',
   downgradeComponent({ component: ProgressBurndownChartComponent })
 );
 
 DoubtfireAngularJSModule.directive(
-  'appTaskVisualisation',
+  'fTaskVisualisation',
   downgradeComponent({ component: TaskVisualisationComponent })
 );

@@ -233,6 +233,7 @@ import { ProjectRootStateComponent } from './projects/states/project-root-state.
 import { ProjectProgressDashboardComponent } from './projects/project-progress-dashboard/project-progress-dashboard.component';
 import { ProgressBurndownChartComponent } from './visualisations/progress-burndown-chart/progressburndownchart.component';
 import { TaskVisualisationComponent } from './visualisations/task-visualisation/taskvisualisation.component';
+import { ChartBaseComponent } from './common/chart-base/chart-base-component/chart-base-component.component';
 
 @NgModule({
   // Components we declare
@@ -339,6 +340,7 @@ import { TaskVisualisationComponent } from './visualisations/task-visualisation/
     ProjectProgressGaugeComponent,
     FTaskBadgeComponent,
     FUnitsComponent,
+    ChartBaseComponent,
     ProgressBurndownChartComponent,
     TaskVisualisationComponent
 
