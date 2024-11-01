@@ -277,8 +277,12 @@
         <i class="fa fa-book"></i>
         <p>No Portfolio Submitted</p>
       </div>
-      <div class="panel-body flex flex-col h-screen">
-        <f-pdf-viewer class="flex flex-grow" [pdf-url]="project.preloadedUrl"> </f-pdf-viewer>
+      <div class="panel-body flex flex-col h-screen" ng-if="project.portfolioAvailable">
+        <f-pdf-viewer
+          class="flex flex-grow"
+          [pdf-url]="project.preloadedUrl"
+        >
+        </f-pdf-viewer>
       </div>
     </div>
 

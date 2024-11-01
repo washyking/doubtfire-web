@@ -7,7 +7,6 @@ import {
   SimpleChanges,
   OnChanges,
   ViewChild,
-  OnInit,
   AfterViewInit,
 } from '@angular/core';
 import {PdfViewerComponent} from 'ng2-pdf-viewer';
@@ -22,6 +21,8 @@ import {AlertService} from '../services/alert.service';
 export class fPdfViewerComponent implements OnDestroy, OnChanges, AfterViewInit {
   private _pdfUrl: string;
   public pdfBlobUrl: string;
+  public useNativePdfViewer = false;
+
   @Input() pdfUrl: string;
   @ViewChild(PdfViewerComponent) private pdfComponent: PdfViewerComponent;
   pdfSearchString: string;
@@ -41,8 +42,7 @@ export class fPdfViewerComponent implements OnDestroy, OnChanges, AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    console.log("pdfUrl");
-    console.log(this.pdfUrl);
+    this.useNativePdfViewer = localStorage.getItem('useNativePdfViewer') === 'true';
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -75,24 +75,33 @@ export class fPdfViewerComponent implements OnDestroy, OnChanges, AfterViewInit 
     });
   }
 
-  zoomIn() {
+  public zoomIn() {
     if (this.zoomValue < 2.5) {
       this.zoomValue += 0.1;
     }
   }
-  zoomOut() {
+  public zoomOut() {
     if (this.zoomValue > 0.5) {
       this.zoomValue -= 0.1;
     }
   }
 
+  public downloadPdf() {
+    this.fileDownloader.downloadBlobToFile(this.pdfBlobUrl, 'displayed-pdf.pdf');
+  }
+
+  public toggleNativePdfViewer() {
+    this.useNativePdfViewer = !this.useNativePdfViewer;
+    localStorage.setItem('useNativePdfViewer', this.useNativePdfViewer.toString());
+  }
+
   private downloadBlob(downloadUrl: string): void {
     this.fileDownloader.downloadBlob(
       downloadUrl,
-      (url: string, response: HttpResponse<Blob>) => {
+      (url: string, _response: HttpResponse<Blob>) => {
         this.pdfBlobUrl = url;
       },
-      (error: any) => {
+      (error: unknown) => {
         this.alerts.error(`Error downloading PDF. ${error}`, 6000);
       },
     );

@@ -224,6 +224,8 @@ import {FUnitsComponent} from './admin/states/units/units.component';
 import {MarkedPipe} from './common/pipes/marked.pipe';
 import {AlertService} from './common/services/alert.service';
 import {GradeService} from './common/services/grade.service';
+import {TaskScormCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-scorm-card/task-scorm-card.component';
+
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.config',
   'doubtfire.sessions',
@@ -239,10 +241,6 @@ export const DoubtfireAngularJSModule = angular.module('doubtfire', [
 // Downgrade angular modules that we need...
 // factory -> service
 DoubtfireAngularJSModule.factory('AboutDoubtfireModal', downgradeInjectable(AboutDoubtfireModal));
-DoubtfireAngularJSModule.factory(
-  'TeachingPeriodUnitImportService',
-  downgradeInjectable(TeachingPeriodUnitImportService),
-);
 DoubtfireAngularJSModule.factory('DoubtfireConstants', downgradeInjectable(DoubtfireConstants));
 DoubtfireAngularJSModule.factory('ExtensionModal', downgradeInjectable(ExtensionModalService));
 DoubtfireAngularJSModule.factory('Marked', downgradeInjectable(MarkedPipe));
@@ -361,6 +359,10 @@ DoubtfireAngularJSModule.directive(
 DoubtfireAngularJSModule.directive(
   'activityTypeList',
   downgradeComponent({component: ActivityTypeListComponent}),
+);
+DoubtfireAngularJSModule.directive(
+  'fTaskScormCard',
+  downgradeComponent({component: TaskScormCardComponent}),
 );
 DoubtfireAngularJSModule.directive(
   'fTaskStatusCard',
