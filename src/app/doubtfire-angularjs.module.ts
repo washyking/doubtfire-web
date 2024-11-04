@@ -43,7 +43,6 @@ import 'build/src/app/visualisations/achievement-custom-bar-chart.js';
 import 'build/src/app/visualisations/alignment-bar-chart.js';
 import 'build/src/app/visualisations/achievement-box-plot.js';
 import 'build/src/app/tasks/modals/upload-submission-modal/upload-submission-modal.js';
-import 'build/src/app/tasks/modals/grade-task-modal/grade-task-modal.js';
 import 'build/src/app/tasks/modals/modals.js';
 import 'build/src/app/tasks/tasks.js';
 import 'build/src/app/tasks/task-ilo-alignment/task-ilo-alignment.js';
@@ -119,7 +118,6 @@ import 'build/src/app/common/modals/confirmation-modal/confirmation-modal.js';
 import 'build/src/app/common/modals/comments-modal/comments-modal.js';
 import 'build/src/app/common/modals/csv-result-modal/csv-result-modal.js';
 import 'build/src/app/common/modals/modals.js';
-import 'build/src/app/common/grade-icon/grade-icon.js';
 import 'build/src/app/common/file-uploader/file-uploader.js';
 import 'build/src/app/common/common.js';
 import 'build/src/app/common/services/listener-service.js';
@@ -195,6 +193,8 @@ import { HeaderComponent } from './common/header/header.component';
 import { SplashScreenComponent } from './home/splash-screen/splash-screen.component';
 import { GlobalStateService } from './projects/states/index/global-state.service';
 import { TransitionHooksService } from './sessions/transition-hooks.service';
+import { GradeIconComponent } from './common/grade-icon/grade-icon.component';
+import { GradeTaskModalService } from './tasks/modals/grade-task-modal/grade-task-modal.service';
 import { AuthenticationService } from './api/services/authentication.service';
 import { ProjectService } from './api/services/project.service';
 import { ObjectSelectComponent } from './common/obect-select/object-select.component';
@@ -211,7 +211,6 @@ import { InboxComponent } from './units/states/tasks/inbox/inbox.component';
 import { TaskDefinitionEditorComponent } from './units/states/edit/directives/unit-tasks-editor/task-definition-editor/task-definition-editor.component';
 import { UnitAnalyticsComponent } from './units/states/analytics/unit-analytics-route.component';
 import { UnitTaskEditorComponent } from './units/states/edit/directives/unit-tasks-editor/unit-task-editor.component';
-import { TeachingPeriodUnitImportService } from './admin/states/teaching-periods/teaching-period-unit-import/teaching-period-unit-import.dialog';
 import { CreateNewUnitModal } from './admin/modals/create-new-unit-modal/create-new-unit-modal.component';
 import { FUsersComponent } from './admin/states/users/users.component';
 import { FUnitTaskListComponent } from './units/task-viewer/directives/unit-task-list/unit-task-list.component';
@@ -304,11 +303,16 @@ DoubtfireAngularJSModule.factory(
   downgradeInjectable(EditProfileDialogService),
 );
 DoubtfireAngularJSModule.factory('CreateNewUnitModal', downgradeInjectable(CreateNewUnitModal));
+DoubtfireAngularJSModule.factory('GradeTaskModal', downgradeInjectable(GradeTaskModalService));
 
 // directive -> component
 DoubtfireAngularJSModule.directive(
   'fProjectTasksList',
   downgradeComponent({component: ProjectTasksListComponent}),
+);
+DoubtfireAngularJSModule.directive(
+  'gradeIcon',
+  downgradeComponent({component: GradeIconComponent}),
 );
 DoubtfireAngularJSModule.directive(
   'taskCommentComposer',
