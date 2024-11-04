@@ -4,20 +4,16 @@ import {HomeComponent} from './home/states/home/home.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {SignInComponent} from './sessions/states/sign-in/sign-in.component';
 import {EditProfileComponent} from './account/edit-profile/edit-profile.component';
-import {TeachingPeriodListComponent} from './admin/states/teaching-periods/teaching-period-list/teaching-period-list.component';
 import {AcceptEulaComponent} from './eula/accept-eula/accept-eula.component';
+import { UnauthorisedComponent } from './errors/states/unauthorised/unauthorised.component';
 import {FUsersComponent} from './admin/states/users/users.component';
 import {FUnitsComponent} from './admin/states/units/units.component';
 import {ProjectDashboardComponent} from './projects/states/dashboard/project-dashboard/project-dashboard.component';
-import {AppInjector} from './app-injector';
-import {ProjectService} from './api/services/project.service';
-import {Observable, first} from 'rxjs';
-import {GlobalStateService} from './projects/states/index/global-state.service';
-import {Project} from './api/models/project';
 import {UnitRootState} from './units/unit-root-state.component';
 import {ProjectRootState} from './projects/states/project-root-state.component';
 import { TaskViewerState } from './units/task-viewer/task-viewer-state.component';
 import {ScormPlayerComponent} from './common/scorm-player/scorm-player.component';
+import { Ng2ViewDeclaration } from '@uirouter/angular';
 
 /*
  * Use this file to store any states that are sourced by angular components.
@@ -37,7 +33,7 @@ const institutionSettingsState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Institution Settings',
-    roleWhiteList: ['Admin'],
+    roleWhitelist: ['Admin'],
   },
 };
 
@@ -52,7 +48,7 @@ const usersState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Administer users',
-    roleWhiteList: ['Admin'],
+    roleWhitelist: ['Admin'],
   },
 };
 
@@ -68,8 +64,7 @@ const HomeState: NgHybridStateDeclaration = {
     },
   },
   data: {
-    pageTitle: 'Home Page',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin', 'Auditor'],
+    pageTitle: 'Home Page'
   },
 };
 
@@ -174,8 +169,7 @@ const WelcomeState: NgHybridStateDeclaration = {
     },
   },
   data: {
-    pageTitle: 'Welcome',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin', 'Auditor'],
+    pageTitle: 'Welcome'
   },
 };
 
@@ -207,22 +201,7 @@ const EditProfileState: NgHybridStateDeclaration = {
     },
   },
   data: {
-    pageTitle: 'Edit Profile',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin', 'Auditor'],
-  },
-};
-
-const TeachingPeriodsState: NgHybridStateDeclaration = {
-  name: 'teaching_periods',
-  url: '/admin/teachingperiods',
-  views: {
-    main: {
-      component: TeachingPeriodListComponent,
-    },
-  },
-  data: {
-    pageTitle: 'Teaching Periods',
-    roleWhitelist: ['Convenor', 'Admin'],
+    pageTitle: 'Edit Profile'
   },
 };
 
@@ -235,8 +214,7 @@ const EulaState: NgHybridStateDeclaration = {
     },
   },
   data: {
-    pageTitle: 'End User License Agreement',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin', 'Auditor'],
+    pageTitle: 'End User License Agreement'
   },
 };
 
@@ -254,8 +232,7 @@ const ViewAllProjectsState: NgHybridStateDeclaration = {
     },
   },
   data: {
-    pageTitle: 'Teaching Periods',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+    pageTitle: 'All Units'
   },
 };
 
@@ -275,7 +252,7 @@ const AdministerUnits: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Administer units',
-    roleWhiteList: ['Admin'],
+    roleWhitelist: ['Admin', 'Convenor', 'Auditor'],
   },
 };
 
@@ -290,8 +267,7 @@ const ProjectDashboardState: NgHybridStateDeclaration = {
     },
   },
   data: {
-    pageTitle: 'Project Dashboard',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+    pageTitle: 'Unit Dashboard',
   },
 };
 
@@ -310,12 +286,32 @@ const ViewAllUnits: NgHybridStateDeclaration = {
     },
   },
   data: {
-    pageTitle: 'Teaching Periods',
+    pageTitle: 'View Units',
     mode: 'tutor',
-    roleWhitelist: ['Tutor', 'Convenor', 'Admin'],
+    roleWhitelist: ['Tutor', 'Convenor', 'Admin', 'Auditor'],
   },
 };
 
+const UnauthoriedState: NgHybridStateDeclaration = {
+  name: 'unauthorised',
+  url: '/unauthorised', // You get here with this url
+  views: {
+    // These are the 2 views - the header and main from the body of DF
+    header: {
+      // Header is still angularjs
+      controller: 'BasicHeaderCtrl', // This is the angularjs controller
+      templateUrl: 'common/header/header.tpl.html', // and the related template html
+    } as unknown as Ng2ViewDeclaration, // Need dodgy cast to get compiler to ignore type data
+    main: {
+      // Main body links to angular component
+      component: UnauthorisedComponent,
+    },
+  },
+  data: {
+    // Add data used by header
+    pageTitle: 'Unauthorised'
+  },
+};
 /**
  * Define the SCORM Player state.
  */
@@ -386,7 +382,7 @@ const ScormPlayerStudentReviewState: NgHybridStateDeclaration = {
   },
   data: {
     pageTitle: 'Review Knowledge Check',
-    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin'],
+    roleWhitelist: ['Student', 'Tutor', 'Convenor', 'Admin', 'Auditor'],
   },
 };
 
@@ -420,7 +416,6 @@ const ScormPlayerReviewState: NgHybridStateDeclaration = {
  */
 export const doubtfireStates = [
   institutionSettingsState,
-  TeachingPeriodsState,
   HomeState,
   WelcomeState,
   SignInState,
@@ -430,6 +425,7 @@ export const doubtfireStates = [
   ViewAllProjectsState,
   ViewAllUnits,
   AdministerUnits,
+  UnauthoriedState,
   ProjectRootState,
   ProjectDashboardState,
   UnitRootState,

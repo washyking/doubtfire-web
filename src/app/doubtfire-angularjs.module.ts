@@ -130,7 +130,6 @@ import 'build/src/app/common/services/date-service.js';
 import 'build/src/app/sessions/auth/http-auth-injector.js';
 import 'build/src/app/sessions/sessions.js';
 import 'build/src/app/errors/errors.js';
-import 'build/src/app/errors/states/unauthorised/unauthorised.js';
 import 'build/src/app/errors/states/timeout/timeout.js';
 import 'build/src/app/errors/states/states.js';
 import 'build/src/common/utilService/utilService.js';
@@ -184,6 +183,7 @@ import {
   UnitService,
   UserService,
 } from './api/models/doubtfire-model';
+import { UnauthorisedComponent } from './errors/states/unauthorised/unauthorised.component';
 import { FileDownloaderService } from './common/file-downloader/file-downloader.service';
 import { CheckForUpdateService } from './sessions/service-worker-updater/check-for-update.service';
 import { TaskSubmissionService } from './common/services/task-submission.service';
@@ -469,6 +469,8 @@ DoubtfireAngularJSModule.directive(
   downgradeComponent({component: StatusIconComponent}),
 );
 DoubtfireAngularJSModule.directive('newFUnits', downgradeComponent({component: FUnitsComponent}));
+
+DoubtfireAngularJSModule.directive('unauthorised', downgradeComponent({ component: UnauthorisedComponent }));
 
 // Global configuration
 

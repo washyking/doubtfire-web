@@ -226,6 +226,7 @@ import {
   TeachingPeriodUnitImportDialogComponent,
   TeachingPeriodUnitImportService,
 } from './admin/states/teaching-periods/teaching-period-unit-import/teaching-period-unit-import.dialog';
+import { UnauthorisedComponent } from './errors/states/unauthorised/unauthorised.component';
 import { AcceptEulaComponent } from './eula/accept-eula/accept-eula.component';
 import { TiiActionLogComponent } from './admin/tii-action-log/tii-action-log.component';
 import { TiiActionService } from './api/services/tii-action.service';
@@ -376,6 +377,7 @@ const MY_DATE_FORMAT = {
     ProjectProgressGaugeComponent,
     FTaskBadgeComponent,
     FUnitsComponent,
+    UnauthorisedComponent,
     ChartBaseComponent,
     ProgressBurndownChartComponent,
     TaskVisualisationComponent,
