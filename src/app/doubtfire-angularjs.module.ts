@@ -218,7 +218,6 @@ import { ProgressBurndownChartComponent } from './visualisations/progress-burndo
 import { TaskVisualisationComponent } from './visualisations/task-visualisation/taskvisualisation.component';
 
 import {FUnitsComponent} from './admin/states/units/units.component';
-import {MarkedPipe} from './common/pipes/marked.pipe';
 import {AlertService} from './common/services/alert.service';
 
 import {GradeService} from './common/services/grade.service';
@@ -243,7 +242,6 @@ export const DoubtfireAngularJSModule = angular.module('doubtfire', [
 DoubtfireAngularJSModule.factory('AboutDoubtfireModal', downgradeInjectable(AboutDoubtfireModal));
 DoubtfireAngularJSModule.factory('DoubtfireConstants', downgradeInjectable(DoubtfireConstants));
 DoubtfireAngularJSModule.factory('ExtensionModal', downgradeInjectable(ExtensionModalService));
-DoubtfireAngularJSModule.factory('Marked', downgradeInjectable(MarkedPipe));
 DoubtfireAngularJSModule.factory('CalendarModal', downgradeInjectable(CalendarModalService));
 DoubtfireAngularJSModule.factory('TaskCommentService', downgradeInjectable(TaskCommentService));
 DoubtfireAngularJSModule.factory('alertService', downgradeInjectable(AlertService));
