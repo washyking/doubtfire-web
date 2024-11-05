@@ -252,6 +252,7 @@ import {ScormExtensionCommentComponent} from './tasks/task-comments-viewer/scorm
 import {ScormExtensionModalComponent} from './common/modals/scorm-extension-modal/scorm-extension-modal.component';
 import { GradeIconComponent } from './common/grade-icon/grade-icon.component';
 import { GradeTaskModalComponent } from './tasks/modals/grade-task-modal/grade-task-modal.component';
+import { PrivacyPolicy } from './config/privacy-policy/privacy-policy';
 
 // See https://stackoverflow.com/questions/55721254/how-to-change-mat-datepicker-date-format-to-dd-mm-yyyy-in-simplest-way/58189036#58189036
 const MY_DATE_FORMAT = {
@@ -463,6 +464,7 @@ import { UnitStudentEnrolmentModalComponent } from './units/modals/unit-student-
     CreateNewUnitModal,
     ScormAdapterService,
     TestAttemptService,
+    PrivacyPolicy,
     provideLottieOptions({
       player: () => player,
     }),
@@ -528,7 +530,7 @@ import { UnitStudentEnrolmentModalComponent } from './units/modals/unit-student-
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModuleNew,
-    NgxChartsModule
+    NgxChartsModule,
   ],
 })
 
