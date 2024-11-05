@@ -90,7 +90,6 @@ import 'build/src/app/groups/groups.js';
 import 'build/src/app/groups/group-member-contribution-assigner/group-member-contribution-assigner.js';
 import 'build/src/app/groups/group-member-list/group-member-list.js';
 import 'build/src/app/groups/group-set-selector/group-set-selector.js';
-import 'build/src/app/units/modals/unit-student-enrolment-modal/unit-student-enrolment-modal.js';
 import 'build/src/app/units/modals/unit-ilo-edit-modal/unit-ilo-edit-modal.js';
 import 'build/src/app/units/modals/modals.js';
 import 'build/src/app/units/units.js';
@@ -225,6 +224,7 @@ import {AlertService} from './common/services/alert.service';
 
 import {GradeService} from './common/services/grade.service';
 import {TaskScormCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-scorm-card/task-scorm-card.component';
+import { UnitStudentEnrolmentModalService } from './units/modals/unit-student-enrolment-modal/unit-student-enrolment-modal.service';
 
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.config',
@@ -304,6 +304,7 @@ DoubtfireAngularJSModule.factory(
 );
 DoubtfireAngularJSModule.factory('CreateNewUnitModal', downgradeInjectable(CreateNewUnitModal));
 DoubtfireAngularJSModule.factory('GradeTaskModal', downgradeInjectable(GradeTaskModalService));
+DoubtfireAngularJSModule.factory('UnitStudentEnrolmentModal', downgradeInjectable(UnitStudentEnrolmentModalService));
 
 // directive -> component
 DoubtfireAngularJSModule.directive(
