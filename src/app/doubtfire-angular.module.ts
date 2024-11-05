@@ -271,6 +271,7 @@ import { UnitStudentEnrolmentModalComponent } from './units/modals/unit-student-
   // Components we declare
   declarations: [
     AlertComponent,
+    UnitStudentEnrolmentModalComponent,
     AboutDoubtfireModalContent,
     TeachingPeriodUnitImportDialogComponent,
     ProjectTasksListComponent,
