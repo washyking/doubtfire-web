@@ -9,11 +9,9 @@
             </div>
           </div>
           <div class="panel-body">
-            <f-project-tasks-list
-              [project]= "project"
-              [unit]= "unit"
-              [inMenu]= "assessingUnitRole"
-              (selectTask)= "showTaskView($event)">
+            <f-project-tasks-list [project]="project" [unit]="unit" >
+              <pre>{{ project | json }}</pre>
+              <pre>{{ unit | json }}</pre>
             </f-project-tasks-list>
         </div><!--task-lists-->
       </div>
