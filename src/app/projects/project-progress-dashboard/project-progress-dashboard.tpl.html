@@ -9,11 +9,9 @@
             </div>
           </div>
           <div class="panel-body">
-            <f-project-tasks-list [project]="project" [unit]="unit" >
-              <pre>{{ project | json }}</pre>
-              <pre>{{ unit | json }}</pre>
-            </f-project-tasks-list>
-        </div><!--task-lists-->
+            <project-tasks-list [project]="project" [unit]="unit"></f-project-tasks-list>
+          </div>
+        </div>
       </div>
       <div class="col-sm-6 col-md-12">
         <div class="panel panel-default">
