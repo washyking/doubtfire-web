@@ -1,8 +1,10 @@
 .project-tasks-list {
-  @include remove-list-padding;
+  padding: 0;
+  margin: 0;
+  list-style: none;
   text-align: center;
 
-  .group-set-name {
+  .groupset-name {
     color: #777;
     text-align: center;
     font-size: 1em;
@@ -14,7 +16,7 @@
     padding: 2px;
   }
 
-  .group-set-tasks:first-child .group-set-name {
+  .groupset-tasks:first-child .groupset-name {
     margin-top: 0;
   }
 

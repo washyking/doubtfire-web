@@ -24,6 +24,8 @@ export class ProjectTasksListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('Project:', this.project);
+    console.log('Unit:', this.unit);
     this.analyticsService.event('Student Project View', 'Showed Task Button List');
 
     // Populate group tasks
