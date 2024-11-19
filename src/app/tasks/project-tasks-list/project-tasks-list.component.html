@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let task of project.tasks" [ngClass]="getStatusClass(task)" (click)="toggleTooltip(task)">
+  <li *ngFor="let task of project.tasks" [ngClass]="getStatusClass(task)" (click)="selectTask(task)">
     {{ taskText(task) }}
     <span *ngIf="task.showTooltip" class="tooltip">{{ task.definition?.name }}</span>
   </li>
