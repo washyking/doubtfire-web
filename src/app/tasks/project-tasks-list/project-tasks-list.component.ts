@@ -12,12 +12,22 @@ export class ProjectTasksListComponent {
 
   taskText(task: Task): string {
     const name = task.definition?.name || 'Unnamed Task';
+    const assignmentMatch = name.match(/Assignment\s*(\d+)/i);
+    const testMatch = name.match(/Test\s*(\d+)/i);
+
+    if (assignmentMatch) {
+      return `A${assignmentMatch[1]}`;
+    } else if (testMatch) {
+      return `T${testMatch[1]}`;
+    }
+
     const match = name.match(/(\d+\.\d+)\s*-\s*([A-Za-z\s]+)/);
     if (match) {
       const number = match[1];
       const level = this.getLevelFromName(name);
       return `${number}${level}`;
     }
+
     return name;
   }
 
@@ -30,13 +40,7 @@ export class ProjectTasksListComponent {
   }
 
   selectTask(task: Task): void {
-    if (this.selectedTask) {
-      this.selectedTask.showTooltip = false;
-    }
     this.selectedTask = this.selectedTask === task ? null : task;
-    if (this.selectedTask) {
-      this.selectedTask.showTooltip = true;
-    }
   }
 
   getStatusClass(task: Task): string {
@@ -46,7 +50,6 @@ export class ProjectTasksListComponent {
         statusClass = 'task-complete';
         break;
       case 'working_on_it':
-      case 'fix_and_resubmit':
         statusClass = 'task-doing';
         break;
       case 'discuss':
@@ -59,8 +62,22 @@ export class ProjectTasksListComponent {
         statusClass = 'task-need-help';
         break;
       case 'fail':
-      case 'time_exceeded':
         statusClass = 'task-fail';
+        break;
+      case 'time_exceeded':
+        statusClass = 'task-time-exceeded';
+        break;
+      case 'fix_and_resubmit':
+        statusClass = 'task-fix-and-resubmit';
+        break;
+      case 'demonstrate':
+        statusClass = 'task-demonstrate';
+        break;
+      case 'redo':
+        statusClass = 'task-redo';
+        break;
+      case 'feedback_exceeded':
+        statusClass = 'task-feedback-exceeded';
         break;
       default:
         statusClass = 'task-not-started';
@@ -69,6 +86,28 @@ export class ProjectTasksListComponent {
       statusClass += ' selected';
     }
     return statusClass;
+  }
+
+  getTooltipText(task: Task): string {
+    const statusNames: { [key: string]: string } = {
+      ready_for_feedback: 'Ready for Feedback',
+      not_started: 'Not Started',
+      working_on_it: 'Working On It',
+      need_help: 'Need Help',
+      redo: 'Redo',
+      feedback_exceeded: 'Feedback Exceeded',
+      resubmit: 'Resubmit',
+      discuss: 'Discuss',
+      demonstrate: 'Demonstrate',
+      complete: 'Complete',
+      fail: 'Fail',
+      time_exceeded: 'Time Exceeded'
+    };
+
+    const statusDisplayName = statusNames[task.status] || task.status;
+    const taskDefinitionName = task.definition?.name.replace(/Task\s*\d+\.\d+\s*-\s*/i, '') || 'Unnamed Task';
+
+    return `<strong>${taskDefinitionName}</strong>: ${statusDisplayName}`;
   }
 
   ngOnInit() {
