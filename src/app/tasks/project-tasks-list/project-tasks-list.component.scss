@@ -15,10 +15,11 @@ ul {
     height: 40px;
     margin: 2px;
     border-radius: 4px;
-    font-size: 1.3em;
+    font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.2s, border 0.2s;
+
 
     &:hover {
       transform: scale(1.05);
@@ -29,48 +30,57 @@ ul {
     }
 
     &.task-complete {
-      background-color: rgb(84, 167, 81);
+      background-color: #54a751;
       color: #fff;
     }
 
     &.task-doing {
-      background-color: rgb(228, 125, 11);
+      background-color: #e47d0b;
       color: #fff;
     }
 
     &.task-discuss {
-      background-color: rgb(53, 118, 190);
+      background-color: #3576be;
       color: #fff;
     }
 
     &.task-ready-for-feedback {
-      background-color: rgb(43, 160, 203);
+      background-color: #2ba0cb;
       color: #fff;
     }
 
     &.task-need-help {
-      background-color: rgb(43, 160, 203);
+      background-color: #9b59b6;
       color: #fff;
     }
 
-    &.task-fail,
+    &.task-fail {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+
     &.task-not-started {
-      background-color: rgb(193, 193, 193);
+      background-color: #ecf0f1;
       color: #000;
     }
-  }
 
-  .tooltip {
-    position: absolute;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    border-radius: 4px;
-    white-space: nowrap;
-    z-index: 1;
-    opacity: 0.9;
+    &.task-time-exceeded {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+
+    .tooltip {
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 5px;
+      border-radius: 4px;
+      white-space: nowrap;
+      z-index: 1;
+      opacity: 0.9;
+    }
   }
 }
