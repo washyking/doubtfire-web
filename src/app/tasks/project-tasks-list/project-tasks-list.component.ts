@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Project, Task } from 'src/app/api/models/doubtfire-model';
 
 @Component({
@@ -6,9 +6,37 @@ import { Project, Task } from 'src/app/api/models/doubtfire-model';
   templateUrl: './project-tasks-list.component.html',
   styleUrls: ['./project-tasks-list.component.scss'],
 })
-export class ProjectTasksListComponent {
+export class ProjectTasksListComponent implements OnInit {
   @Input() project!: Project;
   selectedTask: Task | null = null;
+  sortedTasks: Task[] = [];
+
+  ngOnInit() {
+    if (this.project && this.project.tasks) {
+      this.sortedTasks = this.sortTasks([...this.project.tasks]);
+    }
+    console.log('Project tasks:', this.sortedTasks);
+  }
+
+  sortTasks(tasks: Task[]): Task[] {
+    return tasks.sort((a, b) => {
+      const gradeA = a.definition.targetGrade || '';
+      const gradeB = b.definition.targetGrade || '';
+
+      // If both grades are numbers, compare them as numbers
+      if (!isNaN(Number(gradeA)) && !isNaN(Number(gradeB))) {
+        return Number(gradeA) - Number(gradeB);
+      }
+
+      // Otherwise, compare them as strings
+      const gradeComparison = gradeA.toString().localeCompare(gradeB.toString());
+      if (gradeComparison !== 0) {
+        return gradeComparison;
+      }
+
+      return (a.definition.seq || 0) - (b.definition.seq || 0);
+    });
+  }
 
   taskText(task: Task): string {
     const name = task.definition?.name || 'Unnamed Task';
@@ -44,43 +72,43 @@ export class ProjectTasksListComponent {
   }
 
   getStatusClass(task: Task): string {
-    let statusClass = '';
+    let statusClass = 'task-status';
     switch (task.status) {
       case 'complete':
-        statusClass = 'task-complete';
+        statusClass += ' complete';
         break;
       case 'working_on_it':
-        statusClass = 'task-doing';
+        statusClass += ' doing';
         break;
       case 'discuss':
-        statusClass = 'task-discuss';
+        statusClass += ' discuss';
         break;
       case 'ready_for_feedback':
-        statusClass = 'task-ready-for-feedback';
+        statusClass += ' ready-for-feedback';
         break;
       case 'need_help':
-        statusClass = 'task-need-help';
+        statusClass += ' need-help';
         break;
       case 'fail':
-        statusClass = 'task-fail';
+        statusClass += ' fail';
         break;
       case 'time_exceeded':
-        statusClass = 'task-time-exceeded';
+        statusClass += ' time-exceeded';
         break;
       case 'fix_and_resubmit':
-        statusClass = 'task-fix-and-resubmit';
+        statusClass += ' fix-and-resubmit';
         break;
       case 'demonstrate':
-        statusClass = 'task-demonstrate';
+        statusClass += ' demonstrate';
         break;
       case 'redo':
-        statusClass = 'task-redo';
+        statusClass += ' redo';
         break;
       case 'feedback_exceeded':
-        statusClass = 'task-feedback-exceeded';
+        statusClass += ' feedback-exceeded';
         break;
       default:
-        statusClass = 'task-not-started';
+        statusClass += ' not-started';
     }
     if (this.selectedTask === task) {
       statusClass += ' selected';
@@ -105,12 +133,53 @@ export class ProjectTasksListComponent {
     };
 
     const statusDisplayName = statusNames[task.status] || task.status;
-    const taskDefinitionName = task.definition?.name.replace(/Task\s*\d+\.\d+\s*-\s*/i, '') || 'Unnamed Task';
+    const taskDefinitionName = task.definition?.name || 'Unnamed Task';
 
-    return `<strong>${taskDefinitionName}</strong>: ${statusDisplayName}`;
+    return `<strong>${taskDefinitionName}</strong>:<br>${statusDisplayName}`;
   }
 
-  ngOnInit() {
-    console.log('Project tasks:', this.project.tasks);
+  toggleTooltip(task: Task): void {
+    task.showTooltip = !task.showTooltip;
+  }
+
+  getPlainTooltipText(task: Task): string {
+    const statusNames: { [key: string]: string } = {
+      ready_for_feedback: 'Ready for Feedback',
+      not_started: 'Not Started',
+      working_on_it: 'Working On It',
+      need_help: 'Need Help',
+      redo: 'Redo',
+      feedback_exceeded: 'Feedback Exceeded',
+      resubmit: 'Resubmit',
+      discuss: 'Discuss',
+      demonstrate: 'Demonstrate',
+      complete: 'Complete',
+      fail: 'Fail',
+      time_exceeded: 'Time Exceeded'
+    };
+
+    const statusDisplayName = statusNames[task.status] || task.status;
+    const taskDefinitionName = task.definition?.name || 'Unnamed Task';
+
+    return `${taskDefinitionName}: ${statusDisplayName}`;
+  }
+
+  getStatusDisplayName(task: Task): string {
+    const statusNames: { [key: string]: string } = {
+      ready_for_feedback: 'Ready for Feedback',
+      not_started: 'Not Started',
+      working_on_it: 'Working On It',
+      need_help: 'Need Help',
+      redo: 'Redo',
+      feedback_exceeded: 'Feedback Exceeded',
+      resubmit: 'Resubmit',
+      discuss: 'Discuss',
+      demonstrate: 'Demonstrate',
+      complete: 'Complete',
+      fail: 'Fail',
+      time_exceeded: 'Time Exceeded'
+    };
+
+    return statusNames[task.status] || task.status;
   }
 }

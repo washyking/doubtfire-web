@@ -1,108 +1,44 @@
-ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+@import '../../../../build/assets/doubtfire.css';
 
-  li {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: calc(25% - 5px);
-    height: 40px;
-    margin: 2px;
-    border-radius: 4px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s, border 0.2s;
-    z-index: 1;
+.project-tasks-list li {
+  position: relative;
+}
 
-    &:hover {
-      transform: scale(1.05);
-    }
+::ng-deep .mat-tooltip {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  z-index: 1000;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 5px;
+  pointer-events: none;
+  width: 90px;
+  white-space: normal;
+  word-wrap: break-word;
+}
 
-    &.selected {
-      border: 2px solid blue;
-    }
+::ng-deep .mat-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent;
+}
 
-    &.task-complete {
-      background-color: #5bb75b;
-      color: #fff;
-    }
 
-    &.task-doing {
-      background-color: #ea8f06;
-      color: #fff;
-    }
+::ng-deep .mat-tooltip .tooltip-status {
+  font-weight: normal;
+}
 
-    &.task-discuss {
-      background-color: #30b0d5;
-      color: #fff;
-    }
+::ng-deep .mat-tooltip .groupset-name {
+  color: #fff !important;
 
-    &.task-ready-for-feedback {
-      background-color: #0079d8;
-      color: #fff;
-    }
-
-    &.task-need-help {
-      background-color: #a48fce;
-      color: #fff;
-    }
-
-    &.task-fail {
-      background-color: #d93713;
-      color: #fff;
-    }
-
-    &.task-not-started {
-      background-color: #cccccc;
-      color: #000;
-    }
-
-    &.task-time-exceeded {
-      background-color: #d93713;
-      color: #fff;
-    }
-
-    &.task-fix-and-resubmit {
-      background-color: #f2d85c;
-      color: #000;
-    }
-
-    &.task-demonstrate {
-      background-color: #428bca;
-      color: #fff;
-    }
-
-    &.task-redo {
-      background-color: #804000;
-      color: #fff;
-    }
-
-    &.task-feedback-exceeded {
-      background-color: #d46b54;
-      color: #fff;
-    }
-
-    .tooltip {
-      position: absolute;
-      bottom: 110%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #333;
-      color: #fff;
-      padding: 5px;
-      border-radius: 4px;
-      white-space: normal;
-      max-width: 150px;
-      z-index: 100;
-      opacity: 0.9;
-      text-align: center;
-    }
-  }
 }
