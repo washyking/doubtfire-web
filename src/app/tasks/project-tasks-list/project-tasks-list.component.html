@@ -3,8 +3,11 @@
     <button type="button" class="col-xs-12 btn task-status" [ngClass]="getStatusClass(task)" (click)="selectTask(task)" (mouseenter)="toggleTooltip(task)" (mouseleave)="toggleTooltip(task)">
       <i class="fa fa-eye" *ngIf="task.similarityFlag"></i> {{ taskText(task) }}
       <div *ngIf="task.showTooltip" class="mat-tooltip">
-        <span class="groupset-name">{{ task.definition?.name || 'Unnamed Task' }}</span>:<br>
-        <span class="tooltip-status">{{ getStatusDisplayName(task) }}</span>
+        <b class="groupset-name font-bold">
+          {{ task.definition?.name || 'Unnamed Task' }}:
+        </b>
+        <br>
+        <b class="tooltip-status font-light">{{ getStatusDisplayName(task) }}</b>
       </div>
     </button>
   </li>

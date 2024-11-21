@@ -33,12 +33,28 @@
   border-color: transparent transparent #333 transparent;
 }
 
-
 ::ng-deep .mat-tooltip .tooltip-status {
-  font-weight: normal;
+  font-weight: 300 !important;
+  font-size: 0.85rem !important;
+}
+
+.project-tasks-list .groupset-name {
+  color: #777;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
 }
 
 ::ng-deep .mat-tooltip .groupset-name {
-  color: #fff !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
 
+}
+
+.font-bold {
+  font-weight: bold !important;
+}
+
+#bold-text.groupset-name {
+  font-weight: bold !important;
 }
