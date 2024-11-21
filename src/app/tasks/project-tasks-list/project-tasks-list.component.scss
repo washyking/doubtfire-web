@@ -1,7 +1,30 @@
 @import '../../../../build/assets/doubtfire.css';
 
-.project-tasks-list li {
-  position: relative;
+.project-tasks-list {
+
+  text-align: center;
+
+  .groupset-name {
+    color: #777;
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  li {
+    display: inline;
+    padding: 2px;
+  }
+
+  .groupset-tasks:first-child .groupset-name {
+    margin-top: 0;
+  }
+
+  // As a dropdown menu
+  &.dropdown-menu {
+    padding: 15px;
+    width: 400px;
+  }
 }
 
 ::ng-deep .mat-tooltip {
@@ -33,28 +56,13 @@
   border-color: transparent transparent #333 transparent;
 }
 
-::ng-deep .mat-tooltip .tooltip-status {
-  font-weight: 300 !important;
-  font-size: 0.85rem !important;
-}
 
 .project-tasks-list .groupset-name {
-  color: #777;
-  text-align: center;
+  color: #ffffff;
   font-size: 1em;
-  font-weight: bold;
+  -webkit-text-stroke: 0.7px #ffffff;
 }
 
-::ng-deep .mat-tooltip .groupset-name {
-  color: #ffffff !important;
-  font-weight: bold !important;
-
-}
-
-.font-bold {
-  font-weight: bold !important;
-}
-
-#bold-text.groupset-name {
-  font-weight: bold !important;
+.project-tasks-list .tooltip-status {
+  font-size: 0.8em;
 }
