@@ -224,7 +224,7 @@ import {MarkedPipe} from './common/pipes/marked.pipe';
 import {AlertService} from './common/services/alert.service';
 import {GradeService} from './common/services/grade.service';
 import {TaskScormCardComponent} from './projects/states/dashboard/directives/task-dashboard/directives/task-scorm-card/task-scorm-card.component';
-import {ProjectTasksListComponent} from './tasks/project-tasks-list/project-tasks-list.component';
+import {FProjectTasksListComponent} from './tasks/project-tasks-list/project-tasks-list.component';
 
 export const DoubtfireAngularJSModule = angular.module('doubtfire', [
   'doubtfire.config',
@@ -306,8 +306,8 @@ DoubtfireAngularJSModule.factory('CreateNewUnitModal', downgradeInjectable(Creat
 
 // directive -> component
 DoubtfireAngularJSModule.directive(
-  'projectTasksList',
-  downgradeComponent({component: ProjectTasksListComponent}),
+  'fProjectTasksList',
+  downgradeComponent({component: FProjectTasksListComponent}),
 );
 DoubtfireAngularJSModule.directive(
   'taskCommentComposer',

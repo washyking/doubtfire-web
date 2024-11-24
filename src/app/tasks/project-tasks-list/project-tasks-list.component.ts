@@ -6,7 +6,7 @@ import { Project, Task } from 'src/app/api/models/doubtfire-model';
   templateUrl: './project-tasks-list.component.html',
   styleUrls: ['./project-tasks-list.component.scss'],
 })
-export class ProjectTasksListComponent implements OnInit {
+export class FProjectTasksListComponent implements OnInit {
   @Input() project!: Project;
   selectedTask: Task | null = null;
   sortedTasks: Task[] = [];
