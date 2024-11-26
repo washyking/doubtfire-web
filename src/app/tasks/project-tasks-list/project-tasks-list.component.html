@@ -5,9 +5,9 @@
       onfocus="this.classList.add('outline-none', 'shadow-outline-blue')"
       onblur="this.classList.remove('outline-none', 'shadow-outline-blue')">
       <i class="fa fa-eye" *ngIf="task.similarityFlag"></i> {{ taskText(task) }}
-      <div *ngIf="task.showTooltip" class="absolute bg-gray-800 text-white p-2 rounded text-sm z-50 top-full left-1/2 transform -translate-x-1/2 mt-1 pointer-events-none w-[calc(100%/0.8)] break-words whitespace-normal">
-        <div class="absolute left-1/2 transform -translate-x-1/2 -top-2 h-0 w-0 border-x-8 border-x-transparent border-b-[8px] border-b-gray-800"></div>
-        <b class="groupset-name text-gray-500 text-base font-bold -webkit-text-stroke-0.7 text-stroke-white">
+      <div *ngIf="task.showTooltip" class="absolute bg-black text-white p-2 rounded text-sm z-50 top-full left-1/2 transform -translate-x-1/2 mt-1 pointer-events-none w-[calc(100%/0.8)] break-words whitespace-normal">
+        <div class="absolute left-1/2 transform -translate-x-1/2 -top-2 h-0 w-0 border-x-8 border-x-transparent border-b-[8px] border-b-black"></div>
+        <b class="groupset-name text-gray-300 text-base font-bold -webkit-text-stroke-0.7 text-stroke-white">
           {{ task.definition?.name || 'Unnamed Task' }}:
         </b>
         <br>
