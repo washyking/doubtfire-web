@@ -254,9 +254,11 @@ import { GradeIconComponent } from './common/grade-icon/grade-icon.component';
 import { GradeTaskModalComponent } from './tasks/modals/grade-task-modal/grade-task-modal.component';
 import { PrivacyPolicy } from './config/privacy-policy/privacy-policy';
 import { PanoptoAuthService } from './api/services/panopto-auth.service';
+
 import { PanoptoVideoComponent } from "./panopto/panopto-video.component";
 import { VideoUploadComponent } from "./panopto/video-upload.component";
 import { VideoMetadataComponent } from "./panopto/video-metadata.component";
+import { VideoSelectorComponent } from './panopto/video-selector.component';
 
 // See https://stackoverflow.com/questions/55721254/how-to-change-mat-datepicker-date-format-to-dd-mm-yyyy-in-simplest-way/58189036#58189036
 const MY_DATE_FORMAT = {
@@ -395,7 +397,8 @@ import { UnitStudentEnrolmentModalComponent } from './units/modals/unit-student-
     ScormExtensionModalComponent,
     PanoptoVideoComponent,
     VideoUploadComponent,
-    VideoMetadataComponent
+    VideoMetadataComponent,
+    VideoSelectorComponent
   ],
   // Services we provide
   providers: [

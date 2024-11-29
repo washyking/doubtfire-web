@@ -1,0 +1,7 @@
+<div>
+  <button (click)="openVideoSelector()">Select a Video</button>
+  <div *ngIf="embedCode" class="embed-preview">
+    <h3>Embed Code</h3>
+    <div [innerHTML]="embedCode"></div>
+  </div>
+</div>

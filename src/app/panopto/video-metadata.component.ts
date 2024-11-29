@@ -2,7 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { PanoptoAuthService } from '../services/panopto-auth.service';
+import { PanoptoAuthService } from '../api/services/panopto-auth.service';
 
 @Component({
   selector: 'app-video-metadata',

@@ -22,6 +22,7 @@ import {TaskCommentsViewerComponent} from '../task-comments-viewer/task-comments
 import {BehaviorSubject} from 'rxjs';
 import {AlertService} from 'src/app/common/services/alert.service';
 
+
 /**
  * The task comment viewer needs to share data with the Task Comment Composer. The data needed
  * id defined through this interface.
@@ -84,6 +85,7 @@ export class TaskCommentComposerComponent implements DoCheck {
   emojiMatch: string;
   recording = false;
   cagStartWidth: number;
+  availableVideos: any[];
 
   constructor(
     private differs: KeyValueDiffers,
@@ -96,6 +98,7 @@ export class TaskCommentComposerComponent implements DoCheck {
     @Inject(TaskCommentService) private taskCommentService: TaskCommentService,
   ) {
     this.differ = this.differs.find({}).create();
+    this.availableVideos = [];
   }
 
   ngDoCheck() {
