@@ -21,6 +21,7 @@ import {Task, TaskComment, TaskCommentService} from 'src/app/api/models/doubtfir
 import {TaskCommentsViewerComponent} from '../task-comments-viewer/task-comments-viewer.component';
 import {BehaviorSubject} from 'rxjs';
 import {AlertService} from 'src/app/common/services/alert.service';
+import { VideoSelectorComponent } from '../../panopto/video-selector.component';
 
 
 /**
@@ -318,6 +319,23 @@ export class TaskCommentComposerComponent implements DoCheck {
         this.alerts.error(error || error?.message, 2000);
       },
     );
+  }
+
+  openVideoSelector() {
+    const dialogRef = this.dialog.open(VideoSelectorComponent, {
+      data: { videos: [] }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.embedVideo(result);
+      }
+    });
+  }
+
+  embedVideo(video: any) {
+    console.log('Selected video:', video);
+    // Implement your logic to embed the video in the discussion
   }
 }
 

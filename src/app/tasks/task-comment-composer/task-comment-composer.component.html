@@ -136,7 +136,9 @@
           <mat-icon class="message-inbox-icon">mic</mat-icon>
         </button>
 
-        <app-video-selector [data]="{ videos: availableVideos }"></app-video-selector>
+        <button (click)="openVideoSelector()" mat-button>
+          Select Video
+        </button>
       </div>
     </div>
     <div

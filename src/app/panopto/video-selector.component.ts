@@ -15,4 +15,6 @@ export class VideoSelectorComponent {
   selectVideo(video: any) {
     this.dialogRef.close(video); // Close the dialog and return the selected video
   }
+
+  // Add methods for navigating folders and selecting videos
 }
